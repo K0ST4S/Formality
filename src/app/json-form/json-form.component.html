@@ -39,5 +39,7 @@
       [validators]="control.validators"
     ></app-dynamic-validator>
   </ng-container>
-  <ng-content (click)="onSubmit()"></ng-content>
+  <button (click)="onSubmit()" [disabled]="formGroup.invalid">
+    <ng-content select="[submit]"></ng-content>
+  </button>
 </form>
