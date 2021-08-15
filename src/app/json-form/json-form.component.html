@@ -1,0 +1,39 @@
+<form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <ng-container *ngFor="let control of jsonFormData?.controls">
+    <label *ngIf="control.label">{{ control.label }}</label>
+    <input
+      *ngIf="
+        [
+          ValueType.Text,
+          ValueType.Password,
+          ValueType.Email,
+          ValueType.Number,
+          ValueType.Search,
+          ValueType.Mobile,
+          ValueType.Url,
+          ValueType.Radio,
+          ValueType.Checkbox
+        ].includes(control.type)
+      "
+      [type]="control.type"
+      [formControlName]="control.name"
+      [value]="control.value"
+      [class]="getControlClass(control)"
+    />
+    <textarea
+      *ngIf="control.type === ValueType.Textarea"
+      [formControlName]="control.name"
+      [value]="control.value"
+      [class]="getControlClass(control)"
+    ></textarea>
+    <input
+      *ngIf="control.type === ValueType.Range"
+      [min]="control.options.min"
+      [max]="control.options.max"
+      [type]="ValueType.Range"
+      [formControlName]="control.name"
+      [class]="getControlClass(control)"
+    />
+  </ng-container>
+  <ng-content (click)="onSubmit()"></ng-content>
+</form>
