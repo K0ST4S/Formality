@@ -12,7 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-interface JsonFormValidators {
+export interface JsonFormValidators {
   min?: number;
   max?: number;
   required?: boolean;
@@ -67,6 +67,17 @@ export enum ValueType {
   Form = 'form',
 }
 
+export enum ValidatorType {
+  Min = 'min',
+  Max = 'max',
+  Required = 'required',
+  RequiredTrue = 'requiredTrue',
+  Email = 'email',
+  MinLength = 'minLength',
+  MaxLength = 'maxLength',
+  Pattern = 'pattern',
+}
+
 @Component({
   selector: 'app-json-form',
   templateUrl: './json-form.component.html',
@@ -79,6 +90,7 @@ export class JsonFormComponent {
   @Input() set jsonFormData(value: JsonFormData) {
     this._jsonFormData = value;
     this.formGroup = this.parseJsonFormData(value);
+    console.log(this.formGroup);
   }
 
   get jsonFormData(): JsonFormData {
@@ -111,40 +123,35 @@ export class JsonFormComponent {
     const validatorsToAdd = [];
     for (const [key, value] of Object.entries(control.validators)) {
       switch (key) {
-        case 'min':
+        case ValidatorType.Min:
           validatorsToAdd.push(Validators.min(value));
           break;
-        case 'max':
+        case ValidatorType.Max:
           validatorsToAdd.push(Validators.max(value));
           break;
-        case 'required':
+        case ValidatorType.Required:
           if (value) {
             validatorsToAdd.push(Validators.required);
           }
           break;
-        case 'requiredTrue':
+        case ValidatorType.RequiredTrue:
           if (value) {
             validatorsToAdd.push(Validators.requiredTrue);
           }
           break;
-        case 'email':
+        case ValidatorType.Email:
           if (value) {
             validatorsToAdd.push(Validators.email);
           }
           break;
-        case 'minLength':
+        case ValidatorType.MinLength:
           validatorsToAdd.push(Validators.minLength(value));
           break;
-        case 'maxLength':
+        case ValidatorType.MaxLength:
           validatorsToAdd.push(Validators.maxLength(value));
           break;
-        case 'pattern':
+        case ValidatorType.Pattern:
           validatorsToAdd.push(Validators.pattern(value));
-          break;
-        case 'nullValidator':
-          if (value) {
-            validatorsToAdd.push(Validators.nullValidator);
-          }
           break;
         default:
           break;

@@ -34,6 +34,10 @@
       [formControlName]="control.name"
       [class]="getControlClass(control)"
     />
+    <app-dynamic-validator
+      [control]="formGroup.get(control.name)"
+      [validators]="control.validators"
+    ></app-dynamic-validator>
   </ng-container>
   <ng-content (click)="onSubmit()"></ng-content>
 </form>

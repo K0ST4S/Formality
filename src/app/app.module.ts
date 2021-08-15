@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { JsonFormComponent } from './json-form/json-form.component';
+import { DynamicValidatorComponent } from './json-form/dynamic-validator/dynamic-validator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     JsonFormComponent,
+    DynamicValidatorComponent,
   ],
   imports: [
     ReactiveFormsModule,
