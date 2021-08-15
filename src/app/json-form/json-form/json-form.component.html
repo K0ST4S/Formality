@@ -1,0 +1,14 @@
+<ng-container>
+  <ng-container *ngFor="let control of jsonFormData?.controls">
+    <label *ngIf="control.label">{{ control.label }}</label>
+    <ng-container *ngIf="control.type !== ValueType.Form">
+      <app-json-form-control [control]="control"></app-json-form-control>
+    </ng-container>
+    <ng-container
+      *ngIf="control.type === ValueType.Form"
+      [formGroupName]="control.name"
+    >
+      <app-json-form [jsonFormData]="control.value"></app-json-form>
+    </ng-container>
+  </ng-container>
+</ng-container>

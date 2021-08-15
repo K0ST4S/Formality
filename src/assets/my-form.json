@@ -47,8 +47,31 @@
     {
       "name": "lightDark",
       "label": "Do you like toggles?",
-      "value": "false",
-      "type": "toggle",
+      "value": {
+        "controls": [
+          {
+            "name": "agreeTerms",
+            "label": "This is a checkbox?",
+            "value": "false",
+            "type": "checkbox",
+            "validators": {}
+          },
+          {
+            "name": "size",
+            "label": "",
+            "value": "",
+            "type": "range",
+            "options": {
+              "min": "0",
+              "max": "100",
+              "step": "1",
+              "icon": "sunny"
+            },
+            "validators": {}
+          }
+        ]
+      },
+      "type": "form",
       "validators": {}
     }
   ]

@@ -31,7 +31,7 @@ interface JsonFormControlOptions {
   icon?: string;
 }
 
-interface JsonFormControl {
+export interface JsonFormControl {
   name: string;
   label: string;
   value: string | JsonFormData;
@@ -79,18 +79,17 @@ export enum ValidatorType {
 }
 
 @Component({
-  selector: 'app-json-form',
-  templateUrl: './json-form.component.html',
-  styleUrls: ['./json-form.component.sass'],
+  selector: 'app-nested-json-form',
+  templateUrl: './nested-json-form.component.html',
+  styleUrls: ['./nested-json-form.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class JsonFormComponent {
+export class NestedJsonFormComponent {
   private _jsonFormData: JsonFormData;
 
   @Input() set jsonFormData(value: JsonFormData) {
     this._jsonFormData = value;
     this.formGroup = this.parseJsonFormData(value);
-    console.log(this.formGroup);
   }
 
   get jsonFormData(): JsonFormData {
@@ -159,10 +158,6 @@ export class JsonFormComponent {
     }
 
     return new FormControl(control.value, validatorsToAdd);
-  }
-
-  public getControlClass(control: JsonFormControl): string {
-    return `.${control.name}`;
   }
 
   onSubmit() {

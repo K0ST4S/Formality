@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { JsonFormValidators, ValidatorType } from './../json-form.component';
+import {
+  JsonFormValidators,
+  ValidatorType,
+} from '../nested-json-form.component';
 
 @Component({
   selector: 'app-dynamic-validator',

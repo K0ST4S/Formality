@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { JsonFormData } from './json-form/json-form.component';
+import { JsonFormData } from './json-form/nested-json-form.component';
 
 @Component({
   selector: 'app-root',

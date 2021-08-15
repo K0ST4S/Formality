@@ -1,0 +1,6 @@
+<form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <app-json-form [jsonFormData]="jsonFormData"></app-json-form>
+  <button (click)="onSubmit()" [disabled]="formGroup.invalid">
+    <ng-content select="[submit]"></ng-content>
+  </button>
+</form>
