@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { JsonFormData } from './json-form/nested-json-form.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  JsonFormData,
+  NestedJsonFormComponent,
+} from './json-form/nested-json-form.component';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +11,7 @@ import { JsonFormData } from './json-form/nested-json-form.component';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  @ViewChild(NestedJsonFormComponent) form: NestedJsonFormComponent;
   public formData: JsonFormData;
 
   constructor(private http: HttpClient) {}
@@ -18,5 +22,11 @@ export class AppComponent implements OnInit {
       .subscribe((formData: JsonFormData) => {
         this.formData = formData;
       });
+  }
+
+  onSubmit(value: any) {
+    console.log(this.form.formGroup.value);
+
+    console.log(value);
   }
 }

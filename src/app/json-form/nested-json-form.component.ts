@@ -21,7 +21,6 @@ export interface JsonFormValidators {
   minLength?: boolean;
   maxLength?: boolean;
   pattern?: string;
-  nullValidator?: boolean;
 }
 
 interface JsonFormControlOptions {
@@ -37,7 +36,6 @@ export interface JsonFormControl {
   value: string | JsonFormData;
   type: string;
   options?: JsonFormControlOptions;
-  required: boolean;
   validators: JsonFormValidators;
 }
 
@@ -54,8 +52,9 @@ export enum ValueType {
   Mobile = 'tel',
   Url = 'url',
   Textarea = 'textarea',
+  RichText = 'richText',
   Checkbox = 'checkbox',
-  Toggle = 'toggle',
+  Switch = 'toggle',
   Radio = 'radio',
   Range = 'range',
   Date = 'date',
@@ -161,7 +160,6 @@ export class NestedJsonFormComponent {
   }
 
   onSubmit() {
-    console.log('Form valid: ', this.formGroup.valid);
-    console.log('Form values: ', this.formGroup.value);
+    this.onSubmitted.emit(this.formGroup.value);
   }
 }

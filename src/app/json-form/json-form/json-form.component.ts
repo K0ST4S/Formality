@@ -13,9 +13,7 @@ import { JsonFormData, ValueType } from '../nested-json-form.component';
 export class JsonFormComponent implements OnInit {
   ValueType = ValueType;
   @Input() public jsonFormData: JsonFormData;
-  constructor(public parentForm: FormGroupDirective) {
-    console.log(parentForm);
-  }
+  constructor(public parentForm: FormGroupDirective) {}
 
   ngOnInit(): void {}
 }
