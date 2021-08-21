@@ -54,7 +54,7 @@ export enum ValueType {
   Textarea = 'textarea',
   RichText = 'richText',
   Checkbox = 'checkbox',
-  Switch = 'toggle',
+  Switch = 'switch',
   Radio = 'radio',
   Range = 'range',
   Date = 'date',

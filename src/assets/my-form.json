@@ -53,8 +53,9 @@
     },
     {
       "name": "lightDark",
-      "label": "Do you like toggles?",
+      "label": "Do you like switches?",
       "value": "true",
+      "type": "switch",
       "validators": {}
     }
   ]
