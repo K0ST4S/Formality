@@ -87,6 +87,10 @@ export class NestedJsonFormComponent {
   private _jsonFormData: JsonFormData;
 
   @Input() set jsonFormData(value: JsonFormData) {
+    if (!value) {
+      return;
+    }
+
     this._jsonFormData = value;
     this.formGroup = this.parseJsonFormData(value);
   }

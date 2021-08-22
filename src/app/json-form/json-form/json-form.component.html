@@ -1,13 +1,11 @@
-<ng-container>
-  <ng-container *ngFor="let control of jsonFormData?.controls">
-    <ng-container *ngIf="control.type !== ValueType.Form">
-      <app-json-form-control [control]="control"> </app-json-form-control>
-    </ng-container>
-    <ng-container *ngIf="control.type === ValueType.Form">
-      <app-json-form
-        [jsonFormData]="control.value"
-        [formGroupName]="control.name"
-      ></app-json-form>
-    </ng-container>
+<ng-container *ngFor="let control of jsonFormData?.controls">
+  <ng-container *ngIf="control.type !== ValueType.Form">
+    <app-json-form-control [control]="control"> </app-json-form-control>
+  </ng-container>
+  <ng-container
+    *ngIf="control.type === ValueType.Form"
+    [formGroup]="parentForm.form.get(control.name)"
+  >
+    <app-json-form [jsonFormData]="control.value"></app-json-form>
   </ng-container>
 </ng-container>

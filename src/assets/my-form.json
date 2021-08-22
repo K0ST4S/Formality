@@ -34,8 +34,31 @@
     {
       "name": "agreesdsTerms",
       "label": "Another",
-      "value": "false",
-      "type": "checkbox",
+      "value": {
+        "controls": [
+          {
+            "name": "yourAge",
+            "label": "Whats your age",
+            "value": "",
+            "type": "range",
+            "options": {
+              "min": "0",
+              "max": "100",
+              "step": "1",
+              "icon": "sunny"
+            },
+            "validators": {}
+          },
+          {
+            "name": "lightDark",
+            "label": "Do you like switches?",
+            "value": "true",
+            "type": "switch",
+            "validators": {}
+          }
+        ]
+      },
+      "type": "form",
       "validators": {}
     },
     {
