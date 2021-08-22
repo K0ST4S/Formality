@@ -12,14 +12,12 @@
         ValueType.Search,
         ValueType.Mobile,
         ValueType.Url,
-        ValueType.Radio,
-        ValueType.Checkbox
+        ValueType.Radio
       ].includes(control.type)
     "
     [type]="control.type"
     [formControlName]="control.name"
     [id]="control.name"
-    [value]="control.value"
     [class]="getControlClass(control)"
   />
 
@@ -27,7 +25,6 @@
     *ngIf="control.type === ValueType.Textarea"
     [id]="control.name"
     [formControlName]="control.name"
-    [value]="control.value"
     [class]="getControlClass(control)"
   ></textarea>
   <input
@@ -41,8 +38,8 @@
   />
 
   <input
-    *ngIf="control.type === ValueType.Switch"
-    [type]="ValueType.Checkbox"
+    *ngIf="[ValueType.Checkbox, ValueType.Switch].includes(control.type)"
+    type="checkbox"
     [id]="control.name"
     [formControlName]="control.name"
     [class]="getControlClass(control)"

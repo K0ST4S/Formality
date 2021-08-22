@@ -1,16 +1,12 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { CustomValidators } from './../utils/custom-validators';
 
 export interface JsonFormValidators {
   min?: number;
@@ -74,14 +70,12 @@ export enum ValidatorType {
   Email = 'email',
   MinLength = 'minLength',
   MaxLength = 'maxLength',
-  Pattern = 'pattern',
 }
 
 @Component({
   selector: 'app-nested-json-form',
   templateUrl: './nested-json-form.component.html',
   styleUrls: ['./nested-json-form.component.sass'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NestedJsonFormComponent {
   private _jsonFormData: JsonFormData;
@@ -93,6 +87,7 @@ export class NestedJsonFormComponent {
 
     this._jsonFormData = value;
     this.formGroup = this.parseJsonFormData(value);
+    this.formGroup.valueChanges.subscribe((value) => console.log(value));
   }
 
   get jsonFormData(): JsonFormData {
@@ -116,13 +111,15 @@ export class NestedJsonFormComponent {
         control.type === ValueType.Form
           ? this.parseJsonFormData(control.value as JsonFormData)
           : this.parseControl(control);
+
       formGroup.addControl(control.name, newControl);
     }
+
     return formGroup;
   }
 
   private parseControl(control: JsonFormControl): FormControl {
-    const validatorsToAdd = [];
+    const validatorsToAdd: ValidatorFn[] = [];
     for (const [key, value] of Object.entries(control.validators)) {
       switch (key) {
         case ValidatorType.Min:
@@ -138,7 +135,7 @@ export class NestedJsonFormComponent {
           break;
         case ValidatorType.RequiredTrue:
           if (value) {
-            validatorsToAdd.push(Validators.requiredTrue);
+            validatorsToAdd.push(CustomValidators.requiredTrue);
           }
           break;
         case ValidatorType.Email:
@@ -152,14 +149,10 @@ export class NestedJsonFormComponent {
         case ValidatorType.MaxLength:
           validatorsToAdd.push(Validators.maxLength(value));
           break;
-        case ValidatorType.Pattern:
-          validatorsToAdd.push(Validators.pattern(value));
-          break;
         default:
           break;
       }
     }
-
     return new FormControl(control.value, validatorsToAdd);
   }
 

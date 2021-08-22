@@ -16,13 +16,12 @@ export class DynamicValidatorComponent {
 
   // this would generally be replaced with ngx-translate keys and when we would pass a variable to validators that don't require one - nothing would happen.
   public ValidatorMessage = {
-    [ValidatorType.Min]: 'Min',
-    [ValidatorType.Max]: 'Max',
+    [ValidatorType.Min]: 'Mnimimum value is *',
+    [ValidatorType.Max]: 'Maximum value is *',
     [ValidatorType.Required]: 'Required',
-    [ValidatorType.RequiredTrue]: 'RequiredTrue',
-    [ValidatorType.Email]: 'Email',
-    [ValidatorType.MinLength]: 'MinLength',
-    [ValidatorType.MaxLength]: 'MaxLength',
-    [ValidatorType.Pattern]: 'Pattern',
+    [ValidatorType.RequiredTrue]: 'You must agree',
+    [ValidatorType.Email]: 'Not a valid email',
+    [ValidatorType.MinLength]: 'Minimum length is *',
+    [ValidatorType.MaxLength]: 'Maximum length is *',
   };
 }

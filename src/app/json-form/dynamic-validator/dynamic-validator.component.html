@@ -2,7 +2,7 @@
   <ng-container *ngFor="let validator of validators | keyvalue">
     <ng-container *ngIf="control.errors[validator.key]">
       <small>
-        {{ ValidatorMessage[validator.key] + validator.value }}
+        {{ ValidatorMessage[validator.key].replace("*", validator.value) }}
       </small>
     </ng-container>
   </ng-container>
