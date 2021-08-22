@@ -30,8 +30,8 @@ export class JsonFormControlComponent implements OnInit {
     [ValueType.Checkbox]: 'form-check-input',
     [ValueType.Switch]: 'form-check-input',
     [ValueType.Radio]: 'form-check-input',
-    [ValueType.Range]: 'custom-range order-1',
-    [ValueType.Date]: ' order-1',
+    [ValueType.Range]: 'form-range order-1',
+    [ValueType.Date]: 'order-1',
     [ValueType.Singleselect]: ' order-1',
     [ValueType.Multiselect]: ' order-1',
     [ValueType.Countryselect]: ' order-1',
@@ -64,26 +64,26 @@ export class JsonFormControlComponent implements OnInit {
   };
 
   GroupClass = {
-    [ValueType.Text]: 'form-group',
-    [ValueType.Password]: 'form-group',
-    [ValueType.Email]: 'form-group',
-    [ValueType.Number]: 'form-group',
-    [ValueType.Search]: 'form-group',
-    [ValueType.Mobile]: 'form-group',
-    [ValueType.Url]: 'form-group',
-    [ValueType.Textarea]: 'form-group',
-    [ValueType.RichText]: 'form-group',
-    [ValueType.Checkbox]: 'form-check d-flex flex-row',
-    [ValueType.Switch]: 'form-check form-switch  d-flex flex-row',
-    [ValueType.Radio]: 'form-group d-flex flex-row',
-    [ValueType.Range]: 'form-group',
-    [ValueType.Date]: 'form-group',
-    [ValueType.Singleselect]: 'form-group',
-    [ValueType.Multiselect]: 'form-group',
-    [ValueType.Countryselect]: 'form-group',
-    [ValueType.File]: 'form-group',
-    [ValueType.Image]: 'form-group',
-    [ValueType.Form]: 'form-group',
+    [ValueType.Text]: 'form-group  d-flex flex-column',
+    [ValueType.Password]: 'form-group d-flex flex-column',
+    [ValueType.Email]: 'form-group d-flex flex-column',
+    [ValueType.Number]: 'form-group d-flex flex-column',
+    [ValueType.Search]: 'form-group d-flex flex-column',
+    [ValueType.Mobile]: 'form-group d-flex flex-column',
+    [ValueType.Url]: 'form-group d-flex flex-column',
+    [ValueType.Textarea]: 'form-group d-flex flex-column',
+    [ValueType.RichText]: 'form-group d-flex flex-column',
+    [ValueType.Checkbox]: 'form-check',
+    [ValueType.Switch]: 'form-check form-switch',
+    [ValueType.Radio]: 'form-check',
+    [ValueType.Range]: 'form-group d-flex flex-column',
+    [ValueType.Date]: 'form-group d-flex flex-column',
+    [ValueType.Singleselect]: 'form-group d-flex flex-column',
+    [ValueType.Multiselect]: 'form-group d-flex flex-column',
+    [ValueType.Countryselect]: 'form-group d-flex flex-column',
+    [ValueType.File]: 'form-group d-flex flex-column',
+    [ValueType.Image]: 'form-group d-flex flex-column',
+    [ValueType.Form]: 'form-group d-flex flex-column',
   };
 
   constructor(public parentForm: FormGroupDirective) {}
@@ -108,6 +108,6 @@ export class JsonFormControlComponent implements OnInit {
   }
 
   public getGroupClass(control: JsonFormControl): string {
-    return `${this.GroupClass[control.type]} d-flex flex-column`;
+    return `${this.GroupClass[control.type]}`;
   }
 }

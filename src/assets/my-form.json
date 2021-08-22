@@ -34,6 +34,15 @@
       }
     },
     {
+      "name": "agreeTerms",
+      "label": "This is a radio",
+      "value": false,
+      "type": "radio",
+      "validators": {
+        "required": true
+      }
+    },
+    {
       "name": "agreesdsTerms",
       "label": "Another",
       "value": {

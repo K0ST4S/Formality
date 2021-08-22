@@ -8,8 +8,7 @@
         ValueType.Number,
         ValueType.Search,
         ValueType.Mobile,
-        ValueType.Url,
-        ValueType.Radio
+        ValueType.Url
       ].includes(control.type)
     "
     [type]="control.type"
@@ -37,6 +36,13 @@
   <input
     *ngIf="[ValueType.Checkbox, ValueType.Switch].includes(control.type)"
     type="checkbox"
+    [id]="control.name"
+    [formControlName]="control.name"
+    [class]="getControlClass(control)"
+  />
+  <input
+    *ngIf="control.type === ValueType.Radio"
+    type="radio"
     [id]="control.name"
     [formControlName]="control.name"
     [class]="getControlClass(control)"

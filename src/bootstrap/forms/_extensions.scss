@@ -1,0 +1,11 @@
+.form-control,
+.form-range {
+  // Use disabled attribute in addition of :disabled pseudo-class
+  // See: https://github.com/twbs/bootstrap/issues/28247
+  &[disabled],
+  &:disabled {
+    ~ .form-label {
+      opacity: $form-check-label-disabled-opacity;
+    }
+  }
+}
