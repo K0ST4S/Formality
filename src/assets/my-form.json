@@ -30,7 +30,7 @@
       "value": false,
       "type": "checkbox",
       "validators": {
-        "requiredTrue": true
+        "required": true
       }
     },
     {
@@ -56,9 +56,7 @@
             "label": "Do you like switches?",
             "value": false,
             "type": "switch",
-            "validators": {
-              "requiredTrue": true
-            }
+            "validators": {}
           }
         ]
       },
@@ -83,9 +81,7 @@
       "label": "Do you like switches?",
       "value": false,
       "type": "switch",
-      "validators": {
-        "requiredTrue": true
-      }
+      "validators": {}
     }
   ]
 }

@@ -1,7 +1,4 @@
-<div [class]="GroupClass[control.type]">
-  <label [class]="getLabelClass(control)" [for]="control.name">{{
-    control.label
-  }}</label>
+<div [class]="getGroupClass(control)">
   <input
     *ngIf="
       [
@@ -44,6 +41,9 @@
     [formControlName]="control.name"
     [class]="getControlClass(control)"
   />
+  <label [class]="getLabelClass(control)" [for]="control.name">{{
+    control.label
+  }}</label>
   <app-dynamic-validator
     [control]="parentForm.form.get(control.name)"
     [validators]="control.validators"

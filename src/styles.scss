@@ -1,21 +1,20 @@
 /* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
 @import "app/my-form.styles.scss";
 
-app-json-form {
-  input,
-  select,
-  textarea {
-    &.ng-invalid {
-      @extend .is-invalid;
-    }
-  }
+// app-json-form {
+//   input,
+//   select,
+//   textarea {
+//     &.ng-invalid {
+//       @extend .is-invalid;
+//     }
+//   }
 
-  input,
-  select,
-  textarea {
-    &.ng-valid {
-      @extend .is-valid;
-    }
-  }
-}
+//   input,
+//   select,
+//   textarea {
+//     &.ng-valid {
+//       @extend .is-valid;
+//     }
+//   }
+// }

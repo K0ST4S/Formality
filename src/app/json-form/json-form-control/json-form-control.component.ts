@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlContainer,
+  FormGroupDirective,
+} from '@angular/forms';
 import { JsonFormControl, ValueType } from './../nested-json-form.component';
 
 @Component({
@@ -14,49 +18,49 @@ export class JsonFormControlComponent implements OnInit {
   @Input() control: JsonFormControl;
   ValueType = ValueType;
   ControlClass = {
-    [ValueType.Text]: 'form-control',
-    [ValueType.Password]: 'form-control',
-    [ValueType.Email]: 'form-control',
-    [ValueType.Number]: 'form-control',
-    [ValueType.Search]: 'form-control',
-    [ValueType.Mobile]: 'form-control',
-    [ValueType.Url]: 'form-control',
-    [ValueType.Textarea]: 'form-control',
-    [ValueType.RichText]: '',
-    [ValueType.Checkbox]: 'form-check-input order-0',
-    [ValueType.Switch]: 'form-check-input order-0',
-    [ValueType.Radio]: 'form-check-input order-0',
-    [ValueType.Range]: 'custom-range',
-    [ValueType.Date]: '',
-    [ValueType.Singleselect]: '',
-    [ValueType.Multiselect]: '',
-    [ValueType.Countryselect]: '',
-    [ValueType.File]: 'form-control',
-    [ValueType.Image]: 'form-control',
-    [ValueType.Form]: 'input-group',
+    [ValueType.Text]: 'form-control order-1',
+    [ValueType.Password]: 'form-control order-1',
+    [ValueType.Email]: 'form-control order-1',
+    [ValueType.Number]: 'form-control order-1',
+    [ValueType.Search]: 'form-control order-1',
+    [ValueType.Mobile]: 'form-control order-1',
+    [ValueType.Url]: 'form-control order-1',
+    [ValueType.Textarea]: 'form-control order-1',
+    [ValueType.RichText]: ' order-1',
+    [ValueType.Checkbox]: 'form-check-input',
+    [ValueType.Switch]: 'form-check-input',
+    [ValueType.Radio]: 'form-check-input',
+    [ValueType.Range]: 'custom-range order-1',
+    [ValueType.Date]: ' order-1',
+    [ValueType.Singleselect]: ' order-1',
+    [ValueType.Multiselect]: ' order-1',
+    [ValueType.Countryselect]: ' order-1',
+    [ValueType.File]: 'form-control order-1',
+    [ValueType.Image]: 'form-control order-1',
+    [ValueType.Form]: 'input-group order-1',
   };
 
   LabelClass = {
-    [ValueType.Text]: 'form-label',
-    [ValueType.Password]: 'form-label',
-    [ValueType.Email]: 'form-label',
-    [ValueType.Number]: 'form-label',
-    [ValueType.Search]: 'form-label',
-    [ValueType.Mobile]: 'form-label',
-    [ValueType.Url]: 'form-label',
-    [ValueType.Textarea]: 'form-label',
-    [ValueType.RichText]: 'form-label',
-    [ValueType.Checkbox]: 'form-check-label order-1',
-    [ValueType.Switch]: 'form-check-label order-1',
-    [ValueType.Radio]: 'form-check-label order-1',
-    [ValueType.Range]: 'form-label',
-    [ValueType.Date]: 'form-label',
-    [ValueType.Singleselect]: 'form-label',
-    [ValueType.Multiselect]: 'form-label',
-    [ValueType.Countryselect]: 'form-label',
-    [ValueType.File]: 'form-label',
-    [ValueType.Image]: 'form-label',
-    [ValueType.Form]: 'form-label',
+    [ValueType.Text]: 'form-label order-0',
+    [ValueType.Password]: 'form-label order-0',
+    [ValueType.Email]: 'form-label order-0',
+    [ValueType.Number]: 'form-label order-0',
+    [ValueType.Search]: 'form-label order-0',
+    [ValueType.Mobile]: 'form-label order-0',
+    [ValueType.Url]: 'form-label order-0',
+    [ValueType.Textarea]: 'form-label order-0',
+    [ValueType.RichText]: 'form-label order-0',
+    [ValueType.Checkbox]: 'form-check-label',
+    [ValueType.Switch]: 'form-check-label',
+    [ValueType.Radio]: 'form-check-label',
+    [ValueType.Range]: 'form-label order-0',
+    [ValueType.Date]: 'form-label order-0',
+    [ValueType.Singleselect]: 'form-label order-0',
+    [ValueType.Multiselect]: 'form-label order-0',
+    [ValueType.Countryselect]: 'form-label order-0',
+    [ValueType.File]: 'form-label order-0',
+    [ValueType.Image]: 'form-label order-0',
+    [ValueType.Form]: 'form-label order-0',
   };
 
   GroupClass = {
@@ -87,10 +91,23 @@ export class JsonFormControlComponent implements OnInit {
   ngOnInit(): void {}
 
   public getControlClass(data: JsonFormControl): string {
-    return `${data.name} ${this.ControlClass[data.type]}`;
+    const control: AbstractControl = this.parentForm.form.get(data.name);
+    return `${data.name} ${this.ControlClass[data.type]} ${
+      control.touched
+        ? control.invalid
+          ? 'is-invalid'
+          : control.validator
+          ? 'is-valid'
+          : ''
+        : ''
+    }`;
   }
 
   public getLabelClass(control: JsonFormControl): string {
     return `${this.LabelClass[control.type]}`;
+  }
+
+  public getGroupClass(control: JsonFormControl): string {
+    return `${this.GroupClass[control.type]} d-flex flex-column`;
   }
 }
