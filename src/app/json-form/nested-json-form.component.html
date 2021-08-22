@@ -7,6 +7,9 @@
   <app-json-form
     [jsonFormData]="jsonFormData"
     [parent]="{ label: 'Form Magic!' }"
-  ></app-json-form>
-  <ng-content select="[submit]"></ng-content>
+  >
+    <button (click)="onSubmit(form.formGroup.value)" class="btn btn-primary">
+      Submit
+    </button>
+  </app-json-form>
 </form>
