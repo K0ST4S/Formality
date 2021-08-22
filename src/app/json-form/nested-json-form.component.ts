@@ -29,7 +29,7 @@ interface JsonFormControlOptions {
 export interface JsonFormControl {
   name: string;
   label: string;
-  value: string | JsonFormData;
+  value: string | number | boolean | JsonFormData;
   type: string;
   options?: JsonFormControlOptions;
   validators: JsonFormValidators;

@@ -16,6 +16,7 @@ import { JsonFormControl, ValueType } from './../nested-json-form.component';
 })
 export class JsonFormControlComponent implements OnInit {
   @Input() control: JsonFormControl;
+  @Input() parent: JsonFormControl;
   ValueType = ValueType;
   ControlClass = {
     [ValueType.Text]: 'form-control order-1',
@@ -92,6 +93,7 @@ export class JsonFormControlComponent implements OnInit {
 
   public getControlClass(data: JsonFormControl): string {
     const control: AbstractControl = this.parentForm.form.get(data.name);
+
     return `${data.name} ${this.ControlClass[data.type]} ${
       control.touched
         ? control.invalid

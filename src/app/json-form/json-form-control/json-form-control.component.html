@@ -43,7 +43,8 @@
   <input
     *ngIf="control.type === ValueType.Radio"
     type="radio"
-    [id]="control.name"
+    [value]="control.value"
+    [name]="control.name"
     [formControlName]="control.name"
     [class]="getControlClass(control)"
   />

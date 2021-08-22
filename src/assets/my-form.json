@@ -34,10 +34,34 @@
       }
     },
     {
-      "name": "agreeTerms",
+      "name": "radioGroup",
       "label": "This is a radio",
-      "value": false,
-      "type": "radio",
+      "value": {
+        "controls": [
+          {
+            "name": "radio1",
+            "label": "One",
+            "value": "1",
+            "type": "radio",
+            "validators": {}
+          },
+          {
+            "name": "radio1",
+            "label": "Two",
+            "value": "2",
+            "type": "radio",
+            "validators": {}
+          },
+          {
+            "name": "radio1",
+            "label": "Three",
+            "value": "3",
+            "type": "radio",
+            "validators": {}
+          }
+        ]
+      },
+      "type": "form",
       "validators": {
         "required": true
       }
