@@ -68,8 +68,8 @@ export enum ValidatorType {
   Required = 'required',
   RequiredTrue = 'requiredTrue',
   Email = 'email',
-  MinLength = 'minLength',
-  MaxLength = 'maxLength',
+  MinLength = 'minlength',
+  MaxLength = 'maxlength',
 }
 
 @Component({

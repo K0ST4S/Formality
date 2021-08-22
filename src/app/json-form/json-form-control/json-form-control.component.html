@@ -52,6 +52,7 @@
     control.label
   }}</label>
   <app-dynamic-validator
+    remove-wrapper
     [control]="parentForm.form.get(control.name)"
     [validators]="control.validators"
   ></app-dynamic-validator>

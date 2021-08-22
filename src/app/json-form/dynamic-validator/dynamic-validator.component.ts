@@ -18,7 +18,7 @@ export class DynamicValidatorComponent {
   public InvalidFeedback = {
     [ValidatorType.Min]: 'Mnimimum value is *',
     [ValidatorType.Max]: 'Maximum value is *',
-    [ValidatorType.Required]: 'Required',
+    [ValidatorType.Required]: 'Required stuff',
     [ValidatorType.RequiredTrue]: 'You must agree',
     [ValidatorType.Email]: 'Not a valid email',
     [ValidatorType.MinLength]: 'Minimum length is *',

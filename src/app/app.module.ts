@@ -10,6 +10,7 @@ import { JsonFormControlComponent } from './json-form/json-form-control/json-for
 import { JsonFormComponent } from './json-form/json-form/json-form.component';
 import { NestedJsonFormComponent } from './json-form/nested-json-form.component';
 import { TestBootstrapComponent } from './test-bootstrap/test-bootstrap.component';
+import { RemoveWrapperDirective } from './utils/remove-wrapper.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TestBootstrapComponent } from './test-bootstrap/test-bootstrap.componen
     JsonFormControlComponent,
     NestedJsonFormComponent,
     TestBootstrapComponent,
+    RemoveWrapperDirective,
   ],
   imports: [ReactiveFormsModule, HttpClientModule, BrowserModule, NgbModule],
   providers: [
