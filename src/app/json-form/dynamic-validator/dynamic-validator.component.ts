@@ -15,7 +15,7 @@ export class DynamicValidatorComponent {
   @Input() control: FormControl;
 
   // this would generally be replaced with ngx-translate keys and when we would pass a variable to validators that don't require one - nothing would happen.
-  public ValidatorMessage = {
+  public InvalidFeedback = {
     [ValidatorType.Min]: 'Mnimimum value is *',
     [ValidatorType.Max]: 'Maximum value is *',
     [ValidatorType.Required]: 'Required',

@@ -1,8 +1,21 @@
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
 @import "app/my-form.styles.scss";
 
-body {
-  background-color: grey;
-}
+app-json-form {
+  input,
+  select,
+  textarea {
+    &.ng-invalid {
+      @extend .is-invalid;
+    }
+  }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+  input,
+  select,
+  textarea {
+    &.ng-valid {
+      @extend .is-valid;
+    }
+  }
+}

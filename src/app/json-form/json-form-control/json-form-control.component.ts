@@ -86,8 +86,8 @@ export class JsonFormControlComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public getControlClass(control: JsonFormControl): string {
-    return `${control.name} ${this.ControlClass[control.type]}`;
+  public getControlClass(data: JsonFormControl): string {
+    return `${data.name} ${this.ControlClass[data.type]}`;
   }
 
   public getLabelClass(control: JsonFormControl): string {

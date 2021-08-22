@@ -56,7 +56,9 @@
             "label": "Do you like switches?",
             "value": false,
             "type": "switch",
-            "validators": {}
+            "validators": {
+              "requiredTrue": true
+            }
           }
         ]
       },
@@ -81,7 +83,9 @@
       "label": "Do you like switches?",
       "value": false,
       "type": "switch",
-      "validators": {}
+      "validators": {
+        "requiredTrue": true
+      }
     }
   ]
 }
