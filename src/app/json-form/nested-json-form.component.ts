@@ -75,7 +75,7 @@ export enum ValidatorType {
 @Component({
   selector: 'app-nested-json-form',
   templateUrl: './nested-json-form.component.html',
-  styleUrls: ['./nested-json-form.component.sass'],
+  styleUrls: ['./nested-json-form.component.scss'],
 })
 export class NestedJsonFormComponent {
   private _jsonFormData: JsonFormData;

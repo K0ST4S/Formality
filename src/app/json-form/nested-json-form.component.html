@@ -2,8 +2,11 @@
   *ngIf="formGroup"
   [formGroup]="formGroup"
   (ngSubmit)="onSubmit()"
-  class="p-5"
+  class="padding"
 >
-  <app-json-form [jsonFormData]="jsonFormData"></app-json-form>
+  <app-json-form
+    [jsonFormData]="jsonFormData"
+    [parent]="{ label: 'Form Magic!' }"
+  ></app-json-form>
   <ng-content select="[submit]"></ng-content>
 </form>

@@ -1,15 +1,7 @@
-<header>
-  <nav color="primary">
-    <title>Dynamic JSON Form</title>
-  </nav>
-</header>
-<app-test-bootstrap></app-test-bootstrap>
-<div class="padding">
-  <app-nested-json-form [jsonFormData]="formData">
-    <ng-container submit
-      ><button (click)="onSubmit(form.formGroup.value)" class="btn btn-primary">
-        Submit
-      </button></ng-container
-    >
-  </app-nested-json-form>
-</div>
+<app-nested-json-form [jsonFormData]="formData">
+  <ng-container submit
+    ><button (click)="onSubmit(form.formGroup.value)" class="btn btn-primary">
+      Submit
+    </button></ng-container
+  >
+</app-nested-json-form>

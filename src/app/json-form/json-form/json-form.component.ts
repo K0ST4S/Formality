@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import {
+  ControlContainer,
+  FormArray,
+  FormGroup,
+  FormGroupDirective,
+} from '@angular/forms';
 import { JsonFormData, ValueType } from '../nested-json-form.component';
 import { JsonFormControl } from './../nested-json-form.component';
 
@@ -18,4 +23,14 @@ export class JsonFormComponent implements OnInit {
   constructor(public parentForm: FormGroupDirective) {}
 
   ngOnInit(): void {}
+
+  getHeaderClass() {
+    let depth: number = 0;
+    let form: FormGroup | FormArray = this.parentForm.form;
+    while (form) {
+      form = form.parent;
+      depth++;
+    }
+    return `h${depth}`;
+  }
 }
