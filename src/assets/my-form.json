@@ -115,6 +115,13 @@
       "value": false,
       "type": "switch",
       "validators": {}
+    },
+    {
+      "name": "fileUpload",
+      "label": "Choose file",
+      "value": null,
+      "type": "file",
+      "validators": {}
     }
   ]
 }

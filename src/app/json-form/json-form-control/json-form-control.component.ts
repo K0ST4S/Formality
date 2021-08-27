@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   FormGroupDirective,
 } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { JsonFormControl, ValueType } from './../nested-json-form.component';
 
 @Component({
@@ -87,9 +88,31 @@ export class JsonFormControlComponent implements OnInit {
     [ValueType.Form]: 'form-group d-flex flex-column',
   };
 
-  constructor(public parentForm: FormGroupDirective) {}
+  constructor(
+    public parentForm: FormGroupDirective,
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {}
+
+  onFileChange(event) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.parentForm.form.patchValue({
+          [this.control.name]: reader.result,
+        });
+
+        // need to run CD since file load runs outside of zone
+        this.cdr.markForCheck();
+      };
+    }
+  }
 
   public getControlClass(data: JsonFormControl): string {
     const control: AbstractControl = this.parentForm.form.get(data.name);

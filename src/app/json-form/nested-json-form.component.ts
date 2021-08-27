@@ -157,6 +157,7 @@ export class NestedJsonFormComponent {
   }
 
   onSubmit() {
+    console.log(this.formGroup.value);
     this.onSubmitted.emit(this.formGroup.value);
   }
 }
