@@ -16,21 +16,15 @@
     [id]="control.name"
     [class]="getControlClass(control)"
   />
-  <ng-container
-    *ngIf="[ValueType.File, ValueType.Image].includes(control.type)"
-  >
-    <input
-      [type]="ValueType.File"
-      [class]="getControlClass(control)"
-      (change)="onFileChange($event)"
-      [accept]="control.accept"
-    />
-    <input
-      [type]="ValueType.Text"
-      [id]="control.name"
+  <ng-container *ngIf="control.type === ValueType.Article">
+    <quill-editor
+      [value]="control.value"
+      [name]="control.name"
       [formControlName]="control.name"
-      style="display: none"
-    />
+      [placeholder]="control.label"
+      [class]="getControlClass(control)"
+    >
+    </quill-editor>
   </ng-container>
 
   <textarea
@@ -64,6 +58,22 @@
     [formControlName]="control.name"
     [class]="getControlClass(control)"
   />
+  <ng-container
+    *ngIf="[ValueType.File, ValueType.Image].includes(control.type)"
+  >
+    <input
+      [type]="ValueType.File"
+      [class]="getControlClass(control)"
+      (change)="onFileChange($event)"
+      [accept]="control.accept"
+    />
+    <input
+      [type]="ValueType.Text"
+      [id]="control.name"
+      [formControlName]="control.name"
+      style="display: none"
+    />
+  </ng-container>
   <label [class]="getLabelClass(control)" [for]="control.name">{{
     control.label
   }}</label>

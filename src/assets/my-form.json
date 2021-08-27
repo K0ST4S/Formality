@@ -122,6 +122,13 @@
       "value": null,
       "type": "file",
       "validators": {}
+    },
+    {
+      "name": "articleText",
+      "label": "Write a parahraph",
+      "value": "php in tags",
+      "type": "article",
+      "validators": {}
     }
   ]
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { QuillModule } from 'ngx-quill';
 import { AppComponent } from './app.component';
 import { DynamicValidatorComponent } from './json-form/dynamic-validator/dynamic-validator.component';
 import { DateInterceptor } from './json-form/interceptors/date.interceptor';
@@ -22,7 +23,13 @@ import { RemoveWrapperDirective } from './utils/remove-wrapper.directive';
     TestBootstrapComponent,
     RemoveWrapperDirective,
   ],
-  imports: [ReactiveFormsModule, HttpClientModule, BrowserModule, NgbModule],
+  imports: [
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserModule,
+    NgbModule,
+    QuillModule.forRoot(),
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

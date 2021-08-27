@@ -24,6 +24,8 @@
     "@ng-select/ng-select": "^7.2.0",
     "bootstrap": "^4.5.0",
     "mydatepicker": "^2.6.11",
+    "ngx-quill": "^14.3.0",
+    "quill": "^1.3.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

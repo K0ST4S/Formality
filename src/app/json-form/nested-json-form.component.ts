@@ -48,7 +48,7 @@ export enum ValueType {
   Mobile = 'tel',
   Url = 'url',
   Textarea = 'textarea',
-  RichText = 'richText',
+  Article = 'article',
   Checkbox = 'checkbox',
   Switch = 'switch',
   Radio = 'radio',
