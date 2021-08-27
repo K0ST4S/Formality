@@ -1,39 +1,6 @@
 {
   "controls": [
     {
-      "name": "firstName",
-      "label": "First name:",
-      "value": "",
-      "type": "text",
-      "validators": {
-        "required": true,
-        "minlength": 10
-      }
-    },
-    {
-      "name": "lastName",
-      "label": "Last name:",
-      "value": "",
-      "type": "text",
-      "validators": {}
-    },
-    {
-      "name": "comments",
-      "label": "Comments",
-      "value": "",
-      "type": "textarea",
-      "validators": {}
-    },
-    {
-      "name": "agreeTerms",
-      "label": "This is a checkbox?",
-      "value": false,
-      "type": "checkbox",
-      "validators": {
-        "required": true
-      }
-    },
-    {
       "name": "radioGroup",
       "label": "This is a radio",
       "value": {
@@ -128,6 +95,13 @@
       "label": "Write a parahraph",
       "value": "php in tags",
       "type": "article",
+      "validators": {}
+    },
+    {
+      "name": "date",
+      "label": "Meeting date",
+      "value": null,
+      "type": "date",
       "validators": {}
     }
   ]

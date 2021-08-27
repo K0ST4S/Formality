@@ -26,7 +26,13 @@
     >
     </quill-editor>
   </ng-container>
-
+  <ng-bootstrap-datetime-angular
+    *ngIf="control.type === ValueType.Date"
+    [id]="control.name"
+    [formControlName]="control.name"
+    [inputDatetimeFormat]="'dd/MM/yyyy hh:mm a'"
+    [class]="getControlClass(control)"
+  ></ng-bootstrap-datetime-angular>
   <textarea
     *ngIf="control.type === ValueType.Textarea"
     [id]="control.name"
