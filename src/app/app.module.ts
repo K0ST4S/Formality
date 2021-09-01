@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { QuillModule } from 'ngx-quill';
 import { AppComponent } from './app.component';
+import { CountrySelectComponent } from './country-select/country-select.component';
+import { FlagIconComponent } from './flag-icon/flag-icon.component';
 import { DynamicValidatorComponent } from './json-form/dynamic-validator/dynamic-validator.component';
 import { DateInterceptor } from './json-form/interceptors/date.interceptor';
 import { JsonFormControlComponent } from './json-form/json-form-control/json-form-control.component';
@@ -23,6 +26,8 @@ import { RemoveWrapperDirective } from './utils/remove-wrapper.directive';
     NestedJsonFormComponent,
     TestBootstrapComponent,
     RemoveWrapperDirective,
+    CountrySelectComponent,
+    FlagIconComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -31,6 +36,7 @@ import { RemoveWrapperDirective } from './utils/remove-wrapper.directive';
     NgbModule,
     NgBootstrapDatetimeModule,
     QuillModule.forRoot(),
+    NgSelectModule,
   ],
   providers: [
     {

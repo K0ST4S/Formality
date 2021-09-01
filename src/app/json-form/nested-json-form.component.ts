@@ -19,19 +19,29 @@ export interface JsonFormValidators {
   pattern?: string;
 }
 
-interface JsonFormControlOptions {
+export interface RangeOptions {
   min?: string;
   max?: string;
   step?: string;
-  icon?: string;
+}
+
+export interface CountrySelectOptions {
+  multiple?: boolean;
 }
 
 export interface JsonFormControl {
   name: string;
   label: string;
-  value: string | number | boolean | JsonFormData;
+  value:
+    | string
+    | string[]
+    | number
+    | number[]
+    | boolean
+    | boolean[]
+    | JsonFormData;
   type: string;
-  options?: JsonFormControlOptions;
+  options?: RangeOptions & CountrySelectOptions;
   validators: JsonFormValidators;
 }
 
@@ -56,7 +66,7 @@ export enum ValueType {
   Date = 'date',
   Singleselect = 'singleselect',
   Multiselect = 'multiselect',
-  Countryselect = 'countryselect',
+  Country = 'country',
   File = 'file',
   Image = 'image',
   Form = 'form',

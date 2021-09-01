@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { COUNTRIES } from './country-data/countries';
 import {
   JsonFormData,
   NestedJsonFormComponent,
@@ -11,6 +12,7 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  countries = COUNTRIES;
   @ViewChild(NestedJsonFormComponent) form: NestedJsonFormComponent;
   public formData: JsonFormData;
 

@@ -82,6 +82,12 @@
       style="display: none"
     />
   </ng-container>
+  <app-country-select
+    *ngIf="control.type === ValueType.Country"
+    [id]="control.name"
+    [control]="control"
+    [class]="getControlClass(control)"
+  ></app-country-select>
   <label [class]="getLabelClass(control)" [for]="control.name">{{
     control.label
   }}</label>

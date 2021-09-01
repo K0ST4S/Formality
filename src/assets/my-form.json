@@ -107,6 +107,16 @@
         "seconds": true,
         "format": "dd/MM/yyyy hh:mm"
       }
+    },
+    {
+      "name": "countryselect",
+      "label": "Country select",
+      "value": ["LT"],
+      "type": "country",
+      "options": {
+        "multiple": true
+      },
+      "validators": {}
     }
   ]
 }

@@ -1,0 +1,14 @@
+<ng-select
+  [items]="countries"
+  [multiple]="control.options?.multiple"
+  [hideSelected]="true"
+  placeholder="Select one or more"
+  bindLabel="name"
+  bindValue="code"
+  [formControlName]="control.name"
+>
+  <ng-template ng-option-tmp let-item="item">
+    <app-flag-icon [country]="item.code | lowercase"></app-flag-icon>
+    {{ item.name }}
+  </ng-template>
+</ng-select>
