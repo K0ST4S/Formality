@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgBootstrapDatetimeAngularModule } from 'ng-bootstrap-datetime-angular';
 import { QuillModule } from 'ngx-quill';
 import { AppComponent } from './app.component';
 import { DynamicValidatorComponent } from './json-form/dynamic-validator/dynamic-validator.component';
@@ -11,6 +10,7 @@ import { DateInterceptor } from './json-form/interceptors/date.interceptor';
 import { JsonFormControlComponent } from './json-form/json-form-control/json-form-control.component';
 import { JsonFormComponent } from './json-form/json-form/json-form.component';
 import { NestedJsonFormComponent } from './json-form/nested-json-form.component';
+import { NgBootstrapDatetimeModule } from './ng-bootstrap-datetime/ng-bootstrap-datetime.module';
 import { TestBootstrapComponent } from './test-bootstrap/test-bootstrap.component';
 import { RemoveWrapperDirective } from './utils/remove-wrapper.directive';
 
@@ -29,7 +29,7 @@ import { RemoveWrapperDirective } from './utils/remove-wrapper.directive';
     HttpClientModule,
     BrowserModule,
     NgbModule,
-    NgBootstrapDatetimeAngularModule,
+    NgBootstrapDatetimeModule,
     QuillModule.forRoot(),
   ],
   providers: [
