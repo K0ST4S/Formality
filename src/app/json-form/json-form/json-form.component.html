@@ -1,6 +1,6 @@
 <div class="card padding">
   <div [class]="getHeaderClass()">{{ parent.label }}</div>
-  <ng-container *ngFor="let control of jsonFormData?.controls">
+  <ng-container *ngFor="let control of jsonFormData">
     <ng-container *ngIf="control.type !== ValueType.Form">
       <app-json-form-control [control]="control" [parent]="parent">
       </app-json-form-control>

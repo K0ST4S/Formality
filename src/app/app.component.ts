@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { COUNTRIES } from './country-data/countries';
 import {
-  JsonFormData,
+  JsonFormControls,
   NestedJsonFormComponent,
 } from './json-form/nested-json-form.component';
 
@@ -14,14 +14,14 @@ import {
 export class AppComponent implements OnInit {
   countries = COUNTRIES;
   @ViewChild(NestedJsonFormComponent) form: NestedJsonFormComponent;
-  public formData: JsonFormData;
+  public formData: JsonFormControls;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http
       .get('/assets/my-form.json')
-      .subscribe((formData: JsonFormData) => {
+      .subscribe((formData: JsonFormControls) => {
         this.formData = formData;
       });
   }

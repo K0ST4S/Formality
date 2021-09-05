@@ -39,16 +39,14 @@ export interface JsonFormControl {
     | number[]
     | boolean
     | boolean[]
-    | JsonFormData;
+    | JsonFormControls;
   type: string;
   settings?: RangeOptions & SelectSettings;
   options?: string[] | number[];
   validators: JsonFormValidators;
 }
 
-export interface JsonFormData {
-  controls: JsonFormControl[];
-}
+export type JsonFormControls = JsonFormControl[];
 
 export enum ValueType {
   Text = 'text',
@@ -88,9 +86,9 @@ export enum ValidatorType {
   styleUrls: ['./nested-json-form.component.scss'],
 })
 export class NestedJsonFormComponent {
-  private _jsonFormData: JsonFormData;
+  private _jsonFormData: JsonFormControls;
 
-  @Input() set jsonFormData(value: JsonFormData) {
+  @Input() set jsonFormData(value: JsonFormControls) {
     if (!value) {
       return;
     }
@@ -100,7 +98,7 @@ export class NestedJsonFormComponent {
     this.formGroup.valueChanges.subscribe((value) => console.log(value));
   }
 
-  get jsonFormData(): JsonFormData {
+  get jsonFormData(): JsonFormControls {
     return this._jsonFormData;
   }
 
@@ -110,16 +108,18 @@ export class NestedJsonFormComponent {
 
   constructor() {}
 
-  parseJsonFormData(jsonFormData: JsonFormData): FormGroup {
+  parseJsonFormData(jsonFormData: JsonFormControls): FormGroup {
+    console.log(jsonFormData);
+
     if (!jsonFormData) {
       return null;
     }
 
     const formGroup = new FormGroup({});
-    for (const control of jsonFormData.controls) {
+    for (const control of jsonFormData) {
       const newControl: AbstractControl =
         control.type === ValueType.Form
-          ? this.parseJsonFormData(control.value as JsonFormData)
+          ? this.parseJsonFormData(control.value as JsonFormControls)
           : this.parseControl(control);
 
       formGroup.addControl(control.name, newControl);

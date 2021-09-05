@@ -5,7 +5,7 @@ import {
   FormGroup,
   FormGroupDirective,
 } from '@angular/forms';
-import { JsonFormData, ValueType } from '../nested-json-form.component';
+import { JsonFormControls, ValueType } from '../nested-json-form.component';
 import { JsonFormControl } from './../nested-json-form.component';
 
 @Component({
@@ -18,7 +18,7 @@ import { JsonFormControl } from './../nested-json-form.component';
 })
 export class JsonFormComponent implements OnInit {
   ValueType = ValueType;
-  @Input() public jsonFormData: JsonFormData;
+  @Input() public jsonFormData: JsonFormControls;
   @Input() public parent: JsonFormControl;
   constructor(public parentForm: FormGroupDirective) {}
 
