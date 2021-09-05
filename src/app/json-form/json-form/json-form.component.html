@@ -1,37 +1,36 @@
-<div class="card padding">
-  <div [class]="getHeaderClass()">{{ parent.label }}</div>
-  <ng-container *ngFor="let control of jsonFormControls">
-    <ng-container
-      *ngIf="
-        ![ValueType.Form, ValueType.Group, ValueType.RadioGroup].includes(
-          control.type
-        )
-      "
-    >
-      <app-json-form-control [control]="control" [parent]="parent">
-      </app-json-form-control>
-    </ng-container>
-    <ng-container
-      *ngIf="control.type === ValueType.Form"
-      [formGroup]="parentForm.form.get(control.name)"
-    >
-      <app-json-form
-        [jsonFormControls]="control.value"
-        [parent]="control"
-      ></app-json-form>
-    </ng-container>
-
-    <ng-container
-      *ngIf="
-        control.type === ValueType.RadioGroup ||
-        control.type === ValueType.Group
-      "
-    >
-      <app-json-form
-        [jsonFormControls]="control.controls"
-        [parent]="control"
-      ></app-json-form>
-    </ng-container>
+<div [class]="getHeaderClass()">{{ parent.label }}</div>
+<ng-container *ngFor="let control of jsonFormControls">
+  <ng-container
+    *ngIf="
+      ![ValueType.Form, ValueType.Group, ValueType.RadioGroup].includes(
+        control.type
+      )
+    "
+  >
+    <app-json-form-control [control]="control" [parent]="parent">
+    </app-json-form-control>
   </ng-container>
-  <ng-content></ng-content>
-</div>
+  <ng-container
+    *ngIf="control.type === ValueType.Form"
+    [formGroup]="parentForm.form.get(control.name)"
+  >
+    <app-json-form
+      [jsonFormControls]="control.value"
+      [parent]="control"
+      [class]="control.name"
+    ></app-json-form>
+  </ng-container>
+
+  <ng-container
+    *ngIf="
+      control.type === ValueType.RadioGroup || control.type === ValueType.Group
+    "
+  >
+    <app-json-form
+      [jsonFormControls]="control.controls"
+      [parent]="control"
+      [class]="control.name"
+    ></app-json-form>
+  </ng-container>
+</ng-container>
+<ng-content></ng-content>

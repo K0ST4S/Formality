@@ -132,33 +132,36 @@ export class NestedJsonFormComponent {
 
   parseJsonFormData(
     jsonFormData: JsonFormControls,
+    formGroup = null,
     depth: number = 1
   ): FormGroup {
     if (!jsonFormData) {
       return null;
     }
 
-    const formGroup = new FormGroup({});
+    if (!formGroup) formGroup = new FormGroup({});
+
     for (const formElement of jsonFormData) {
-      let newControl: AbstractControl = null;
       formElement.depth = depth + 1;
+      let newControl: AbstractControl = null;
 
       switch (formElement.type) {
         case ValueType.Form:
           const jsonFormGroup = formElement as JsonFormControl;
           newControl = this.parseJsonFormData(
             jsonFormGroup.value as JsonFormControls,
+            null,
             depth + 1
           );
           formGroup.addControl(formElement.name, newControl);
           break;
         case ValueType.Group:
-          const controlsGroup = formElement.controls as JsonFormControls;
-          for (const child of controlsGroup) {
-            newControl = this.parseControl(child);
-            child.depth = formElement.depth + 1;
-            formGroup.addControl(formElement.name, newControl);
-          }
+          newControl = this.parseJsonFormData(
+            formElement.controls as JsonFormControls,
+            formGroup,
+            depth + 1
+          );
+          break;
         default:
           newControl = this.parseControl(formElement as JsonFormControl);
           formGroup.addControl(formElement.name, newControl);
