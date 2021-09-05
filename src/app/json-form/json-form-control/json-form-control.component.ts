@@ -4,7 +4,6 @@ import {
   ControlContainer,
   FormGroupDirective,
 } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
 import { JsonFormControl, ValueType } from './../nested-json-form.component';
 
 @Component({
@@ -34,8 +33,7 @@ export class JsonFormControlComponent implements OnInit {
     [ValueType.Radio]: 'form-check-input',
     [ValueType.Range]: 'form-range order-1',
     [ValueType.Date]: 'order-1',
-    [ValueType.Singleselect]: ' order-1',
-    [ValueType.Multiselect]: ' order-1',
+    [ValueType.Select]: 'order-1',
     [ValueType.Country]: 'order-1',
     [ValueType.File]: 'form-control order-1',
     [ValueType.Image]: 'form-control order-1',
@@ -57,8 +55,7 @@ export class JsonFormControlComponent implements OnInit {
     [ValueType.Radio]: 'form-check-label',
     [ValueType.Range]: 'form-label order-0',
     [ValueType.Date]: 'form-label order-0',
-    [ValueType.Singleselect]: 'form-label order-0',
-    [ValueType.Multiselect]: 'form-label order-0',
+    [ValueType.Select]: 'form-label order-0',
     [ValueType.Country]: 'form-label order-0',
     [ValueType.File]: 'form-label order-0',
     [ValueType.Image]: 'form-label order-0',
@@ -80,8 +77,7 @@ export class JsonFormControlComponent implements OnInit {
     [ValueType.Radio]: 'form-check',
     [ValueType.Range]: 'form-group d-flex flex-column',
     [ValueType.Date]: 'd-flex flex-column',
-    [ValueType.Singleselect]: 'form-group d-flex flex-column',
-    [ValueType.Multiselect]: 'form-group d-flex flex-column',
+    [ValueType.Select]: 'd-flex flex-column',
     [ValueType.Country]: 'd-flex flex-column',
     [ValueType.File]: 'form-group d-flex flex-column',
     [ValueType.Image]: 'form-group d-flex flex-column',
@@ -90,7 +86,6 @@ export class JsonFormControlComponent implements OnInit {
 
   constructor(
     public parentForm: FormGroupDirective,
-    private sanitizer: DomSanitizer,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -134,5 +129,9 @@ export class JsonFormControlComponent implements OnInit {
 
   public getGroupClass(control: JsonFormControl): string {
     return `${this.GroupClass[control.type]}`;
+  }
+
+  public getLabelId(control: JsonFormControl): string {
+    return `${control.name}-label`;
   }
 }

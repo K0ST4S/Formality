@@ -25,7 +25,7 @@ export interface RangeOptions {
   step?: string;
 }
 
-export interface CountrySelectOptions {
+export interface SelectSettings {
   multiple?: boolean;
 }
 
@@ -41,7 +41,8 @@ export interface JsonFormControl {
     | boolean[]
     | JsonFormData;
   type: string;
-  options?: RangeOptions & CountrySelectOptions;
+  settings?: RangeOptions & SelectSettings;
+  options?: string[] | number[];
   validators: JsonFormValidators;
 }
 
@@ -64,8 +65,7 @@ export enum ValueType {
   Radio = 'radio',
   Range = 'range',
   Date = 'date',
-  Singleselect = 'singleselect',
-  Multiselect = 'multiselect',
+  Select = 'select',
   Country = 'country',
   File = 'file',
   Image = 'image',

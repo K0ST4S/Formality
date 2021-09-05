@@ -1,10 +1,11 @@
 <ng-select
   [items]="countries"
-  [multiple]="control.options?.multiple"
+  [multiple]="control.settings?.multiple"
   [hideSelected]="true"
   placeholder="Select one or more"
   bindLabel="name"
   bindValue="code"
+  [labelForId]="control.name"
   [formControlName]="control.name"
 >
   <ng-template ng-option-tmp let-item="item">

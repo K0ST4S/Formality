@@ -43,7 +43,7 @@
             "label": "Whats your age",
             "value": 10,
             "type": "range",
-            "options": {
+            "settings": {
               "min": 0,
               "max": 100,
               "step": 1,
@@ -68,7 +68,7 @@
       "label": "Whats your age",
       "value": null,
       "type": "range",
-      "options": {
+      "settings": {
         "min": 0,
         "max": 100,
         "step": 1,
@@ -103,7 +103,7 @@
       "value": null,
       "type": "date",
       "validators": {},
-      "options": {
+      "settings": {
         "seconds": true,
         "format": "dd/MM/yyyy hh:mm"
       }
@@ -113,9 +113,31 @@
       "label": "Country select",
       "value": ["LT"],
       "type": "country",
-      "options": {
+      "settings": {
         "multiple": true
       },
+      "validators": {}
+    },
+    {
+      "name": "multi",
+      "label": "Multi select",
+      "value": "Gamma",
+      "type": "select",
+      "settings": {
+        "multiple": true
+      },
+      "options": ["Alpha", "Beta", "Gamma"],
+      "validators": {}
+    },
+    {
+      "name": "single",
+      "label": "Single select",
+      "value": "Gamma",
+      "type": "select",
+      "settings": {
+        "multiple": false
+      },
+      "options": ["Alpha", "Beta", "Gamma"],
       "validators": {}
     }
   ]

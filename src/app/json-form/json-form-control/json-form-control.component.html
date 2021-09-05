@@ -30,9 +30,9 @@
     *ngIf="control.type === ValueType.Date"
     [id]="control.name"
     [formControlName]="control.name"
-    [seconds]="control.options.seconds"
+    [seconds]="control.settings.seconds"
     [meridian]="false"
-    [inputDatetimeFormat]="control.options.format"
+    [inputDatetimeFormat]="control.settings.format"
     [class]="getControlClass(control)"
   ></ng-bootstrap-datetime>
   <textarea
@@ -43,8 +43,8 @@
   ></textarea>
   <input
     *ngIf="control.type === ValueType.Range"
-    [min]="control.options.min"
-    [max]="control.options.max"
+    [min]="control.settings.min"
+    [max]="control.settings.max"
     [type]="ValueType.Range"
     [id]="control.name"
     [formControlName]="control.name"
@@ -82,9 +82,19 @@
       style="display: none"
     />
   </ng-container>
+  <ng-container *ngIf="control.type === ValueType.Select">
+    <ng-select
+      [multiple]="control.settings.multiple"
+      [items]="control.options"
+      [name]="control.name"
+      [labelForId]="control.name"
+      [class]="getControlClass(control)"
+    >
+    </ng-select>
+  </ng-container>
+
   <app-country-select
     *ngIf="control.type === ValueType.Country"
-    [id]="control.name"
     [control]="control"
     [class]="getControlClass(control)"
   ></app-country-select>
