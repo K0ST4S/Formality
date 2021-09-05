@@ -1,18 +1,5 @@
 [
   {
-    "name": "yourAge",
-    "label": "Whats your age",
-    "value": 20,
-    "type": "range",
-    "settings": {
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "icon": "sunny"
-    },
-    "validators": {}
-  },
-  {
     "name": "firstGroup",
     "label": "Prallel elements test",
     "type": "group",
@@ -75,67 +62,94 @@
     ]
   },
   {
-    "name": "switchesLike",
-    "label": "Do you like switches?",
-    "value": false,
-    "type": "switch",
-    "validators": {}
+    "name": "secondGroup",
+    "label": "Prallel elements test",
+    "type": "group",
+    "controls": [
+      {
+        "name": "yourAge",
+        "label": "Whats your age",
+        "value": 20,
+        "type": "range",
+        "settings": {
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "icon": "sunny"
+        },
+        "validators": {}
+      },
+      {
+        "name": "switchesLike",
+        "label": "Do you like switches?",
+        "value": false,
+        "type": "switch",
+        "validators": {}
+      },
+      {
+        "name": "fileUpload",
+        "label": "Choose file",
+        "value": null,
+        "type": "file",
+        "validators": {}
+      },
+      {
+        "name": "date",
+        "label": "Meeting date",
+        "value": null,
+        "type": "date",
+        "validators": {},
+        "settings": {
+          "seconds": true,
+          "format": "dd/MM/yyyy hh:mm"
+        }
+      }
+    ]
   },
   {
-    "name": "fileUpload",
-    "label": "Choose file",
-    "value": null,
-    "type": "file",
-    "validators": {}
+    "name": "secondGroup",
+    "label": "Prallel elements test",
+    "type": "group",
+    "controls": [
+      {
+        "name": "countryselect",
+        "label": "Country select",
+        "value": ["LT"],
+        "type": "country",
+        "settings": {
+          "multiple": true
+        },
+        "validators": {}
+      },
+      {
+        "name": "multi",
+        "label": "Multi select",
+        "value": "Gamma",
+        "type": "select",
+        "settings": {
+          "multiple": true
+        },
+        "options": ["Alpha", "Beta", "Gamma"],
+        "validators": {}
+      },
+      {
+        "name": "single",
+        "label": "Single select",
+        "value": "Gamma",
+        "type": "select",
+        "settings": {
+          "multiple": false
+        },
+        "options": ["Alpha", "Beta", "Gamma"],
+        "validators": {}
+      }
+    ]
   },
   {
     "name": "articleText",
     "label": "Write a parahraph",
     "value": "php in tags",
     "type": "article",
-    "validators": {}
-  },
-  {
-    "name": "date",
-    "label": "Meeting date",
-    "value": null,
-    "type": "date",
-    "validators": {},
-    "settings": {
-      "seconds": true,
-      "format": "dd/MM/yyyy hh:mm"
-    }
-  },
-  {
-    "name": "countryselect",
-    "label": "Country select",
-    "value": ["LT"],
-    "type": "country",
-    "settings": {
-      "multiple": true
-    },
-    "validators": {}
-  },
-  {
-    "name": "multi",
-    "label": "Multi select",
-    "value": "Gamma",
-    "type": "select",
-    "settings": {
-      "multiple": true
-    },
-    "options": ["Alpha", "Beta", "Gamma"],
-    "validators": {}
-  },
-  {
-    "name": "single",
-    "label": "Single select",
-    "value": "Gamma",
-    "type": "select",
-    "settings": {
-      "multiple": false
-    },
-    "options": ["Alpha", "Beta", "Gamma"],
     "validators": {}
   }
 ]

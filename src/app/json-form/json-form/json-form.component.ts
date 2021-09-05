@@ -22,4 +22,18 @@ export class JsonFormComponent implements OnInit {
   getHeaderClass() {
     return `h${this.parent?.depth ?? 1}`;
   }
+
+  getSubFormClass(control: JsonFormControl) {
+    return `${control.name}-subform subform`;
+  }
+
+  getControlsClass(): string {
+    return `${this.parent?.name}-controls controls`;
+  }
+
+  getGroupClass(): string {
+    return this.parent?.type === ValueType.Group
+      ? `${this.getControlsClass()} group`
+      : this.getControlsClass();
+  }
 }

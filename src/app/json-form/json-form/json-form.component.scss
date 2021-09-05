@@ -5,3 +5,18 @@
   margin: 0.5rem;
   @extend .card;
 }
+
+.group {
+  display: flex;
+
+  .subform {
+    flex-basis: 100%;
+  }
+
+  &.controls {
+    display: flex;
+    app-json-form-control {
+      flex-basis: 100%;
+    }
+  }
+}
