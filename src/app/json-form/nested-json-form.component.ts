@@ -44,6 +44,8 @@ export interface JsonFormControl {
   settings?: RangeOptions & SelectSettings;
   options?: string[] | number[];
   validators: JsonFormValidators;
+  controls?: JsonFormControls;
+  depth?: number;
 }
 
 export type JsonFormControls = JsonFormControl[];
@@ -61,6 +63,7 @@ export enum ValueType {
   Checkbox = 'checkbox',
   Switch = 'switch',
   Radio = 'radio',
+  RadioGroup = 'radioGroup',
   Range = 'range',
   Date = 'date',
   Select = 'select',
@@ -68,6 +71,7 @@ export enum ValueType {
   File = 'file',
   Image = 'image',
   Form = 'form',
+  Group = 'group',
 }
 
 export enum ValidatorType {
@@ -86,20 +90,38 @@ export enum ValidatorType {
   styleUrls: ['./nested-json-form.component.scss'],
 })
 export class NestedJsonFormComponent {
-  private _jsonFormData: JsonFormControls;
+  private _jsonFormControls: JsonFormControls;
 
-  @Input() set jsonFormData(value: JsonFormControls) {
+  @Input() set jsonFormControls(value: JsonFormControls) {
     if (!value) {
       return;
     }
 
-    this._jsonFormData = value;
+    this._jsonFormControls = value;
     this.formGroup = this.parseJsonFormData(value);
-    this.formGroup.valueChanges.subscribe((value) => console.log(value));
+    this.formGroup.valueChanges.subscribe((value) => {
+      console.log(value);
+    });
   }
 
-  get jsonFormData(): JsonFormControls {
-    return this._jsonFormData;
+  getDirtyValues(form: any) {
+    let dirtyValues = {};
+
+    Object.keys(form.controls).forEach((key) => {
+      let currentControl = form.controls[key];
+
+      if (currentControl.dirty) {
+        if (currentControl.controls)
+          dirtyValues[key] = this.getDirtyValues(currentControl);
+        else dirtyValues[key] = currentControl.value;
+      }
+    });
+
+    return dirtyValues;
+  }
+
+  get jsonFormControls(): JsonFormControls {
+    return this._jsonFormControls;
   }
 
   @Output() onSubmitted: EventEmitter<any> = new EventEmitter();
@@ -108,21 +130,40 @@ export class NestedJsonFormComponent {
 
   constructor() {}
 
-  parseJsonFormData(jsonFormData: JsonFormControls): FormGroup {
-    console.log(jsonFormData);
-
+  parseJsonFormData(
+    jsonFormData: JsonFormControls,
+    depth: number = 1
+  ): FormGroup {
     if (!jsonFormData) {
       return null;
     }
 
     const formGroup = new FormGroup({});
-    for (const control of jsonFormData) {
-      const newControl: AbstractControl =
-        control.type === ValueType.Form
-          ? this.parseJsonFormData(control.value as JsonFormControls)
-          : this.parseControl(control);
+    for (const formElement of jsonFormData) {
+      let newControl: AbstractControl = null;
+      formElement.depth = depth + 1;
 
-      formGroup.addControl(control.name, newControl);
+      switch (formElement.type) {
+        case ValueType.Form:
+          const jsonFormGroup = formElement as JsonFormControl;
+          newControl = this.parseJsonFormData(
+            jsonFormGroup.value as JsonFormControls,
+            depth + 1
+          );
+          formGroup.addControl(formElement.name, newControl);
+          break;
+        case ValueType.Group:
+          const controlsGroup = formElement.controls as JsonFormControls;
+          for (const child of controlsGroup) {
+            newControl = this.parseControl(child);
+            child.depth = formElement.depth + 1;
+            formGroup.addControl(formElement.name, newControl);
+          }
+        default:
+          newControl = this.parseControl(formElement as JsonFormControl);
+          formGroup.addControl(formElement.name, newControl);
+          break;
+      }
     }
 
     return formGroup;
@@ -130,37 +171,39 @@ export class NestedJsonFormComponent {
 
   private parseControl(control: JsonFormControl): FormControl {
     const validatorsToAdd: ValidatorFn[] = [];
-    for (const [key, value] of Object.entries(control.validators)) {
-      switch (key) {
-        case ValidatorType.Min:
-          validatorsToAdd.push(Validators.min(value));
-          break;
-        case ValidatorType.Max:
-          validatorsToAdd.push(Validators.max(value));
-          break;
-        case ValidatorType.Required:
-          if (value) {
-            validatorsToAdd.push(Validators.required);
-          }
-          break;
-        case ValidatorType.RequiredTrue:
-          if (value) {
-            validatorsToAdd.push(CustomValidators.requiredTrue);
-          }
-          break;
-        case ValidatorType.Email:
-          if (value) {
-            validatorsToAdd.push(Validators.email);
-          }
-          break;
-        case ValidatorType.MinLength:
-          validatorsToAdd.push(Validators.minLength(value));
-          break;
-        case ValidatorType.MaxLength:
-          validatorsToAdd.push(Validators.maxLength(value));
-          break;
-        default:
-          break;
+    if (control.validators) {
+      for (const [key, value] of Object.entries(control.validators)) {
+        switch (key) {
+          case ValidatorType.Min:
+            validatorsToAdd.push(Validators.min(value));
+            break;
+          case ValidatorType.Max:
+            validatorsToAdd.push(Validators.max(value));
+            break;
+          case ValidatorType.Required:
+            if (value) {
+              validatorsToAdd.push(Validators.required);
+            }
+            break;
+          case ValidatorType.RequiredTrue:
+            if (value) {
+              validatorsToAdd.push(CustomValidators.requiredTrue);
+            }
+            break;
+          case ValidatorType.Email:
+            if (value) {
+              validatorsToAdd.push(Validators.email);
+            }
+            break;
+          case ValidatorType.MinLength:
+            validatorsToAdd.push(Validators.minLength(value));
+            break;
+          case ValidatorType.MaxLength:
+            validatorsToAdd.push(Validators.maxLength(value));
+            break;
+          default:
+            break;
+        }
       }
     }
     return new FormControl(control.value, validatorsToAdd);

@@ -99,9 +99,7 @@ export class JsonFormControlComponent implements OnInit {
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-        this.parentForm.form.patchValue({
-          [this.control.name]: reader.result,
-        });
+        this.parentForm.form.get(this.control.name).setValue(reader.result);
 
         // need to run CD since file load runs outside of zone
         this.cdr.markForCheck();
@@ -109,10 +107,12 @@ export class JsonFormControlComponent implements OnInit {
     }
   }
 
-  public getControlClass(data: JsonFormControl): string {
-    const control: AbstractControl = this.parentForm.form.get(data.name);
+  public getControlClass(): string {
+    const control: AbstractControl = this.parentForm.form.get(
+      this.referenceControl.name
+    );
 
-    return `${data.name} ${this.ControlClass[data.type]} ${
+    return `${this.control.name} ${this.ControlClass[this.control.type]} ${
       control.touched
         ? control.invalid
           ? 'is-invalid'
@@ -131,7 +131,13 @@ export class JsonFormControlComponent implements OnInit {
     return `${this.GroupClass[control.type]}`;
   }
 
-  public getLabelId(control: JsonFormControl): string {
-    return `${control.name}-label`;
+  public get referenceControl(): JsonFormControl {
+    if (!this.control && !this.parent) {
+      console.log('Both control and parent are null');
+    }
+
+    return this.parent?.type === ValueType.RadioGroup
+      ? this.parent
+      : this.control;
   }
 }

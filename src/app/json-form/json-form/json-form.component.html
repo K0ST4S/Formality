@@ -1,7 +1,13 @@
 <div class="card padding">
   <div [class]="getHeaderClass()">{{ parent.label }}</div>
-  <ng-container *ngFor="let control of jsonFormData">
-    <ng-container *ngIf="control.type !== ValueType.Form">
+  <ng-container *ngFor="let control of jsonFormControls">
+    <ng-container
+      *ngIf="
+        ![ValueType.Form, ValueType.Group, ValueType.RadioGroup].includes(
+          control.type
+        )
+      "
+    >
       <app-json-form-control [control]="control" [parent]="parent">
       </app-json-form-control>
     </ng-container>
@@ -10,7 +16,19 @@
       [formGroup]="parentForm.form.get(control.name)"
     >
       <app-json-form
-        [jsonFormData]="control.value"
+        [jsonFormControls]="control.value"
+        [parent]="control"
+      ></app-json-form>
+    </ng-container>
+
+    <ng-container
+      *ngIf="
+        control.type === ValueType.RadioGroup ||
+        control.type === ValueType.Group
+      "
+    >
+      <app-json-form
+        [jsonFormControls]="control.controls"
         [parent]="control"
       ></app-json-form>
     </ng-container>

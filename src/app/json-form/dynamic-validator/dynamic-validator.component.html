@@ -1,5 +1,5 @@
-<ng-container *ngIf="control.errors">
-  <ng-container *ngFor="let validator of validators | keyvalue">
+<ng-container *ngIf="formControl.errors && control.validators">
+  <ng-container *ngFor="let validator of data.validators | keyvalue">
     <div *ngIf="control.errors[validator.key]" class="invalid-feedback order-2">
       {{ InvalidFeedback[validator.key].replace("*", validator.value) }}
     </div>

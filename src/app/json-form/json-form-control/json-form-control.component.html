@@ -62,8 +62,9 @@
     *ngIf="control.type === ValueType.Radio"
     type="radio"
     [value]="control.value"
-    [name]="control.name"
-    [formControlName]="control.name"
+    [name]="parent.name"
+    [id]="control.name"
+    [formControlName]="parent.name"
     [class]="getControlClass(control)"
   />
   <ng-container
@@ -92,7 +93,6 @@
     >
     </ng-select>
   </ng-container>
-
   <app-country-select
     *ngIf="control.type === ValueType.Country"
     [control]="control"
@@ -102,8 +102,8 @@
     control.label
   }}</label>
   <app-dynamic-validator
+    *ngIf="parentForm.form.get(control.name)"
     remove-wrapper
-    [control]="parentForm.form.get(control.name)"
-    [validators]="control.validators"
+    [control]="referenceControl"
   ></app-dynamic-validator>
 </div>

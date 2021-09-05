@@ -1,18 +1,31 @@
-import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import {
-  JsonFormValidators,
-  ValidatorType,
-} from '../nested-json-form.component';
+  ControlContainer,
+  FormControl,
+  FormGroupDirective,
+} from '@angular/forms';
+import { ValidatorType } from '../nested-json-form.component';
+import { JsonFormControl } from './../nested-json-form.component';
 
 @Component({
   selector: 'app-dynamic-validator',
   templateUrl: './dynamic-validator.component.html',
   styleUrls: ['./dynamic-validator.component.scss'],
+  viewProviders: [
+    { provide: ControlContainer, useExisting: FormGroupDirective },
+  ],
 })
-export class DynamicValidatorComponent {
-  @Input() validators: JsonFormValidators;
-  @Input() control: FormControl;
+export class DynamicValidatorComponent implements OnInit {
+  @Input() control: JsonFormControl;
+  public formControl: FormControl;
+
+  constructor(public formDirective: FormGroupDirective) {}
+
+  ngOnInit(): void {
+    this.formControl = this.formDirective.form.get(
+      this.control.name
+    ) as FormControl;
+  }
 
   // this would generally be replaced with ngx-translate keys and when we would pass a variable to validators that don't require one - nothing would happen.
   public InvalidFeedback = {

@@ -2,33 +2,29 @@
   {
     "name": "radioGroup",
     "label": "This is a radio",
-    "value": [
+    "type": "radioGroup",
+    "value": "1",
+    "controls": [
       {
-        "name": "radio1",
         "label": "One",
         "value": "1",
-        "type": "radio",
-        "validators": {}
+        "name": "radio1",
+        "type": "radio"
       },
       {
-        "name": "radio1",
         "label": "Two",
         "value": "2",
-        "type": "radio",
-        "validators": {}
+        "name": "radio2",
+        "type": "radio"
       },
       {
-        "name": "radio1",
         "label": "Three",
         "value": "3",
-        "type": "radio",
-        "validators": {}
+        "name": "radio3",
+        "type": "radio"
       }
     ],
-    "type": "form",
-    "validators": {
-      "required": true
-    }
+    "validators": {}
   },
   {
     "name": "agreesdsTerms",
