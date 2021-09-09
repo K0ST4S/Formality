@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import {
   JsonFormControl,
   JsonFormControls,
-  ValueType,
+  ValueType
 } from '../formality-data-structures';
 
 @Component({
@@ -13,6 +13,7 @@ import {
   viewProviders: [
     { provide: ControlContainer, useExisting: FormGroupDirective },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JsonFormComponent implements OnInit {
   ValueType = ValueType;

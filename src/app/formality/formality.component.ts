@@ -1,23 +1,24 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
   ValidatorFn,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { CustomValidators } from '../utils/custom-validators';
 import {
   JsonFormControl,
   JsonFormControls,
   ValidatorType,
-  ValueType,
+  ValueType
 } from './formality-data-structures';
 
 @Component({
   selector: 'formality',
   templateUrl: './formality.component.html',
   styleUrls: ['./formality.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormalityComponent {
   private _jsonFormControls: JsonFormControls;

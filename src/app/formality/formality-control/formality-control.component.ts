@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
-  FormGroupDirective,
+  FormGroupDirective
 } from '@angular/forms';
 import { JsonFormControl, ValueType } from '../formality-data-structures';
 
@@ -13,6 +13,7 @@ import { JsonFormControl, ValueType } from '../formality-data-structures';
   viewProviders: [
     { provide: ControlContainer, useExisting: FormGroupDirective },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JsonFormControlComponent implements OnInit {
   @Input() control: JsonFormControl;

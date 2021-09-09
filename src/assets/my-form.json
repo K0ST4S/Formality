@@ -124,7 +124,7 @@
       {
         "name": "multi",
         "label": "Multi select",
-        "value": "Gamma",
+        "value": [],
         "type": "select",
         "settings": {
           "multiple": true

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import { COUNTRIES } from './../country-data/countries';
 import { Country } from './../country-data/country';
@@ -14,6 +14,7 @@ import { JsonFormControl } from './../formality/formality-data-structures';
       useExisting: FormGroupDirective,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountrySelectComponent {
   public countries: Country[] = COUNTRIES;
