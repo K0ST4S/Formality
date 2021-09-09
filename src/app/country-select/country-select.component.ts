@@ -5,7 +5,7 @@ import { Country } from './../country-data/country';
 import { JsonFormControl } from './../formality/formality-data-structures';
 
 @Component({
-  selector: 'formality-country-select',
+  selector: 'country-select',
   templateUrl: './country-select.component.html',
   styleUrls: ['./country-select.component.scss'],
   viewProviders: [

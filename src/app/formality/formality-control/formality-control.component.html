@@ -93,11 +93,11 @@
     >
     </ng-select>
   </ng-container>
-  <formality-country-select
+  <country-select
     *ngIf="control.type === ValueType.Country"
     [control]="control"
     [class]="getControlClass(control)"
-  ></formality-country-select>
+  ></country-select>
   <label [class]="getLabelClass(control)" [for]="control.name">{{
     control.label
   }}</label>
