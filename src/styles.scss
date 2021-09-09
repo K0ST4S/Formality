@@ -22,3 +22,32 @@
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+formality-form {
+  display: block;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  @extend .card;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+
+  .subform {
+    flex-basis: 100%;
+
+    .group {
+      flex-basis: 100%;
+
+      .controls {
+        flex-basis: 100%;
+        display: flex;
+        flex-direction: row;
+        formality-control {
+          flex-basis: 100%;
+        }
+      }
+    }
+  }
+}

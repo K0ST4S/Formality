@@ -1,9 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import {
   JsonFormControl,
   JsonFormControls,
-  ValueType
+  ValueType,
 } from '../formality-data-structures';
 
 @Component({
@@ -36,8 +41,9 @@ export class JsonFormComponent implements OnInit {
   }
 
   getGroupClass(): string {
-    return this.parent?.type === ValueType.Group
-      ? `${this.getControlsClass()} group`
-      : this.getControlsClass();
+    if (!this.parent) return 'group';
+    else if (this.parent?.type === ValueType.Group)
+      return `${this.getControlsClass()} group`;
+    else return this.getControlsClass();
   }
 }

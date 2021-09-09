@@ -1,5 +1,6 @@
 {
   "label": "Formality - optimise productivity!",
+  "name": "baseGroup",
   "type": "group",
   "controls": [
     {
@@ -66,7 +67,7 @@
     },
     {
       "name": "secondGroup",
-      "label": "Prallel elements test",
+      "label": "ments test",
       "type": "group",
       "controls": [
         {
@@ -111,7 +112,7 @@
     },
     {
       "name": "secondGroup",
-      "label": "Prallel elements test",
+      "label": "elements test",
       "type": "group",
       "controls": [
         {
