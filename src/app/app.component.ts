@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { COUNTRIES } from './country-data/countries';
-import {
-  JsonFormControls,
-  NestedJsonFormComponent,
-} from './json-form/nested-json-form.component';
+import { JsonFormControls } from './json-form/json-classes';
+import { NestedJsonFormComponent } from './json-form/nested-json-form.component';
 
 @Component({
   selector: 'app-root',

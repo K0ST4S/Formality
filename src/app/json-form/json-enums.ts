@@ -1,0 +1,33 @@
+export enum ValueType {
+  Text = 'text',
+  Password = 'password',
+  Email = 'email',
+  Number = 'number',
+  Search = 'search',
+  Mobile = 'tel',
+  Url = 'url',
+  Textarea = 'textarea',
+  Article = 'article',
+  Checkbox = 'checkbox',
+  Switch = 'switch',
+  Radio = 'radio',
+  RadioGroup = 'radioGroup',
+  Range = 'range',
+  Date = 'date',
+  Select = 'select',
+  Country = 'country',
+  File = 'file',
+  Image = 'image',
+  Form = 'form',
+  Group = 'group',
+}
+
+export enum ValidatorType {
+  Min = 'min',
+  Max = 'max',
+  Required = 'required',
+  RequiredTrue = 'requiredTrue',
+  Email = 'email',
+  MinLength = 'minlength',
+  MaxLength = 'maxlength',
+}

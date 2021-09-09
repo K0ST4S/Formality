@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import { JsonFormControl } from '../json-form/json-classes';
 import { COUNTRIES } from './../country-data/countries';
 import { Country } from './../country-data/country';
-import { JsonFormControl } from './../json-form/nested-json-form.component';
 
 @Component({
   selector: 'app-country-select',

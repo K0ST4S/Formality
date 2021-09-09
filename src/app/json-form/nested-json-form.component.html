@@ -1,8 +1,5 @@
 <form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-  <app-json-form
-    [jsonFormControls]="jsonFormControls"
-    [parent]="{ label: 'Form Magic!', name: 'formMagic' }"
-  >
+  <app-json-form [jsonFormControls]="jsonFormControls" [parent]="baseControl">
     <button (click)="onSubmit()" class="btn btn-primary">Submit</button>
   </app-json-form>
 </form>

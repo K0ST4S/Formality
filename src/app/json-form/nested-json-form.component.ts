@@ -7,82 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { CustomValidators } from './../utils/custom-validators';
-
-export interface JsonFormValidators {
-  min?: number;
-  max?: number;
-  required?: boolean;
-  requiredTrue?: boolean;
-  email?: boolean;
-  minLength?: boolean;
-  maxLength?: boolean;
-  pattern?: string;
-}
-
-export interface RangeOptions {
-  min?: string;
-  max?: string;
-  step?: string;
-}
-
-export interface SelectSettings {
-  multiple?: boolean;
-}
-
-export interface JsonFormControl {
-  name: string;
-  label: string;
-  value:
-    | string
-    | string[]
-    | number
-    | number[]
-    | boolean
-    | boolean[]
-    | JsonFormControls;
-  type: string;
-  settings?: RangeOptions & SelectSettings;
-  options?: string[] | number[];
-  validators: JsonFormValidators;
-  controls?: JsonFormControls;
-  depth?: number;
-}
-
-export type JsonFormControls = JsonFormControl[];
-
-export enum ValueType {
-  Text = 'text',
-  Password = 'password',
-  Email = 'email',
-  Number = 'number',
-  Search = 'search',
-  Mobile = 'tel',
-  Url = 'url',
-  Textarea = 'textarea',
-  Article = 'article',
-  Checkbox = 'checkbox',
-  Switch = 'switch',
-  Radio = 'radio',
-  RadioGroup = 'radioGroup',
-  Range = 'range',
-  Date = 'date',
-  Select = 'select',
-  Country = 'country',
-  File = 'file',
-  Image = 'image',
-  Form = 'form',
-  Group = 'group',
-}
-
-export enum ValidatorType {
-  Min = 'min',
-  Max = 'max',
-  Required = 'required',
-  RequiredTrue = 'requiredTrue',
-  Email = 'email',
-  MinLength = 'minlength',
-  MaxLength = 'maxlength',
-}
+import { JsonFormControl, JsonFormControls } from './json-classes';
+import { ValidatorType, ValueType } from './json-enums';
 
 @Component({
   selector: 'app-nested-json-form',
@@ -91,6 +17,13 @@ export enum ValidatorType {
 })
 export class NestedJsonFormComponent {
   private _jsonFormControls: JsonFormControls;
+  @Output() onSubmitted: EventEmitter<any> = new EventEmitter();
+  public ValueType = ValueType;
+  public formGroup: FormGroup = new FormGroup({});
+  public baseControl: Partial<JsonFormControl> = {
+    label: 'Form Magic!',
+    name: 'formMagic',
+  };
 
   @Input() set jsonFormControls(value: JsonFormControls) {
     if (!value) {
@@ -104,29 +37,9 @@ export class NestedJsonFormComponent {
     });
   }
 
-  getDirtyValues(form: any) {
-    let dirtyValues = {};
-
-    Object.keys(form.controls).forEach((key) => {
-      let currentControl = form.controls[key];
-
-      if (currentControl.dirty) {
-        if (currentControl.controls)
-          dirtyValues[key] = this.getDirtyValues(currentControl);
-        else dirtyValues[key] = currentControl.value;
-      }
-    });
-
-    return dirtyValues;
-  }
-
   get jsonFormControls(): JsonFormControls {
     return this._jsonFormControls;
   }
-
-  @Output() onSubmitted: EventEmitter<any> = new EventEmitter();
-  public ValueType = ValueType;
-  public formGroup: FormGroup = new FormGroup({});
 
   constructor() {}
 

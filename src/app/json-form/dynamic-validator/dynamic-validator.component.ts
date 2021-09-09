@@ -4,8 +4,8 @@ import {
   FormControl,
   FormGroupDirective,
 } from '@angular/forms';
-import { ValidatorType } from '../nested-json-form.component';
-import { JsonFormControl } from './../nested-json-form.component';
+import { JsonFormControl } from '../json-classes';
+import { ValidatorType } from '../json-enums';
 
 @Component({
   selector: 'app-dynamic-validator',

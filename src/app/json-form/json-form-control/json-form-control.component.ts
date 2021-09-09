@@ -4,7 +4,8 @@ import {
   ControlContainer,
   FormGroupDirective,
 } from '@angular/forms';
-import { JsonFormControl, ValueType } from './../nested-json-form.component';
+import { JsonFormControl } from '../json-classes';
+import { ValueType } from '../json-enums';
 
 @Component({
   selector: 'app-json-form-control',
