@@ -72,3 +72,4 @@ export enum ValidatorType {
 }
 
 export type JsonFormControls = JsonFormControl[];
+export type JsonData = JsonFormControls | JsonFormControl;

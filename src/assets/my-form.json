@@ -1,155 +1,159 @@
-[
-  {
-    "name": "firstGroup",
-    "label": "Prallel elements test",
-    "type": "group",
-    "controls": [
-      {
-        "name": "radioGroup",
-        "label": "This is a radio",
-        "type": "radioGroup",
-        "value": "1",
-        "controls": [
-          {
-            "label": "One",
-            "value": "1",
-            "name": "radio1",
-            "type": "radio"
-          },
-          {
-            "label": "Two",
-            "value": "2",
-            "name": "radio2",
-            "type": "radio"
-          },
-          {
-            "label": "Three",
-            "value": "3",
-            "name": "radio3",
-            "type": "radio"
-          }
-        ],
-        "validators": {}
-      },
-      {
-        "name": "agreesdsTerms",
-        "label": "Another",
-        "value": [
-          {
-            "name": "yourAge",
-            "label": "Whats your age",
-            "value": 10,
-            "type": "range",
-            "settings": {
-              "min": 0,
-              "max": 100,
-              "step": 1,
-              "icon": "sunny"
+{
+  "label": "Formality - optimise productivity!",
+  "type": "group",
+  "controls": [
+    {
+      "name": "firstGroup",
+      "label": "Prallel elements test",
+      "type": "group",
+      "controls": [
+        {
+          "name": "radioGroup",
+          "label": "This is a radio",
+          "type": "radioGroup",
+          "value": "1",
+          "controls": [
+            {
+              "label": "One",
+              "value": "1",
+              "name": "radio1",
+              "type": "radio"
             },
-            "validators": {}
-          },
-          {
-            "name": "lightDark",
-            "label": "Do you like switches?",
-            "value": false,
-            "type": "switch",
-            "validators": {}
-          }
-        ],
-        "type": "form",
-        "validators": {}
-      }
-    ]
-  },
-  {
-    "name": "secondGroup",
-    "label": "Prallel elements test",
-    "type": "group",
-    "controls": [
-      {
-        "name": "yourAge",
-        "label": "Whats your age",
-        "value": 20,
-        "type": "range",
-        "settings": {
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "icon": "sunny"
+            {
+              "label": "Two",
+              "value": "2",
+              "name": "radio2",
+              "type": "radio"
+            },
+            {
+              "label": "Three",
+              "value": "3",
+              "name": "radio3",
+              "type": "radio"
+            }
+          ],
+          "validators": {}
         },
-        "validators": {}
-      },
-      {
-        "name": "switchesLike",
-        "label": "Do you like switches?",
-        "value": false,
-        "type": "switch",
-        "validators": {}
-      },
-      {
-        "name": "fileUpload",
-        "label": "Choose file",
-        "value": null,
-        "type": "file",
-        "validators": {}
-      },
-      {
-        "name": "date",
-        "label": "Meeting date",
-        "value": null,
-        "type": "date",
-        "validators": {},
-        "settings": {
-          "seconds": true,
-          "format": "dd/MM/yyyy hh:mm"
+        {
+          "name": "agreesdsTerms",
+          "label": "Another",
+          "value": [
+            {
+              "name": "yourAge",
+              "label": "Whats your age",
+              "value": 10,
+              "type": "range",
+              "settings": {
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "icon": "sunny"
+              },
+              "validators": {}
+            },
+            {
+              "name": "lightDark",
+              "label": "Do you like switches?",
+              "value": false,
+              "type": "switch",
+              "validators": {}
+            }
+          ],
+          "type": "form",
+          "validators": {}
         }
-      }
-    ]
-  },
-  {
-    "name": "secondGroup",
-    "label": "Prallel elements test",
-    "type": "group",
-    "controls": [
-      {
-        "name": "countryselect",
-        "label": "Country select",
-        "value": ["LT"],
-        "type": "country",
-        "settings": {
-          "multiple": true
+      ]
+    },
+    {
+      "name": "secondGroup",
+      "label": "Prallel elements test",
+      "type": "group",
+      "controls": [
+        {
+          "name": "yourAge",
+          "label": "Whats your age",
+          "value": 20,
+          "type": "range",
+          "settings": {
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "icon": "sunny"
+          },
+          "validators": {}
         },
-        "validators": {}
-      },
-      {
-        "name": "multi",
-        "label": "Multi select",
-        "value": [],
-        "type": "select",
-        "settings": {
-          "multiple": true
+        {
+          "name": "switchesLike",
+          "label": "Do you like switches?",
+          "value": false,
+          "type": "switch",
+          "validators": {}
         },
-        "options": ["Alpha", "Beta", "Gamma"],
-        "validators": {}
-      },
-      {
-        "name": "single",
-        "label": "Single select",
-        "value": "Gamma",
-        "type": "select",
-        "settings": {
-          "multiple": false
+        {
+          "name": "fileUpload",
+          "label": "Choose file",
+          "value": null,
+          "type": "file",
+          "validators": {}
         },
-        "options": ["Alpha", "Beta", "Gamma"],
-        "validators": {}
-      }
-    ]
-  },
-  {
-    "name": "articleText",
-    "label": "Write a parahraph",
-    "value": "php in tags",
-    "type": "article",
-    "validators": {}
-  }
-]
+        {
+          "name": "date",
+          "label": "Meeting date",
+          "value": null,
+          "type": "date",
+          "validators": {},
+          "settings": {
+            "seconds": true,
+            "format": "dd/MM/yyyy hh:mm"
+          }
+        }
+      ]
+    },
+    {
+      "name": "secondGroup",
+      "label": "Prallel elements test",
+      "type": "group",
+      "controls": [
+        {
+          "name": "countryselect",
+          "label": "Country select",
+          "value": ["LT"],
+          "type": "country",
+          "settings": {
+            "multiple": true
+          },
+          "validators": {}
+        },
+        {
+          "name": "multi",
+          "label": "Multi select",
+          "value": [],
+          "type": "select",
+          "settings": {
+            "multiple": true
+          },
+          "options": ["Alpha", "Beta", "Gamma"],
+          "validators": {}
+        },
+        {
+          "name": "single",
+          "label": "Single select",
+          "value": "Gamma",
+          "type": "select",
+          "settings": {
+            "multiple": false
+          },
+          "options": ["Alpha", "Beta", "Gamma"],
+          "validators": {}
+        }
+      ]
+    },
+    {
+      "name": "articleText",
+      "label": "Write a parahraph",
+      "value": "php in tags",
+      "type": "article",
+      "validators": {}
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-<div [class]="getHeaderClass()">{{ parent.label }}</div>
+<div [class]="getHeaderClass()" *ngIf="parent">{{ parent.label }}</div>
 <div [class]="getGroupClass()">
   <ng-container *ngFor="let control of jsonFormControls">
     <ng-container

@@ -1,17 +1,24 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
   ValidatorFn,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { CustomValidators } from '../utils/custom-validators';
 import {
+  JsonData,
   JsonFormControl,
   JsonFormControls,
   ValidatorType,
-  ValueType
+  ValueType,
 } from './formality-data-structures';
 
 @Component({
@@ -21,36 +28,29 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormalityComponent {
-  private _jsonFormControls: JsonFormControls;
   @Output() onSubmitted: EventEmitter<any> = new EventEmitter();
   public ValueType = ValueType;
   public formGroup: FormGroup = new FormGroup({});
-  public baseControl: Partial<JsonFormControl> = {
-    label: 'Form Magic!',
-    name: 'formMagic',
-  };
 
-  @Input() set jsonFormControls(value: JsonFormControls) {
+  public controls: JsonFormControls;
+  @Input() set formData(value: JsonData) {
     if (!value) {
       return;
     }
 
-    this._jsonFormControls = value;
-    this.formGroup = this.parseJsonFormData(value);
+    this.controls = Array.isArray(value) ? value : [value];
+    this.formGroup = this.parseJsonFormControls(this.controls);
+
     this.formGroup.valueChanges.subscribe((value) => {
       console.log(value);
     });
   }
 
-  get jsonFormControls(): JsonFormControls {
-    return this._jsonFormControls;
-  }
-
   constructor() {}
 
-  parseJsonFormData(
+  parseJsonFormControls(
     jsonFormData: JsonFormControls,
-    formGroup = null,
+    formGroup: FormGroup = null,
     depth: number = 1
   ): FormGroup {
     if (!jsonFormData) {
@@ -60,31 +60,46 @@ export class FormalityComponent {
     if (!formGroup) formGroup = new FormGroup({});
 
     for (const formElement of jsonFormData) {
-      formElement.depth = depth + 1;
-      let newControl: AbstractControl = null;
+      this.parseFormControl(formElement, depth, formGroup);
+    }
 
-      switch (formElement.type) {
-        case ValueType.Form:
-          const jsonFormGroup = formElement as JsonFormControl;
-          newControl = this.parseJsonFormData(
-            jsonFormGroup.value as JsonFormControls,
-            null,
-            depth + 1
-          );
-          formGroup.addControl(formElement.name, newControl);
-          break;
-        case ValueType.Group:
-          newControl = this.parseJsonFormData(
-            formElement.controls as JsonFormControls,
-            formGroup,
-            depth + 1
-          );
-          break;
-        default:
-          newControl = this.parseControl(formElement as JsonFormControl);
-          formGroup.addControl(formElement.name, newControl);
-          break;
-      }
+    return formGroup;
+  }
+
+  private parseFormControl(
+    formElement: JsonFormControl,
+    depth: number = 1,
+    formGroup: FormGroup = null
+  ): FormGroup {
+    if (!formElement) {
+      return null;
+    }
+
+    formElement.depth = depth + 1;
+    let newControl: AbstractControl = null;
+
+    switch (formElement.type) {
+      case ValueType.Form:
+        const jsonFormGroup = formElement as JsonFormControl;
+        newControl = this.parseJsonFormControls(
+          jsonFormGroup.value as JsonFormControls,
+          null,
+          depth + 1
+        );
+
+        formGroup.addControl(formElement.name, newControl);
+        break;
+      case ValueType.Group:
+        this.parseJsonFormControls(
+          formElement.controls as JsonFormControls,
+          formGroup,
+          depth + 1
+        );
+        break;
+      default:
+        newControl = this.parseControl(formElement as JsonFormControl);
+        formGroup.addControl(formElement.name, newControl);
+        break;
     }
 
     return formGroup;
