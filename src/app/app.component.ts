@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { COUNTRIES } from './country-data/countries';
-import { JsonFormControls } from './json-form/json-classes';
-import { NestedJsonFormComponent } from './json-form/nested-json-form.component';
+import { JsonFormControls } from './formality/formality-data-structures';
+import { FormalityComponent } from './formality/formality.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { NestedJsonFormComponent } from './json-form/nested-json-form.component'
 })
 export class AppComponent implements OnInit {
   countries = COUNTRIES;
-  @ViewChild(NestedJsonFormComponent) form: NestedJsonFormComponent;
+  @ViewChild(FormalityComponent) form: FormalityComponent;
   public formData: JsonFormControls;
 
   constructor(private http: HttpClient) {}

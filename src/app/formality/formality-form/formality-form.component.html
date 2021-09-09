@@ -8,18 +8,18 @@
         )
       "
     >
-      <app-json-form-control [control]="control" [parent]="parent">
-      </app-json-form-control>
+      <formality-control [control]="control" [parent]="parent">
+      </formality-control>
     </ng-container>
     <ng-container
       *ngIf="control.type === ValueType.Form"
       [formGroup]="parentForm.form.get(control.name)"
     >
-      <app-json-form
+      <formality-form
         [jsonFormControls]="control.value"
         [parent]="control"
         [class]="getSubFormClass(control)"
-      ></app-json-form>
+      ></formality-form>
     </ng-container>
     <ng-container
       *ngIf="
@@ -27,11 +27,11 @@
         control.type === ValueType.Group
       "
     >
-      <app-json-form
+      <formality-form
         [jsonFormControls]="control.controls"
         [parent]="control"
         [class]="getSubFormClass(control)"
-      ></app-json-form>
+      ></formality-form>
     </ng-container>
   </ng-container>
   <ng-content></ng-content>

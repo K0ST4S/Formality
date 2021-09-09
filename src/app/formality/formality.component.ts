@@ -6,16 +6,20 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { CustomValidators } from './../utils/custom-validators';
-import { JsonFormControl, JsonFormControls } from './json-classes';
-import { ValidatorType, ValueType } from './json-enums';
+import { CustomValidators } from '../utils/custom-validators';
+import {
+  JsonFormControl,
+  JsonFormControls,
+  ValidatorType,
+  ValueType,
+} from './formality-data-structures';
 
 @Component({
-  selector: 'app-nested-json-form',
-  templateUrl: './nested-json-form.component.html',
-  styleUrls: ['./nested-json-form.component.scss'],
+  selector: 'formality',
+  templateUrl: './formality.component.html',
+  styleUrls: ['./formality.component.scss'],
 })
-export class NestedJsonFormComponent {
+export class FormalityComponent {
   private _jsonFormControls: JsonFormControls;
   @Output() onSubmitted: EventEmitter<any> = new EventEmitter();
   public ValueType = ValueType;

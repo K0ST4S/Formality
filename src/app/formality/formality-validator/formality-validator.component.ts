@@ -4,18 +4,17 @@ import {
   FormControl,
   FormGroupDirective,
 } from '@angular/forms';
-import { JsonFormControl } from '../json-classes';
-import { ValidatorType } from '../json-enums';
+import { JsonFormControl, ValidatorType } from '../formality-data-structures';
 
 @Component({
-  selector: 'app-dynamic-validator',
-  templateUrl: './dynamic-validator.component.html',
-  styleUrls: ['./dynamic-validator.component.scss'],
+  selector: 'formality-validator',
+  templateUrl: './formality-validator.component.html',
+  styleUrls: ['./formality-validator.component.scss'],
   viewProviders: [
     { provide: ControlContainer, useExisting: FormGroupDirective },
   ],
 })
-export class DynamicValidatorComponent implements OnInit {
+export class FormalityValidatorComponent implements OnInit {
   @Input() control: JsonFormControl;
   public formControl: FormControl;
 

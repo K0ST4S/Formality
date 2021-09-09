@@ -1,12 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
-import { JsonFormControl, JsonFormControls } from '../json-classes';
-import { ValueType } from '../json-enums';
+import {
+  JsonFormControl,
+  JsonFormControls,
+  ValueType,
+} from '../formality-data-structures';
 
 @Component({
-  selector: 'app-json-form',
-  templateUrl: './json-form.component.html',
-  styleUrls: ['./json-form.component.scss'],
+  selector: 'formality-form',
+  templateUrl: './formality-form.component.html',
+  styleUrls: ['./formality-form.component.scss'],
   viewProviders: [
     { provide: ControlContainer, useExisting: FormGroupDirective },
   ],

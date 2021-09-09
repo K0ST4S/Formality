@@ -93,17 +93,17 @@
     >
     </ng-select>
   </ng-container>
-  <app-country-select
+  <formality-country-select
     *ngIf="control.type === ValueType.Country"
     [control]="control"
     [class]="getControlClass(control)"
-  ></app-country-select>
+  ></formality-country-select>
   <label [class]="getLabelClass(control)" [for]="control.name">{{
     control.label
   }}</label>
-  <app-dynamic-validator
+  <formality-validator
     *ngIf="parentForm.form.get(control.name)"
     remove-wrapper
     [control]="referenceControl"
-  ></app-dynamic-validator>
+  ></formality-validator>
 </div>

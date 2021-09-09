@@ -4,13 +4,12 @@ import {
   ControlContainer,
   FormGroupDirective,
 } from '@angular/forms';
-import { JsonFormControl } from '../json-classes';
-import { ValueType } from '../json-enums';
+import { JsonFormControl, ValueType } from '../formality-data-structures';
 
 @Component({
-  selector: 'app-json-form-control',
-  templateUrl: './json-form-control.component.html',
-  styleUrls: ['./json-form-control.component.scss'],
+  selector: 'formality-control',
+  templateUrl: './formality-control.component.html',
+  styleUrls: ['./formality-control.component.scss'],
   viewProviders: [
     { provide: ControlContainer, useExisting: FormGroupDirective },
   ],
