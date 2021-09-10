@@ -147,19 +147,6 @@ export class FormalityComponent {
     return new FormControl(control.value, validatorsToAdd);
   }
 
-  public checkDataValidity(value: JsonData) {
-    const controls = Array.isArray(value) ? value : [value];
-    // every control must have a label
-    // must be no identical labels
-    // must be no identical labels between all formalities
-    // every type must of ValueType enum
-    // groups must have controls and no value. Everything else must have a value
-
-    // Solution: recursively map all controls of value to an array of controls.
-    for (const formElement of controls) {
-    }
-  }
-
   onSubmit() {
     console.log(this.formGroup.value);
     this.onSubmitted.emit(this.formGroup.value);

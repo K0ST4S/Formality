@@ -9,6 +9,7 @@ import {
 import { COUNTRIES } from './country-data/countries';
 import { JsonData } from './formality/formality-data-structures';
 import { FormalityComponent } from './formality/formality.component';
+import { FormalityUtils } from './utils/formality-utils';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.http.get('/assets/my-form.json').subscribe((formData: JsonData) => {
       this.formData = formData;
+      FormalityUtils.checkDataValidity(formData);
       this.cdr.detectChanges();
     });
 
@@ -34,6 +36,7 @@ export class AppComponent implements OnInit {
       .get('/assets/my-form-controls.json')
       .subscribe((formData: JsonData) => {
         this.controlsFormData = formData;
+        FormalityUtils.checkDataValidity(formData);
         this.cdr.detectChanges();
       });
   }

@@ -30,128 +30,132 @@ formality-form {
   @extend .card;
 }
 
-.baseGroup-subform {
-  display: flex;
-  flex-direction: column;
-  .baseGroup-controls {
-    .firstGroup-subform {
-      .firstGroup-controls {
-        display: flex;
-        flex-basis: 100%;
-        flex-direction: row;
-
-        .subform {
-          flex-basis: 100%;
-        }
-
-        .radioGroup-subform {
-          background-color: yellowgreen;
-          .radioGroup-controls {
-            .radio1 {
-            }
-            .radio2 {
-            }
-            .radio3 {
-            }
-          }
-        }
-        .agreesdsTerms-subform {
-          background-color: yellow;
-          .agreesdsTerms-controls {
-            .yourAge {
-            }
-            .lightDark {
-            }
-          }
-        }
-      }
-    }
-    .secondGroup-subform {
-      border-radius: 1rem;
-      .secondGroup-controls {
-        .yourAge {
-        }
-        .switchesLike {
-        }
-        .fileUpload {
-        }
-        .date {
-          input {
-            border-radius: 1rem !important;
-          }
-
-          button {
-            border-radius: 1rem !important;
-          }
-        }
-      }
-    }
-    .secondGroup-subform {
-      .secondGroup-controls {
-        .countryselect {
-        }
-        .multi {
-        }
-        .single {
-        }
-      }
-    }
-    .articleText {
-    }
-  }
-}
-
-.firstGroup-subform {
-  display: flex;
-  flex-direction: column;
-  .firstGroup-controls {
+#test1 {
+  .baseGroup-subform {
     display: flex;
-    flex-basis: 100%;
-    flex-direction: row;
-    .subform {
+    flex-direction: column;
+    .baseGroup-controls {
+      .firstGroup-subform {
+        .firstGroup-controls {
+          display: flex;
+          flex-basis: 100%;
+          flex-direction: row;
+
+          .subform {
+            flex-basis: 100%;
+          }
+
+          .radioGroup-subform {
+            background-color: yellowgreen;
+            .radioGroup-controls {
+              .radio1 {
+              }
+              .radio2 {
+              }
+              .radio3 {
+              }
+            }
+          }
+          .agreesdsTerms-subform {
+            background-color: yellow;
+            .agreesdsTerms-controls {
+              .yourAge {
+              }
+              .lightDark {
+              }
+            }
+          }
+        }
+      }
+      .secondGroup-subform {
+        border-radius: 1rem;
+        .secondGroup-controls {
+          .yourAge {
+          }
+          .switchesLike {
+          }
+          .fileUpload {
+          }
+          .date {
+            input {
+              border-radius: 1rem !important;
+            }
+
+            button {
+              border-radius: 1rem !important;
+            }
+          }
+        }
+      }
+      .secondGroup-subform {
+        .secondGroup-controls {
+          .countryselect {
+          }
+          .multi {
+          }
+          .single {
+          }
+        }
+      }
+      .articleText {
+      }
+    }
+  }
+}
+
+#test2 {
+  .firstGroup-subform {
+    display: flex;
+    flex-direction: column;
+    .firstGroup-controls {
+      display: flex;
       flex-basis: 100%;
-    }
-    .radioGroup-subform {
-      .radioGroup-controls {
-        .radio1 {
+      flex-direction: row;
+      .subform {
+        flex-basis: 100%;
+      }
+      .radioGroup-subform {
+        .radioGroup-controls {
+          .radio1 {
+          }
+          .radio2 {
+          }
+          .radio3 {
+          }
         }
-        .radio2 {
-        }
-        .radio3 {
+      }
+      .agreesdsTerms-subform {
+        .agreesdsTerms-controls {
+          .yourAge {
+          }
+          .lightDark {
+          }
         }
       }
     }
-    .agreesdsTerms-subform {
-      .agreesdsTerms-controls {
-        .yourAge {
-        }
-        .lightDark {
-        }
+  }
+  .secondGroup-subform {
+    .secondGroup-controls {
+      .yourAge {
+      }
+      .switchesLike {
+      }
+      .fileUpload {
+      }
+      .date {
       }
     }
   }
-}
-.secondGroup-subform {
-  .secondGroup-controls {
-    .yourAge {
-    }
-    .switchesLike {
-    }
-    .fileUpload {
-    }
-    .date {
+  .secondGroup-subform {
+    .secondGroup-controls {
+      .countryselect {
+      }
+      .multi {
+      }
+      .single {
+      }
     }
   }
-}
-.secondGroup-subform {
-  .secondGroup-controls {
-    .countryselect {
-    }
-    .multi {
-    }
-    .single {
-    }
+  .articleText {
   }
-}
-.articleText {
 }
