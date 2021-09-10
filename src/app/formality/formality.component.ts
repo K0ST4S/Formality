@@ -13,7 +13,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { CustomValidators } from '../utils/custom-validators';
-import { FormalityUtils } from './../utils/formality-utils';
 import {
   FormalityControl,
   FormalityControls,
@@ -40,8 +39,7 @@ export class FormalityComponent {
     }
 
     this.controls = Array.isArray(value) ? value : [value];
-    this.formGroup = this.parseJsonFormControls(this.controls);
-    console.log(FormalityUtils.generateScssSnippet(value));
+    this.formGroup = this.parseDataControls(this.controls);
 
     this.formGroup.valueChanges.subscribe((value) => {
       console.log(value);
@@ -50,7 +48,7 @@ export class FormalityComponent {
 
   constructor() {}
 
-  parseJsonFormControls(
+  parseDataControls(
     jsonFormData: FormalityControls,
     formGroup: FormGroup = null,
     depth: number = 1
@@ -62,13 +60,13 @@ export class FormalityComponent {
     if (!formGroup) formGroup = new FormGroup({});
 
     for (const formElement of jsonFormData) {
-      this.parseFormControl(formElement, depth, formGroup);
+      this.parseControl(formElement, depth, formGroup);
     }
 
     return formGroup;
   }
 
-  private parseFormControl(
+  private parseControl(
     formElement: FormalityControl,
     depth: number = 1,
     formGroup: FormGroup = null
@@ -83,7 +81,7 @@ export class FormalityComponent {
     switch (formElement.type) {
       case ValueType.Form:
         const jsonFormGroup = formElement as FormalityControl;
-        newControl = this.parseJsonFormControls(
+        newControl = this.parseDataControls(
           jsonFormGroup.value as FormalityControls,
           null,
           depth + 1
@@ -92,14 +90,16 @@ export class FormalityComponent {
         formGroup.addControl(formElement.name, newControl);
         break;
       case ValueType.Group:
-        this.parseJsonFormControls(
+        this.parseDataControls(
           formElement.controls as FormalityControls,
           formGroup,
           depth + 1
         );
         break;
       default:
-        newControl = this.parseControl(formElement as FormalityControl);
+        newControl = this.parseControlValidators(
+          formElement as FormalityControl
+        );
         formGroup.addControl(formElement.name, newControl);
         break;
     }
@@ -107,7 +107,7 @@ export class FormalityComponent {
     return formGroup;
   }
 
-  private parseControl(control: FormalityControl): FormControl {
+  private parseControlValidators(control: FormalityControl): FormControl {
     const validatorsToAdd: ValidatorFn[] = [];
     if (control.validators) {
       for (const [key, value] of Object.entries(control.validators)) {
