@@ -13,6 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CustomValidators } from '../utils/custom-validators';
+import { FormalityUtils } from './../utils/formality-utils';
 import {
   JsonData,
   JsonFormControl,
@@ -40,7 +41,7 @@ export class FormalityComponent {
 
     this.controls = Array.isArray(value) ? value : [value];
     this.formGroup = this.parseJsonFormControls(this.controls);
-    console.log(this.generateScssSnippet(value));
+    console.log(FormalityUtils.generateScssSnippet(value));
 
     this.formGroup.valueChanges.subscribe((value) => {
       console.log(value);
@@ -157,27 +158,6 @@ export class FormalityComponent {
     // Solution: recursively map all controls of value to an array of controls.
     for (const formElement of controls) {
     }
-  }
-
-  public generateScssSnippet(value: JsonData, result = ''): string {
-    const controls = Array.isArray(value) ? value : [value];
-    for (const node of controls) {
-      if (node.type === ValueType.Group || node.type === ValueType.RadioGroup) {
-        result += `.${node.name}-subform { .${node.name}-controls { `;
-        result = this.generateScssSnippet(node.controls, result);
-      } else if (node.type === ValueType.Form) {
-        result += `.${node.name}-subform { .${node.name}-controls { `;
-        result = this.generateScssSnippet(
-          node.value as JsonFormControls,
-          result
-        );
-      } else {
-        result += ` .${node.name} { }`;
-        continue;
-      }
-      result += ' } }';
-    }
-    return result;
   }
 
   onSubmit() {
