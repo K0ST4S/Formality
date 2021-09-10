@@ -1,4 +1,4 @@
-export interface JsonFormValidators {
+export interface FormalityValidators {
   min?: number;
   max?: number;
   required?: boolean;
@@ -6,6 +6,25 @@ export interface JsonFormValidators {
   email?: boolean;
   minlength?: boolean;
   maxlength?: boolean;
+}
+
+export interface FormalityControl {
+  name: string;
+  label: string;
+  value:
+    | string
+    | string[]
+    | number
+    | number[]
+    | boolean
+    | boolean[]
+    | FormalityControls;
+  type: string;
+  settings?: RangeOptions & SelectSettings;
+  options?: string[] | number[];
+  validators: FormalityValidators;
+  controls?: FormalityControls;
+  depth?: number;
 }
 
 export interface RangeOptions {
@@ -16,25 +35,6 @@ export interface RangeOptions {
 
 export interface SelectSettings {
   multiple?: boolean;
-}
-
-export interface JsonFormControl {
-  name: string;
-  label: string;
-  value:
-    | string
-    | string[]
-    | number
-    | number[]
-    | boolean
-    | boolean[]
-    | JsonFormControls;
-  type: string;
-  settings?: RangeOptions & SelectSettings;
-  options?: string[] | number[];
-  validators: JsonFormValidators;
-  controls?: JsonFormControls;
-  depth?: number;
 }
 
 export enum ValueType {
@@ -71,5 +71,5 @@ export enum ValidatorType {
   MaxLength = 'maxlength',
 }
 
-export type JsonFormControls = JsonFormControl[];
-export type JsonData = JsonFormControls | JsonFormControl;
+export type FormalityControls = FormalityControl[];
+export type FormalityData = FormalityControls | FormalityControl;

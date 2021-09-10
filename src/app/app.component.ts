@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { COUNTRIES } from './country-data/countries';
-import { JsonData } from './formality/formality-data-structures';
+import { FormalityData } from './formality/formality-data-structures';
 import { FormalityComponent } from './formality/formality.component';
 import { FormalityUtils } from './utils/formality-utils';
 
@@ -20,21 +20,23 @@ import { FormalityUtils } from './utils/formality-utils';
 export class AppComponent implements OnInit {
   countries = COUNTRIES;
   @ViewChild(FormalityComponent) form: FormalityComponent;
-  public formData: JsonData;
-  public controlsFormData: JsonData;
+  public formData: FormalityData;
+  public controlsFormData: FormalityData;
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.http.get('/assets/my-form.json').subscribe((formData: JsonData) => {
-      this.formData = formData;
-      FormalityUtils.checkDataValidity(formData);
-      this.cdr.detectChanges();
-    });
+    this.http
+      .get('/assets/my-form.json')
+      .subscribe((formData: FormalityData) => {
+        this.formData = formData;
+        FormalityUtils.checkDataValidity(formData);
+        this.cdr.detectChanges();
+      });
 
     this.http
       .get('/assets/my-form-controls.json')
-      .subscribe((formData: JsonData) => {
+      .subscribe((formData: FormalityData) => {
         this.controlsFormData = formData;
         FormalityUtils.checkDataValidity(formData);
         this.cdr.detectChanges();

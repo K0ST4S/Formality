@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import {
-  JsonFormControl,
-  JsonFormControls,
+  FormalityControl,
+  FormalityControls,
   ValueType,
 } from '../formality-data-structures';
 
@@ -22,8 +22,8 @@ import {
 })
 export class JsonFormComponent implements OnInit {
   ValueType = ValueType;
-  @Input() public jsonFormControls: JsonFormControls;
-  @Input() public parent: JsonFormControl;
+  @Input() public jsonFormControls: FormalityControls;
+  @Input() public parent: FormalityControl;
   constructor(public parentForm: FormGroupDirective) {}
 
   ngOnInit(): void {}
@@ -36,7 +36,7 @@ export class JsonFormComponent implements OnInit {
     return `h${this.parent?.depth ?? 1}`;
   }
 
-  public getSubFormClass(control: JsonFormControl) {
+  public getSubFormClass(control: FormalityControl) {
     return `${control.name}-subform subform`;
   }
 

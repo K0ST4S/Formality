@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import {
   ControlContainer,
   FormControl,
-  FormGroupDirective
+  FormGroupDirective,
 } from '@angular/forms';
-import { JsonFormControl, ValidatorType } from '../formality-data-structures';
+import { FormalityControl, ValidatorType } from '../formality-data-structures';
 
 @Component({
   selector: 'formality-validator',
@@ -16,7 +21,7 @@ import { JsonFormControl, ValidatorType } from '../formality-data-structures';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormalityValidatorComponent implements OnInit {
-  @Input() control: JsonFormControl;
+  @Input() control: FormalityControl;
   public formControl: FormControl;
 
   constructor(public formDirective: FormGroupDirective) {}

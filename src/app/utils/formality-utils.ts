@@ -1,11 +1,11 @@
 import {
-  JsonData,
-  JsonFormControls,
+  FormalityControls,
+  FormalityData,
   ValueType,
 } from './../formality/formality-data-structures';
 
 export class FormalityUtils {
-  public static generateScssSnippet(value: JsonData, result = ''): string {
+  public static generateScssSnippet(value: FormalityData, result = ''): string {
     const controls = Array.isArray(value) ? value : [value];
     for (const node of controls) {
       if (node.type === ValueType.Group || node.type === ValueType.RadioGroup) {
@@ -14,7 +14,7 @@ export class FormalityUtils {
       } else if (node.type === ValueType.Form) {
         result += `.${node.name}-subform { .${node.name}-controls { `;
         result = this.generateScssSnippet(
-          node.value as JsonFormControls,
+          node.value as FormalityControls,
           result
         );
       } else {
@@ -26,11 +26,11 @@ export class FormalityUtils {
     return result;
   }
 
-  public static checkDataValidity(value: JsonData) {
+  public static checkDataValidity(value: FormalityData) {
     const controls = Array.isArray(value) ? value : [value];
     // must be no identical labels between all formalities
 
-    const flattenedControls: JsonFormControls =
+    const flattenedControls: FormalityControls =
       this.flattenJsonElements(controls);
 
     // check for missing names
@@ -47,17 +47,17 @@ export class FormalityUtils {
   }
 
   private static flattenJsonElements(
-    jsonData: JsonData,
-    flattenedControls: JsonFormControls = []
-  ): JsonFormControls {
+    jsonData: FormalityData,
+    flattenedControls: FormalityControls = []
+  ): FormalityControls {
     const controls = Array.isArray(jsonData) ? jsonData : [jsonData];
     for (const formElement of controls) {
       switch (formElement.type) {
         case ValueType.Form:
-          this.flattenJsonElements(formElement.value as JsonData);
+          this.flattenJsonElements(formElement.value as FormalityData);
           break;
         case ValueType.Group:
-          this.checkDataValidity(formElement.controls as JsonData);
+          this.checkDataValidity(formElement.controls as FormalityData);
           break;
         default:
           break;
@@ -68,7 +68,7 @@ export class FormalityUtils {
   }
 
   private static checkForMisplacedProperties(
-    flattenedControls: JsonFormControls
+    flattenedControls: FormalityControls
   ) {
     for (const control of flattenedControls) {
       const controls = control.controls !== undefined;
@@ -100,7 +100,7 @@ export class FormalityUtils {
     }
   }
 
-  private static checkForMissingTypes(flattenedControls: JsonFormControls) {
+  private static checkForMissingTypes(flattenedControls: FormalityControls) {
     const ValueTypes: ValueType[] = Object.values(ValueType);
     for (const control of flattenedControls) {
       if (!ValueTypes.includes(control.type as ValueType)) {
@@ -111,7 +111,7 @@ export class FormalityUtils {
     }
   }
 
-  private static checkForMissingNames(flattenedControls: JsonFormControls) {
+  private static checkForMissingNames(flattenedControls: FormalityControls) {
     for (const control of flattenedControls) {
       if (!control.name) {
         console.error(
@@ -121,7 +121,7 @@ export class FormalityUtils {
     }
   }
 
-  private static checkForIdenticalNames(controls: JsonFormControls) {
+  private static checkForIdenticalNames(controls: FormalityControls) {
     const names = controls.map((v) => v.name);
     const uniqueValues = new Set(names);
 

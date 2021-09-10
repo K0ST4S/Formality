@@ -1,10 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
-  FormGroupDirective
+  FormGroupDirective,
 } from '@angular/forms';
-import { JsonFormControl, ValueType } from '../formality-data-structures';
+import { FormalityControl, ValueType } from '../formality-data-structures';
 
 @Component({
   selector: 'formality-control',
@@ -16,8 +22,8 @@ import { JsonFormControl, ValueType } from '../formality-data-structures';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JsonFormControlComponent implements OnInit {
-  @Input() control: JsonFormControl;
-  @Input() parent: JsonFormControl;
+  @Input() control: FormalityControl;
+  @Input() parent: FormalityControl;
   ValueType = ValueType;
   ControlClass = {
     [ValueType.Text]: 'form-control order-1',
@@ -124,15 +130,15 @@ export class JsonFormControlComponent implements OnInit {
     }`;
   }
 
-  public getLabelClass(control: JsonFormControl): string {
+  public getLabelClass(control: FormalityControl): string {
     return `${this.LabelClass[control.type]}`;
   }
 
-  public getGroupClass(control: JsonFormControl): string {
+  public getGroupClass(control: FormalityControl): string {
     return `${this.GroupClass[control.type]}`;
   }
 
-  public get referenceControl(): JsonFormControl {
+  public get referenceControl(): FormalityControl {
     if (!this.control && !this.parent) {
       console.log('Both control and parent are null');
     }

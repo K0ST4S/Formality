@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import { COUNTRIES } from './../country-data/countries';
 import { Country } from './../country-data/country';
-import { JsonFormControl } from './../formality/formality-data-structures';
+import { FormalityControl } from './../formality/formality-data-structures';
 
 @Component({
   selector: 'country-select',
@@ -18,5 +18,5 @@ import { JsonFormControl } from './../formality/formality-data-structures';
 })
 export class CountrySelectComponent {
   public countries: Country[] = COUNTRIES;
-  @Input() control: JsonFormControl;
+  @Input() control: FormalityControl;
 }
