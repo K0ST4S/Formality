@@ -28,19 +28,19 @@ export class JsonFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getHeaderClass() {
-    return `h${this.parent?.depth ?? 1}`;
-  }
-
-  getSubFormClass(control: JsonFormControl) {
-    return `${control.name}-subform subform`;
-  }
-
-  getControlsClass(): string {
+  private getControlsClass(): string {
     return `${this.parent?.name}-controls controls`;
   }
 
-  getGroupClass(): string {
+  public getHeaderClass() {
+    return `h${this.parent?.depth ?? 1}`;
+  }
+
+  public getSubFormClass(control: JsonFormControl) {
+    return `${control.name}-subform subform`;
+  }
+
+  public getGroupClass(): string {
     if (!this.parent) return 'group';
     else if (this.parent?.type === ValueType.Group)
       return `${this.getControlsClass()} group`;
