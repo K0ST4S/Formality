@@ -150,5 +150,6 @@ export class FormalityComponent {
   onSubmit() {
     console.log(this.formGroup.value);
     this.onSubmitted.emit(this.formGroup.value);
+    this.formGroup.markAsPristine();
   }
 }
