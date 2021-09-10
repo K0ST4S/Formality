@@ -42,15 +42,17 @@
             {
               "name": "yourAge",
               "label": "Whats your age",
-              "value": 10,
-              "type": "range",
+              "value": "10",
+              "type": "text",
               "settings": {
                 "min": 0,
                 "max": 100,
                 "step": 1,
                 "icon": "sunny"
               },
-              "validators": {}
+              "validators": {
+                "required": true
+              }
             },
             {
               "name": "lightDark",

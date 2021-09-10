@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
@@ -9,7 +10,7 @@ import {
   FormControl,
   FormGroupDirective,
 } from '@angular/forms';
-import { FormalityControl, ValidatorType } from '../formality-data-structures';
+import { FormalityControl } from '../formality-data-structures';
 
 @Component({
   selector: 'formality-validator',
@@ -24,22 +25,18 @@ export class FormalityValidatorComponent implements OnInit {
   @Input() control: FormalityControl;
   public formControl: FormControl;
 
-  constructor(public formDirective: FormGroupDirective) {}
+  constructor(
+    public formDirective: FormGroupDirective,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.formControl = this.formDirective.form.get(
       this.control.name
     ) as FormControl;
-  }
 
-  // this would generally be replaced with ngx-translate keys and when we would pass a variable to validators that don't require one - nothing would happen.
-  public InvalidFeedback = {
-    [ValidatorType.Min]: 'Mnimimum value is *',
-    [ValidatorType.Max]: 'Maximum value is *',
-    [ValidatorType.Required]: 'Required stuff',
-    [ValidatorType.RequiredTrue]: 'You must agree',
-    [ValidatorType.Email]: 'Not a valid email',
-    [ValidatorType.MinLength]: 'Minimum length is *',
-    [ValidatorType.MaxLength]: 'Maximum length is *',
-  };
+    this.formControl.statusChanges.subscribe(() => {
+      this.cdr.detectChanges();
+    });
+  }
 }

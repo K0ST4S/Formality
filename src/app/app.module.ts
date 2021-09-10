@@ -1,9 +1,15 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { QuillModule } from 'ngx-quill';
 import { AppComponent } from './app.component';
 import { CountrySelectComponent } from './country-select/country-select.component';
@@ -15,6 +21,10 @@ import { FormalityComponent } from './formality/formality.component';
 import { DateInterceptor } from './interceptors/date.interceptor';
 import { NgBootstrapDatetimeModule } from './ng-bootstrap-datetime/ng-bootstrap-datetime.module';
 import { RemoveWrapperDirective } from './utils/remove-wrapper.directive';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -34,6 +44,15 @@ import { RemoveWrapperDirective } from './utils/remove-wrapper.directive';
     NgbModule,
     NgBootstrapDatetimeModule,
     QuillModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en',
+      useDefaultLang: true,
+    }),
     NgSelectModule,
   ],
   providers: [

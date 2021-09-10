@@ -1,0 +1,9 @@
+{
+  "min": "Mnimimum value is {{value}}",
+  "max": "Maximum value is {{value}}",
+  "required": "Required field",
+  "requiredTrue": "You must agree",
+  "email": "Not a valid email",
+  "minlength": "Minimum length is {{value}}",
+  "maxlength": "Maximum length is {{value}}"
+}

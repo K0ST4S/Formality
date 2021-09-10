@@ -125,10 +125,10 @@ export class FormalityUtils {
     const names = controls.map((v) => v.name);
     const uniqueValues = new Set(names);
 
-    if (uniqueValues.size < controls.length) {
-      console.log(
+    if (uniqueValues.size < names.length) {
+      console.error(
         'Duplicate names ',
-        names.filter((v) => !Array.from(uniqueValues).includes(v))
+        names.filter((e, i, a) => a.indexOf(e) !== i)
       );
     }
   }

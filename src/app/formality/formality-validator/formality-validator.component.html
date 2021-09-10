@@ -1,7 +1,10 @@
 <ng-container *ngIf="formControl.errors && control.validators">
-  <ng-container *ngFor="let validator of data.validators | keyvalue">
-    <div *ngIf="control.errors[validator.key]" class="invalid-feedback order-2">
-      {{ InvalidFeedback[validator.key].replace("*", validator.value) }}
+  <ng-container *ngFor="let validator of control.validators | keyvalue">
+    <div
+      *ngIf="formControl.errors[validator.key]"
+      class="invalid-feedback order-2"
+    >
+      {{ validator.key | translate: { value: validator.value } }}
     </div>
   </ng-container>
 </ng-container>

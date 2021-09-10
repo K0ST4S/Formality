@@ -6,6 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { COUNTRIES } from './country-data/countries';
 import { FormalityData } from './formality/formality-data-structures';
 import { FormalityComponent } from './formality/formality.component';
@@ -23,7 +24,11 @@ export class AppComponent implements OnInit {
   public formData: FormalityData;
   public controlsFormData: FormalityData;
 
-  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.http
