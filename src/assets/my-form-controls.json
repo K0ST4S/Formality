@@ -1,11 +1,11 @@
 [
   {
-    "name": "firstGroup",
+    "name": "irstGroup",
     "label": "Prallel elements test",
     "type": "group",
     "controls": [
       {
-        "name": "radioGroup",
+        "name": "radioGrp",
         "label": "This is a radio",
         "type": "radioGroup",
         "value": "1",
@@ -32,11 +32,11 @@
         "validators": {}
       },
       {
-        "name": "agreesdsTerms",
+        "name": "agesdsTerms",
         "label": "Another",
         "value": [
           {
-            "name": "yourAge",
+            "name": "age",
             "label": "Whats your age",
             "value": 10,
             "type": "range",
@@ -49,7 +49,7 @@
             "validators": {}
           },
           {
-            "name": "lightDark",
+            "name": "heavyDrk",
             "label": "Do you like switches?",
             "value": false,
             "type": "switch",
@@ -62,7 +62,7 @@
     ]
   },
   {
-    "name": "secondGroup",
+    "name": "seondGroup",
     "label": "Prallel elements test",
     "type": "group",
     "controls": [
@@ -80,21 +80,21 @@
         "validators": {}
       },
       {
-        "name": "switchesLike",
+        "name": "switcheExample",
         "label": "Do you like switches?",
         "value": false,
         "type": "switch",
         "validators": {}
       },
       {
-        "name": "fileUpload",
+        "name": "filUpload",
         "label": "Choose file",
         "value": null,
         "type": "file",
         "validators": {}
       },
       {
-        "name": "date",
+        "name": "mydate",
         "label": "Meeting date",
         "value": null,
         "type": "date",
@@ -107,12 +107,12 @@
     ]
   },
   {
-    "name": "thirdGroup",
+    "name": "thiroup",
     "label": "Prallel elements test",
     "type": "group",
     "controls": [
       {
-        "name": "countryselect",
+        "name": "countryselecta",
         "label": "Country select",
         "value": ["LT"],
         "type": "country",
@@ -122,7 +122,7 @@
         "validators": {}
       },
       {
-        "name": "multi",
+        "name": "multik",
         "label": "Multi select",
         "value": [],
         "type": "select",
@@ -133,7 +133,7 @@
         "validators": {}
       },
       {
-        "name": "single",
+        "name": "singlek",
         "label": "Single select",
         "value": "Gamma",
         "type": "select",
@@ -146,7 +146,7 @@
     ]
   },
   {
-    "name": "articleText",
+    "name": "rticleText",
     "label": "Write a parahraph",
     "value": "php in tags",
     "type": "article",

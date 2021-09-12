@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   Output,
 } from '@angular/core';
 import {
@@ -27,7 +28,8 @@ import {
   styleUrls: ['./formality.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormalityComponent {
+export class FormalityComponent implements OnDestroy {
+  public static Instances: FormalityComponent[] = [];
   @Output() onSubmitted: EventEmitter<any> = new EventEmitter();
   public ValueType = ValueType;
   public formGroup: FormGroup = new FormGroup({});
@@ -46,7 +48,13 @@ export class FormalityComponent {
     });
   }
 
-  constructor() {}
+  constructor() {
+    FormalityComponent.Instances.push(this);
+  }
+
+  ngOnDestroy(): void {
+    FormalityComponent.Instances.remove(this);
+  }
 
   parseDataControls(
     jsonFormData: FormalityControls,

@@ -13,7 +13,7 @@
     "
     [type]="control.type"
     [formControlName]="control.name"
-    [id]="control.name"
+    [id]="getId()"
     [class]="getControlClass(control)"
   />
   <ng-container *ngIf="control.type === ValueType.Article">
@@ -28,7 +28,7 @@
   </ng-container>
   <ng-bootstrap-datetime
     *ngIf="control.type === ValueType.Date"
-    [id]="control.name"
+    [id]="getId()"
     [formControlName]="control.name"
     [seconds]="control.settings.seconds"
     [meridian]="false"
@@ -37,7 +37,7 @@
   ></ng-bootstrap-datetime>
   <textarea
     *ngIf="control.type === ValueType.Textarea"
-    [id]="control.name"
+    [id]="getId()"
     [formControlName]="control.name"
     [class]="getControlClass(control)"
   ></textarea>
@@ -46,7 +46,7 @@
     [min]="control.settings.min"
     [max]="control.settings.max"
     [type]="ValueType.Range"
-    [id]="control.name"
+    [id]="getId()"
     [formControlName]="control.name"
     [class]="getControlClass(control)"
   />
@@ -54,7 +54,7 @@
   <input
     *ngIf="[ValueType.Checkbox, ValueType.Switch].includes(control.type)"
     type="checkbox"
-    [id]="control.name"
+    [id]="getId()"
     [formControlName]="control.name"
     [class]="getControlClass(control)"
   />
@@ -63,7 +63,7 @@
     type="radio"
     [value]="control.value"
     [name]="parent.name"
-    [id]="control.name"
+    [id]="getId()"
     [formControlName]="parent.name"
     [class]="getControlClass(control)"
   />
@@ -74,11 +74,11 @@
       [type]="ValueType.File"
       [class]="getControlClass(control)"
       (change)="onFileChange($event)"
+      [id]="getId()"
       [accept]="control.accept"
     />
     <input
       [type]="ValueType.Text"
-      [id]="control.name"
       [formControlName]="control.name"
       style="display: none"
     />
@@ -88,7 +88,7 @@
       [multiple]="control.settings.multiple"
       [items]="control.options"
       [name]="control.name"
-      [labelForId]="control.name"
+      [labelForId]="getId()"
       [formControlName]="control.name"
       [class]="getControlClass(control)"
     >
@@ -99,7 +99,7 @@
     [control]="control"
     [class]="getControlClass(control)"
   ></country-select>
-  <label [class]="getLabelClass(control)" [for]="control.name">{{
+  <label [class]="getLabelClass(control)" [for]="getId()">{{
     control.label
   }}</label>
   <formality-validator

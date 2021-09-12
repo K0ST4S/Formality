@@ -31,21 +31,24 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http
-      .get('/assets/my-form.json')
-      .subscribe((formData: FormalityData) => {
-        this.formData = formData;
-        FormalityUtils.checkDataValidity(formData);
-        this.cdr.detectChanges();
-      });
+    const first = this.http.get('/assets/my-form.json');
+    const second = this.http.get('/assets/my-form-controls.json');
 
-    this.http
-      .get('/assets/my-form-controls.json')
-      .subscribe((formData: FormalityData) => {
-        this.controlsFormData = formData;
-        FormalityUtils.checkDataValidity(formData);
-        this.cdr.detectChanges();
-      });
+    first.subscribe((formData: FormalityData) => {
+      this.formData = formData;
+      FormalityUtils.checkDataValidity(formData);
+      this.cdr.detectChanges();
+    });
+
+    second.subscribe((formData: FormalityData) => {
+      this.controlsFormData = formData;
+      FormalityUtils.checkDataValidity(formData);
+      this.cdr.detectChanges();
+    });
+
+    Promise.all([first.toPromise(), second.toPromise()]).then(() => {
+      FormalityUtils.checkForIdenticalNamesAccrossActiveForms();
+    });
   }
 
   onSubmit(value: any) {

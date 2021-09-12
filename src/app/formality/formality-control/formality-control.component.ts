@@ -10,7 +10,8 @@ import {
   ControlContainer,
   FormGroupDirective,
 } from '@angular/forms';
-import { FormalityControl, ValueType } from '../formality-data-structures';
+import { ValueType } from '../formality-data-structures';
+import { FormalityControl } from './../formality-data-structures';
 
 @Component({
   selector: 'formality-control',
@@ -21,7 +22,7 @@ import { FormalityControl, ValueType } from '../formality-data-structures';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class JsonFormControlComponent implements OnInit {
+export class FormalityControlComponent implements OnInit {
   @Input() control: FormalityControl;
   @Input() parent: FormalityControl;
   ValueType = ValueType;
@@ -146,5 +147,11 @@ export class JsonFormControlComponent implements OnInit {
     return this.parent?.type === ValueType.RadioGroup
       ? this.parent
       : this.control;
+  }
+
+  public getId(): string {
+    return this.parent
+      ? this.parent.name + this.control.name
+      : this.control.name;
   }
 }

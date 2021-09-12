@@ -3,6 +3,7 @@ import {
   FormalityData,
   ValueType,
 } from './../formality/formality-data-structures';
+import { FormalityComponent } from './../formality/formality.component';
 
 export class FormalityUtils {
   public static generateScssSnippet(value: FormalityData, result = ''): string {
@@ -54,10 +55,16 @@ export class FormalityUtils {
     for (const formElement of controls) {
       switch (formElement.type) {
         case ValueType.Form:
-          this.flattenJsonElements(formElement.value as FormalityData);
+          this.flattenJsonElements(
+            formElement.value as FormalityData,
+            flattenedControls
+          );
           break;
         case ValueType.Group:
-          this.checkDataValidity(formElement.controls as FormalityData);
+          this.flattenJsonElements(
+            formElement.controls as FormalityData,
+            flattenedControls
+          );
           break;
         default:
           break;
@@ -131,5 +138,17 @@ export class FormalityUtils {
         names.filter((e, i, a) => a.indexOf(e) !== i)
       );
     }
+  }
+
+  public static checkForIdenticalNamesAccrossActiveForms() {
+    let controls: FormalityControls = [];
+    for (const instance of FormalityComponent.Instances) {
+      const instanceControls: FormalityControls = this.flattenJsonElements(
+        instance.controls
+      );
+      controls = controls.concat(instanceControls);
+    }
+
+    this.checkForIdenticalNames(controls);
   }
 }

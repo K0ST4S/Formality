@@ -51,7 +51,8 @@
                 "icon": "sunny"
               },
               "validators": {
-                "required": true
+                "required": true,
+                "minlength": 2
               }
             },
             {
@@ -59,7 +60,9 @@
               "label": "Do you like switches?",
               "value": false,
               "type": "switch",
-              "validators": {}
+              "validators": {
+                "requiredTrue": true
+              }
             }
           ],
           "type": "form",

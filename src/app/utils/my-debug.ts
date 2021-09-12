@@ -4,7 +4,7 @@ export class MyDebug {
    Returns an array of invalid control/group names, or a zero-length array if
    no invalid controls/groups where found
 */
-  public findInvalidControlsRecursive(
+  public static findInvalidControlsRecursive(
     formToInvestigate: FormGroup | FormArray
   ): string[] {
     var invalidControls: string[] = [];

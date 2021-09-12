@@ -14,7 +14,7 @@ import { QuillModule } from 'ngx-quill';
 import { AppComponent } from './app.component';
 import { CountrySelectComponent } from './country-select/country-select.component';
 import { FlagIconComponent } from './flag-icon/flag-icon.component';
-import { JsonFormControlComponent } from './formality/formality-control/formality-control.component';
+import { FormalityControlComponent } from './formality/formality-control/formality-control.component';
 import { JsonFormComponent } from './formality/formality-form/formality-form.component';
 import { FormalityValidatorComponent } from './formality/formality-validator/formality-validator.component';
 import { FormalityComponent } from './formality/formality.component';
@@ -31,7 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     JsonFormComponent,
     FormalityValidatorComponent,
-    JsonFormControlComponent,
+    FormalityControlComponent,
     FormalityComponent,
     RemoveWrapperDirective,
     CountrySelectComponent,

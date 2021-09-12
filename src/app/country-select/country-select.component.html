@@ -5,7 +5,7 @@
   placeholder="Select one or more"
   bindLabel="name"
   bindValue="code"
-  [labelForId]="control.name"
+  [labelForId]="controlComponent.getId()"
   [formControlName]="control.name"
 >
   <ng-template ng-option-tmp let-item="item">
