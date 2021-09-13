@@ -53,6 +53,11 @@ export interface DateSettings {
   };
 }
 
+export interface ControlParent {
+  control: FormalityControl;
+  parent: FormalityControl;
+}
+
 export enum ValueType {
   Text = 'text',
   Password = 'password',

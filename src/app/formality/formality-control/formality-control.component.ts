@@ -11,6 +11,7 @@ import {
   FormGroupDirective,
 } from '@angular/forms';
 import { ValueType } from '../formality-data-structures';
+import { FormalityUtils } from './../../utils/formality-utils';
 import {
   FormalityControl,
   SelectSettings,
@@ -153,9 +154,7 @@ export class FormalityControlComponent implements OnInit {
   }
 
   public getId(): string {
-    return this.parent
-      ? this.parent.name + this.control.name
-      : this.control.name;
+    return FormalityUtils.getId(this.control, this.parent);
   }
 
   public getSelectSettings(): SelectSettings {

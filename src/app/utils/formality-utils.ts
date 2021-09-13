@@ -1,4 +1,6 @@
 import {
+  ControlParent,
+  FormalityControl,
   FormalityControls,
   FormalityData,
   ValueType,
@@ -6,6 +8,8 @@ import {
 import { FormalityComponent } from './../formality/formality.component';
 
 export class FormalityUtils {
+  public static Instances: FormalityComponent[] = [];
+
   public static generateScssSnippet(value: FormalityData, result = ''): string {
     const controls = Array.isArray(value) ? value : [value];
     for (const node of controls) {
@@ -29,16 +33,15 @@ export class FormalityUtils {
 
   public static checkDataValidity(value: FormalityData) {
     const controls = Array.isArray(value) ? value : [value];
-    // must be no identical labels between all formalities
-
+    // check for identical names
     const flattenedControls: FormalityControls =
       this.flattenJsonElements(controls);
 
     // check for missing names
     this.checkForMissingNames(flattenedControls);
 
-    // check for identical names
-    this.checkForIdenticalNames(flattenedControls);
+    // must be no identical labels between all formalities
+    this.checkForIdenticalNames(this.mapToParentChildControls(controls));
 
     // check if types are from ValueType enum and value and controls appropriately
     this.checkForMissingTypes(flattenedControls);
@@ -70,6 +73,39 @@ export class FormalityUtils {
           break;
       }
       flattenedControls.push(formElement);
+    }
+    return flattenedControls;
+  }
+
+  private static mapToParentChildControls(
+    jsonData: FormalityData,
+    parent: FormalityControl = null,
+    flattenedControls: ControlParent[] = []
+  ): ControlParent[] {
+    const controls = Array.isArray(jsonData) ? jsonData : [jsonData];
+    for (const formElement of controls) {
+      switch (formElement.type) {
+        case ValueType.Form:
+          this.mapToParentChildControls(
+            formElement.value as FormalityData,
+            formElement,
+            flattenedControls
+          );
+          break;
+        case ValueType.Group:
+          this.mapToParentChildControls(
+            formElement.controls as FormalityData,
+            formElement,
+            flattenedControls
+          );
+          break;
+        default:
+          break;
+      }
+      flattenedControls.push({
+        control: formElement,
+        parent: parent,
+      });
     }
     return flattenedControls;
   }
@@ -128,27 +164,41 @@ export class FormalityUtils {
     }
   }
 
-  private static checkForIdenticalNames(controls: FormalityControls) {
-    const names = controls.map((v) => v.name);
+  private static checkForIdenticalNames(
+    pairs: ControlParent[],
+    message: string = 'Duplicate names'
+  ) {
+    const names = pairs.map((pair) => this.getId(pair.control, pair.parent));
+
     const uniqueValues = new Set(names);
 
     if (uniqueValues.size < names.length) {
-      console.error(
-        'Duplicate names ',
+      console.warn(
+        message,
         names.filter((e, i, a) => a.indexOf(e) !== i)
       );
     }
   }
 
   public static checkForIdenticalNamesAccrossActiveForms() {
-    let controls: FormalityControls = [];
-    for (const instance of FormalityComponent.Instances) {
-      const instanceControls: FormalityControls = this.flattenJsonElements(
+    let controls: ControlParent[] = [];
+    for (const instance of this.Instances) {
+      const instanceControls: ControlParent[] = this.mapToParentChildControls(
         instance.controls
       );
       controls = controls.concat(instanceControls);
     }
 
-    this.checkForIdenticalNames(controls);
+    this.checkForIdenticalNames(
+      controls,
+      'Duplicate names within active Formality instances'
+    );
+  }
+
+  public static getId(
+    control: FormalityControl,
+    parent: FormalityControl
+  ): string {
+    return parent?.name ? parent.name + control.name : control.name;
   }
 }

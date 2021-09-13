@@ -14,6 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CustomValidators } from '../utils/custom-validators';
+import { FormalityUtils } from './../utils/formality-utils';
 import {
   FormalityControl,
   FormalityControls,
@@ -29,7 +30,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormalityComponent implements OnDestroy {
-  public static Instances: FormalityComponent[] = [];
   @Output() onSubmitted: EventEmitter<any> = new EventEmitter();
   public ValueType = ValueType;
   public formGroup: FormGroup = new FormGroup({});
@@ -49,11 +49,11 @@ export class FormalityComponent implements OnDestroy {
   }
 
   constructor() {
-    FormalityComponent.Instances.push(this);
+    FormalityUtils.Instances.push(this);
   }
 
   ngOnDestroy(): void {
-    FormalityComponent.Instances.remove(this);
+    FormalityUtils.Instances.remove(this);
   }
 
   parseDataControls(

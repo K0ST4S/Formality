@@ -39,7 +39,6 @@ export const Form: FormalityData = {
               type: 'radio',
             },
           ],
-          validators: {},
         },
         {
           name: 'agreesdsTerms',

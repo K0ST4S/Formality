@@ -97,6 +97,7 @@
   <country-select
     *ngIf="control.type === ValueType.Country"
     [control]="control"
+    [parent]="parent"
     [class]="getControlClass(control)"
   ></country-select>
   <label [class]="getLabelClass(control)" [for]="getId()">{{
