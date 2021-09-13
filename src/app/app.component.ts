@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { COUNTRIES } from './country-data/countries';
+import { Form } from 'src/assets/my-form-object';
 import { FormalityData } from './formality/formality-data-structures';
 import { FormalityComponent } from './formality/formality.component';
 import { FormalityUtils } from './utils/formality-utils';
@@ -19,10 +19,10 @@ import { FormalityUtils } from './utils/formality-utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  countries = COUNTRIES;
   @ViewChild(FormalityComponent) form: FormalityComponent;
-  public formData: FormalityData;
-  public controlsFormData: FormalityData;
+  public exportedObjectFormData = Form;
+  public jsonObjectFormData: FormalityData;
+  public jsonArrayFormData: FormalityData;
 
   constructor(
     private http: HttpClient,
@@ -31,17 +31,17 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const first = this.http.get('/assets/my-form.json');
-    const second = this.http.get('/assets/my-form-controls.json');
+    const first = this.http.get('/assets/my-form-object.json');
+    const second = this.http.get('/assets/my-form-array.json');
 
     first.subscribe((formData: FormalityData) => {
-      this.formData = formData;
+      this.jsonObjectFormData = formData;
       FormalityUtils.checkDataValidity(formData);
       this.cdr.detectChanges();
     });
 
     second.subscribe((formData: FormalityData) => {
-      this.controlsFormData = formData;
+      this.jsonArrayFormData = formData;
       FormalityUtils.checkDataValidity(formData);
       this.cdr.detectChanges();
     });

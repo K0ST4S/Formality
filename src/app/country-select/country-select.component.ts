@@ -17,9 +17,7 @@ import { FormalityControl } from './../formality/formality-data-structures';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CountrySelectComponent {
+export class CountrySelectComponent extends FormalityControlComponent {
   public countries: Country[] = COUNTRIES;
   @Input() control: FormalityControl;
-
-  constructor(public controlComponent: FormalityControlComponent) {}
 }

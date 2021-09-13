@@ -8,33 +8,49 @@ export interface FormalityValidators {
   maxlength?: boolean;
 }
 
+type FormalityControlValue =
+  | string
+  | string[]
+  | number
+  | number[]
+  | boolean
+  | boolean[]
+  | FormalityControls;
+
 export interface FormalityControl {
   name: string;
   label: string;
-  value:
-    | string
-    | string[]
-    | number
-    | number[]
-    | boolean
-    | boolean[]
-    | FormalityControls;
+  value?: FormalityControlValue;
   type: string;
-  settings?: RangeOptions & SelectSettings;
+  settings?: FormalityControlSettings;
   options?: string[] | number[];
-  validators: FormalityValidators;
+  validators?: FormalityValidators;
   controls?: FormalityControls;
   depth?: number;
 }
 
+export type FormalityControlSettings =
+  | RangeOptions
+  | SelectSettings
+  | DateSettings;
+
 export interface RangeOptions {
-  min?: string;
-  max?: string;
-  step?: string;
+  min?: number;
+  max?: number;
+  step?: number;
 }
 
 export interface SelectSettings {
   multiple?: boolean;
+}
+
+export interface DateSettings {
+  format?: string;
+  date?: {};
+  time?: {
+    seconds?: boolean;
+    meridian?: boolean;
+  };
 }
 
 export enum ValueType {

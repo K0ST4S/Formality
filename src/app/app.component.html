@@ -1,8 +1,18 @@
 <div class="container-fluid">
   <div class="row">
-    <formality class="col-lg-6 col-12" id="test1" [formData]="formData">
+    <formality
+      class="col-lg-6 col-12"
+      id="test1"
+      [formData]="jsonObjectFormData"
+    >
     </formality>
-    <formality class="col-lg-6 col-12" id="test2" [formData]="controlsFormData">
+    <formality
+      class="col-lg-6 col-12"
+      id="test2"
+      [formData]="jsonArrayFormData"
+    >
+    </formality>
+    <formality class="col-12" id="test2" [formData]="exportedObjectFormData">
     </formality>
   </div>
 </div>
