@@ -10,6 +10,7 @@ import {
   FormalityControls,
   ValueType,
 } from '../formality-data-structures';
+import { FormalityUtils } from './../../utils/formality-utils';
 
 @Component({
   selector: 'formality-form',
@@ -29,7 +30,7 @@ export class JsonFormComponent implements OnInit {
   ngOnInit(): void {}
 
   private getControlsClass(): string {
-    return `${this.parent?.name}-controls controls`;
+    return `${this.parent?.name}${FormalityUtils.CONTROLS_CLASS_POSTFIX} ${FormalityUtils.CONTROLS_CLASS_POSTFIX}`;
   }
 
   public getHeaderClass() {
@@ -37,13 +38,13 @@ export class JsonFormComponent implements OnInit {
   }
 
   public getSubFormClass(control: FormalityControl) {
-    return `${control.name}-subform subform`;
+    return `${control.name}${FormalityUtils.SUBFORM_CLASS_POSTFIX} ${FormalityUtils.SUBFORM_CLASS_POSTFIX}`;
   }
 
   public getGroupClass(): string {
-    if (!this.parent) return 'group';
+    if (!this.parent) return FormalityUtils.GROUP_CLASS_POSTFIX;
     else if (this.parent?.type === ValueType.Group)
-      return `${this.getControlsClass()} group`;
+      return `${this.getControlsClass()} ${FormalityUtils.GROUP_CLASS_POSTFIX}`;
     else return this.getControlsClass();
   }
 }

@@ -9,15 +9,18 @@ import { FormalityComponent } from './../formality/formality.component';
 
 export class FormalityUtils {
   public static Instances: FormalityComponent[] = [];
+  public static readonly CONTROLS_CLASS_POSTFIX: string = 'controls';
+  public static readonly SUBFORM_CLASS_POSTFIX: string = 'subform';
+  public static readonly GROUP_CLASS_POSTFIX: string = 'group';
 
   public static generateScssSnippet(value: FormalityData, result = ''): string {
     const controls = Array.isArray(value) ? value : [value];
     for (const node of controls) {
       if (node.type === ValueType.Group || node.type === ValueType.RadioGroup) {
-        result += `.${node.name}-subform { .${node.name}-controls { `;
+        result += getGroupNodeLine(node);
         result = this.generateScssSnippet(node.controls, result);
       } else if (node.type === ValueType.Form) {
-        result += `.${node.name}-subform { .${node.name}-controls { `;
+        result += getGroupNodeLine(node);
         result = this.generateScssSnippet(
           node.value as FormalityControls,
           result
@@ -29,6 +32,10 @@ export class FormalityUtils {
       result += ' } }';
     }
     return result;
+
+    function getGroupNodeLine(node: FormalityControl) {
+      return `.${node.name}${this.SUBFORM_CLASS_POSTFIX} { .${node.name}${this.CONTROLS_CLASS_POSTFIX} { `;
+    }
   }
 
   public static checkDataValidity(value: FormalityData) {
@@ -55,24 +62,24 @@ export class FormalityUtils {
     flattenedControls: FormalityControls = []
   ): FormalityControls {
     const controls = Array.isArray(jsonData) ? jsonData : [jsonData];
-    for (const formElement of controls) {
-      switch (formElement.type) {
+    for (const control of controls) {
+      switch (control.type) {
         case ValueType.Form:
           this.flattenJsonElements(
-            formElement.value as FormalityData,
+            control.value as FormalityData,
             flattenedControls
           );
           break;
         case ValueType.Group:
           this.flattenJsonElements(
-            formElement.controls as FormalityData,
+            control.controls as FormalityData,
             flattenedControls
           );
           break;
         default:
           break;
       }
-      flattenedControls.push(formElement);
+      flattenedControls.push(control);
     }
     return flattenedControls;
   }
@@ -83,19 +90,19 @@ export class FormalityUtils {
     flattenedControls: ControlParent[] = []
   ): ControlParent[] {
     const controls = Array.isArray(jsonData) ? jsonData : [jsonData];
-    for (const formElement of controls) {
-      switch (formElement.type) {
+    for (const control of controls) {
+      switch (control.type) {
         case ValueType.Form:
           this.mapToParentChildControls(
-            formElement.value as FormalityData,
-            formElement,
+            control.value as FormalityData,
+            control,
             flattenedControls
           );
           break;
         case ValueType.Group:
           this.mapToParentChildControls(
-            formElement.controls as FormalityData,
-            formElement,
+            control.controls as FormalityData,
+            control,
             flattenedControls
           );
           break;
@@ -103,7 +110,7 @@ export class FormalityUtils {
           break;
       }
       flattenedControls.push({
-        control: formElement,
+        control: control,
         parent: parent,
       });
     }
