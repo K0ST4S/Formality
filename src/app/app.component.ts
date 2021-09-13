@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Form } from 'src/assets/my-form-object';
+import { Form } from 'src/my-form-object';
 import { FormalityData } from './formality/formality-data-structures';
 import { FormalityComponent } from './formality/formality.component';
 import { FormalityUtils } from './utils/formality-utils';

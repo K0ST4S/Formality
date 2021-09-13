@@ -3,7 +3,7 @@ import {
   FormalityControls,
   FormalityData,
   RangeOptions,
-} from './../app/formality/formality-data-structures';
+} from './app/formality/formality-data-structures';
 export const Form: FormalityData = {
   label: 'Formality - optimise productivity!',
   name: 'baseGroup',
