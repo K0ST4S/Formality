@@ -1,6 +1,6 @@
 <div [class]="getHeaderClass()" *ngIf="parent">{{ parent.label }}</div>
 <div [class]="getGroupClass()">
-  <ng-container *ngFor="let control of jsonFormControls">
+  <ng-container *ngFor="let control of controls">
     <ng-container
       *ngIf="
         ![ValueType.Form, ValueType.Group, ValueType.RadioGroup].includes(
@@ -16,7 +16,7 @@
       [formGroup]="parentForm.form.get(control.name)"
     >
       <formality-form
-        [jsonFormControls]="control.value"
+        [controls]="control.value"
         [parent]="control"
         [class]="getSubFormClass(control)"
       ></formality-form>
@@ -28,7 +28,7 @@
       "
     >
       <formality-form
-        [jsonFormControls]="control.controls"
+        [controls]="control.controls"
         [parent]="control"
         [class]="getSubFormClass(control)"
       ></formality-form>

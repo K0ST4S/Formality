@@ -1,5 +1,5 @@
 <form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-  <formality-form [jsonFormControls]="controls">
+  <formality-form [controls]="controls">
     <button
       (click)="onSubmit()"
       class="btn btn-primary"

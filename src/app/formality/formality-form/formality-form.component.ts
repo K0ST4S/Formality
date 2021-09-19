@@ -21,9 +21,9 @@ import { FormalityUtils } from './../../utils/formality-utils';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class JsonFormComponent implements OnInit {
+export class FormalityFormComponent implements OnInit {
   ValueType = ValueType;
-  @Input() public jsonFormControls: FormalityControls;
+  @Input() public controls: FormalityControls;
   @Input() public parent: FormalityControl;
   constructor(public parentForm: FormGroupDirective) {}
 
