@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
+import { FormalityModule } from 'projects/lib/src/lib/formality/formality.module';
 import { AppComponent } from './app.component';
-import { FormalityModule } from './formality/formality.module';
 
 @NgModule({
   declarations: [AppComponent],

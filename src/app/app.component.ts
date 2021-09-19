@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Form } from 'src/my-form-object';
-import { FormalityData } from './formality/formality-data-structures';
-import { FormalityComponent } from './formality/formality.component';
-import { FormalityUtils } from './utils/formality-utils';
+import { FormalityUtils } from '../../projects/lib/src/lib/utils/formality-utils';
+import { FormalityData } from './../../projects/lib/src/lib/formality/formality-data-structures';
+import { FormalityComponent } from './../../projects/lib/src/lib/formality/formality.component';
 
 @Component({
   selector: 'app-root',

@@ -49,11 +49,11 @@ export class FormalityComponent implements OnDestroy {
   }
 
   constructor() {
-    FormalityUtils.Instances.push(this);
+    FormalityUtils.Instances.add(this);
   }
 
   ngOnDestroy(): void {
-    FormalityUtils.Instances.remove(this);
+    FormalityUtils.Instances.delete(this);
   }
 
   parseDataControls(

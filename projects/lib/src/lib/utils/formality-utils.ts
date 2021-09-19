@@ -4,11 +4,11 @@ import {
   FormalityControls,
   FormalityData,
   ValueType,
-} from './../formality/formality-data-structures';
+} from '../formality/formality-data-structures';
 import { FormalityComponent } from './../formality/formality.component';
 
 export class FormalityUtils {
-  public static Instances: FormalityComponent[] = [];
+  public static Instances: Set<FormalityComponent> = new Set();
   public static readonly CONTROLS_CLASS_POSTFIX: string = 'controls';
   public static readonly SUBFORM_CLASS_POSTFIX: string = 'subform';
   public static readonly GROUP_CLASS_POSTFIX: string = 'group';
