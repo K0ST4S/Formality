@@ -18,37 +18,37 @@ Additionaly, `FormalityUtils` class provides additional functions:
 
 ## Types
 
-`Text`
-`Password`
-`Email`
-`Number`
-`Search`
-`Mobile` - `tel` input type.
-`Url`
-`Textarea`
-`Article` - a rich `WYSIWYG` text editor that uses ngx-quill package.
-`Checkbox` - can be intermediate.
-`Switch` - same as `Checkbox` but display as switch. Cannot be intermediate.
-`Radio`
-`RadioGroup`
-`Range`
-`Date`
-`Select` - a drop down with several values. Can be single, or multi. It uses `ng-select` package.
-`Country`
-`File`
-`Image`
-`Form` - used in order for controls to be grouped in the DOM tree, <b>and</b> to be grouped in Angular's `FormGroup`.
-`Group` - used in order for controls to be grouped in the DOM tree.
+- `Text`
+- `Password`
+- `Email`
+- `Number`
+- `Search`
+- `Mobile` - `tel` input type.
+- `Url`
+- `Textarea`
+- `Article` - a rich `WYSIWYG` text editor that uses ngx-quill package.
+- `Checkbox` - can be intermediate.
+- `Switch` - same as `Checkbox` but display as switch. Cannot be intermediate.
+- `Radio`
+- `RadioGroup`
+- `Range`
+- `Date`
+- `Select` - a drop down with several values. Can be single, or multi. It uses `ng-select` package.
+- `Country`
+- `File`
+- `Image`
+- `Form` - used in order for controls to be grouped in the DOM tree, <b>and</b> to be grouped in Angular's `FormGroup`.
+- `Group` - used in order for controls to be grouped in the DOM tree.
 
 ## Data structure
 
 You may define the object as a `JSON`, `typescript` object, or receive it from the backend. The object is constrained by abstract `FormalityControl` type, which can be nested.
 Additional constraints:
 
-1. A `Group` must have `controls` property and must not have `value` property.
-2. A `RadioGroup` must have both `value` and `controls` properties.
-3. All other controls, including FormGroup, must have `value` property and shouldn't have `controls` property.
-4. No identical parent and child name combinations within a form or within all active `Formality` forms.
+- A `Group` must have `controls` property and must not have `value` property.
+- A `RadioGroup` must have both `value` and `controls` properties.
+- All other controls, including FormGroup, must have `value` property and shouldn't have `controls` property.
+- No identical parent and child name combinations within a form or within all active `Formality` forms.
 
 Any `FormalityControl` value may be in form of a control or array of controls, including the base object, allowing you to wrap your form elements inside a single group or keep them seperate in the DOM tree.
 
@@ -56,9 +56,9 @@ Any `FormalityControl` value may be in form of a control or array of controls, i
 
 Formality creates a DOM tree with `css` selectors in a predictable manner:
 
-- Form: [form name + `-subform`] and a `subform` classes.
-  - Controls: [form name + `-controls`] and a `controls` classes.
-    - Control: [control name + parent control name] id and [control name] class
+- Form: `[form name + -subform]` and a `subform` classes.
+  - Controls: `[form name + -controls]` and a `controls` classes.
+    - Control: `[control name + parent control name]` id and `[control name]` class
 
 You can use that to make unified style for your forms by selecting `subform` and `controls`, and/or make distinctive styles by selecting controls by their name.
 
@@ -66,7 +66,7 @@ You can use that to make unified style for your forms by selecting `subform` and
 
 ## Usage
 
-1. Define your form.
+#### 1. Define your form.
 
 `form1.json`:
 
@@ -81,11 +81,6 @@ You can use that to make unified style for your forms by selecting `subform` and
       "label": "Whats your age",
       "value": "10",
       "type": "text",
-      "settings": {
-        "min": 0,
-        "max": 100,
-        "step": 1
-      },
       "validators": {
         "required": true,
         "minlength": 2
@@ -104,20 +99,18 @@ You can use that to make unified style for your forms by selecting `subform` and
 }
 ```
 
-2. Pass the object to `FormalityComponent`. Give it an `id` if you're going to want to style several forms.
+#### 2. Pass the object to `FormalityComponent`. Give form an `id` if you're going to want to style several forms.
 
-```
-    <formality
-      class="col-lg-6 col-12"
-      id="test1"
-      [formData]="form1"
-    >
-    </formality>
+```html
+<formality class="col-lg-6 col-12" id="test1" [formData]="form1"> </formality>
 ```
 
-3. Use `FormalityUtils` class to get `.scss` styling template.
+#### 3. Use `FormalityUtils` class to get `.scss` styling template.
 
+```ts
 console.log(FormalityUtils.generateScssSnippet(form1));
+```
+
 Copy and paste the code to styles.scss (or a file, that is included in styles.scss for tidyness). If you want to make sure styles for common selectors like `subform` and `controls` only impact this form - wrap it inside your `id`. In this case - it is `test1`.
 
 ```scss
@@ -135,7 +128,7 @@ Copy and paste the code to styles.scss (or a file, that is included in styles.sc
 
 Add styling as you see fit.
 
-4. Subscribe to form submittions.
+#### 4. Subscribe to form submittions.
 
 ```ts
   @ViewChild(FormalityComponent) form: FormalityComponent;
@@ -143,18 +136,23 @@ Add styling as you see fit.
   form.onSubmitted.subscribe((value) => console.log(value));
 ```
 
-5. Introduce restrictions checking (Optional)
+#### 5. Introduce restrictions checking (Optional)
+
+```ts
+FormalityUtils.checkDataValidity(form1);
+```
 
 ## Bootstrap integration improvement
 
 A inconsistency within bootstrap is that for some control types bootstrap has the following layout:
-`<label>`
-`<control>`
+<label>
+<control>
 but for other, such as a checkbox layout looks like this:
-`<control>`
-`<label>`
+<control>
+<label>
 
-In ng-formality we render all controls in the latter format, using a `flexbox` and, when needed, a `order` attribute. That allows for `FormControlComponent` code to simpler. However, styling of valid/invalid control is missing for some control labels. Thus, you should add the following code in `_forms.scss` of `ng-bootstrap` .scss file if you want all invalid control labels to be highlighted.
+In ng-formality we render all controls in the latter format, using a `flexbox` and, when needed, a `order` attribute. That allows for <b>`FormControlComponent`</b> code to simpler. However, styling of valid/invalid control is missing for some control labels.
+Thus, you should add the following code in `_forms.scss` of `ng-bootstrap` `.scss` file if you want all invalid control labels to be highlighted.
 
 ```scss
 .form-control {
@@ -169,7 +167,7 @@ In ng-formality we render all controls in the latter format, using a `flexbox` a
 ## Future improvements
 
 1. `FormArray`s support.
-2. Bootstrap control classes by Cascading Style Sheet's `@extend` keyword, instead of Angular's `[class]` binding.
+2. Perhaps bootstrap control classes by Cascading Style Sheet's `@extend` keyword, instead of Angular's `[class]` binding would give more flexibility.
 3. Use `moment` to format date.
 4. Add range and select validity check in `FormalityUtils`.
 5. Add ability to have a select with labels and values different from labels, just like with `RadioGroup` type.

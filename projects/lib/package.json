@@ -21,5 +21,17 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "description": "Dynamic form generation system for productivity with Angular and Bootstrap 5"
+  "description": "Dynamic form generation system for productivity with Angular and Bootstrap 5",
+  "keywords": [
+    "form",
+    "builder",
+    "dynamic",
+    "reactive",
+    "bootstrap",
+    "controls",
+    "form builder",
+    "dynamic forms",
+    "reactive forms",
+    "json forms"
+  ]
 }
