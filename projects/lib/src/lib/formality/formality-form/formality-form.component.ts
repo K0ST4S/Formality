@@ -6,11 +6,15 @@ import {
 } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import {
+  CONTROLS_CLASS_POSTFIX,
+  GROUP_CLASS_POSTFIX,
+  SUBFORM_CLASS_POSTFIX,
+} from '../constants';
+import {
   FormalityControl,
   FormalityControls,
   ValueType,
 } from '../formality-data-structures';
-import { FormalityUtils } from './../../utils/formality-utils';
 
 @Component({
   selector: 'formality-form',
@@ -30,7 +34,7 @@ export class FormalityFormComponent implements OnInit {
   ngOnInit(): void {}
 
   private getControlsClass(): string {
-    return `${this.parent?.name}${FormalityUtils.CONTROLS_CLASS_POSTFIX} ${FormalityUtils.CONTROLS_CLASS_POSTFIX}`;
+    return `${this.parent?.name}${CONTROLS_CLASS_POSTFIX} ${CONTROLS_CLASS_POSTFIX}`;
   }
 
   public getHeaderClass() {
@@ -38,13 +42,13 @@ export class FormalityFormComponent implements OnInit {
   }
 
   public getSubFormClass(control: FormalityControl) {
-    return `${control.name}${FormalityUtils.SUBFORM_CLASS_POSTFIX} ${FormalityUtils.SUBFORM_CLASS_POSTFIX}`;
+    return `${control.name}${SUBFORM_CLASS_POSTFIX} ${SUBFORM_CLASS_POSTFIX}`;
   }
 
   public getGroupClass(): string {
-    if (!this.parent) return FormalityUtils.GROUP_CLASS_POSTFIX;
+    if (!this.parent) return GROUP_CLASS_POSTFIX;
     else if (this.parent?.type === ValueType.Group)
-      return `${this.getControlsClass()} ${FormalityUtils.GROUP_CLASS_POSTFIX}`;
+      return `${this.getControlsClass()} ${GROUP_CLASS_POSTFIX}`;
     else return this.getControlsClass();
   }
 }

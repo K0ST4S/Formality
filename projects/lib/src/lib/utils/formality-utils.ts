@@ -1,4 +1,8 @@
 import {
+  CONTROLS_CLASS_POSTFIX,
+  SUBFORM_CLASS_POSTFIX,
+} from '../formality/constants';
+import {
   ControlParent,
   FormalityControl,
   FormalityControls,
@@ -6,12 +10,10 @@ import {
   ValueType,
 } from '../formality/formality-data-structures';
 import { FormalityComponent } from './../formality/formality.component';
+import { ControlUtils } from './control-utils';
 
 export class FormalityUtils {
   public static Instances: Set<FormalityComponent> = new Set();
-  public static readonly CONTROLS_CLASS_POSTFIX: string = 'controls';
-  public static readonly SUBFORM_CLASS_POSTFIX: string = 'subform';
-  public static readonly GROUP_CLASS_POSTFIX: string = 'group';
 
   public static generateScssSnippet(value: FormalityData, result = ''): string {
     const controls = Array.isArray(value) ? value : [value];
@@ -34,7 +36,7 @@ export class FormalityUtils {
     return result;
 
     function getGroupNodeLine(node: FormalityControl) {
-      return `.${node.name}${this.SUBFORM_CLASS_POSTFIX} { .${node.name}${this.CONTROLS_CLASS_POSTFIX} { `;
+      return `.${node.name}${SUBFORM_CLASS_POSTFIX} { .${node.name}${CONTROLS_CLASS_POSTFIX} { `;
     }
   }
 
@@ -175,7 +177,9 @@ export class FormalityUtils {
     pairs: ControlParent[],
     message: string = 'Duplicate names'
   ) {
-    const names = pairs.map((pair) => this.getId(pair.control, pair.parent));
+    const names = pairs.map((pair) =>
+      ControlUtils.getId(pair.control, pair.parent)
+    );
 
     const uniqueValues = new Set(names);
 
@@ -200,12 +204,5 @@ export class FormalityUtils {
       controls,
       'Duplicate names within active Formality instances'
     );
-  }
-
-  public static getId(
-    control: FormalityControl,
-    parent: FormalityControl
-  ): string {
-    return parent?.name ? parent.name + control.name : control.name;
   }
 }

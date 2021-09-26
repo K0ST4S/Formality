@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import { COUNTRIES } from './../country-data/countries';
 import { Country } from './../country-data/country';
-import { FormalityControlComponent } from './../formality/formality-control/formality-control.component';
+import { ControlBase } from './../formality/formality-control/control-base';
 
 @Component({
   selector: 'country-select',
@@ -16,6 +16,6 @@ import { FormalityControlComponent } from './../formality/formality-control/form
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CountrySelectComponent extends FormalityControlComponent {
+export class CountrySelectComponent extends ControlBase {
   public countries: Country[] = COUNTRIES;
 }

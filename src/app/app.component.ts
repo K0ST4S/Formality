@@ -6,7 +6,6 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Form } from 'src/my-form-object';
 import { FormalityUtils } from '../../projects/lib/src/lib/utils/formality-utils';
 import { FormalityData } from './../../projects/lib/src/lib/formality/formality-data-structures';
@@ -24,11 +23,7 @@ export class AppComponent implements OnInit {
   public jsonObjectFormData: FormalityData;
   public jsonArrayFormData: FormalityData;
 
-  constructor(
-    private http: HttpClient,
-    private cdr: ChangeDetectorRef,
-    private translateService: TranslateService
-  ) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     const first = this.http.get('/assets/my-form-object.json');

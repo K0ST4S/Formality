@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Input,
   OnInit,
 } from '@angular/core';
 import {
@@ -11,11 +10,8 @@ import {
   FormGroupDirective,
 } from '@angular/forms';
 import { ValueType } from '../formality-data-structures';
-import { FormalityUtils } from './../../utils/formality-utils';
-import {
-  FormalityControl,
-  SelectSettings,
-} from './../formality-data-structures';
+import { FormalityControl } from './../formality-data-structures';
+import { ControlBase } from './control-base';
 
 @Component({
   selector: 'formality-control',
@@ -26,9 +22,7 @@ import {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormalityControlComponent implements OnInit {
-  @Input() control: FormalityControl;
-  @Input() parent: FormalityControl;
+export class FormalityControlComponent extends ControlBase implements OnInit {
   ValueType = ValueType;
   ControlClass = {
     [ValueType.Text]: 'form-control order-1',
@@ -99,7 +93,9 @@ export class FormalityControlComponent implements OnInit {
   constructor(
     public parentForm: FormGroupDirective,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {}
 
@@ -151,13 +147,5 @@ export class FormalityControlComponent implements OnInit {
     return this.parent?.type === ValueType.RadioGroup
       ? this.parent
       : this.control;
-  }
-
-  public getId(): string {
-    return FormalityUtils.getId(this.control, this.parent);
-  }
-
-  public getSelectSettings(): SelectSettings {
-    return this.control.settings as SelectSettings;
   }
 }

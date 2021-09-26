@@ -1,25 +1,5 @@
 /* Importing Bootstrap SCSS file. */
-
-// formality-form {
-//   input,
-//   select,
-//   textarea {
-//     &.ng-invalid {
-//       @extend .is-invalid;
-//     }
-//   }
-
-//   input,
-//   select,
-//   textarea {
-//     &.ng-valid {
-//       @extend .is-valid;
-//     }
-//   }
-// }
-
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
+@import "./bootstrap/bootstrap.scss";
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
 formality-form {
