@@ -32,6 +32,13 @@
     "form builder",
     "dynamic forms",
     "reactive forms",
-    "json forms"
-  ]
+    "json forms",
+    "formality"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/K0ST4S/Formality",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/K0ST4S/Formality.git"
+  }
 }
