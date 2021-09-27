@@ -1,18 +1,18 @@
 ## Introduction
 
-`Formality` is a form builder built with Angular. It uses Angular's `ReactiveFormsModule` and `ng-bootstrap` (Bootstrap 5). `Formality` support a variety of control types.
+`Formality` is a form builder built with Angular. It uses Angular's `ReactiveFormsModule` and `ng-bootstrap` (Bootstrap 5). `Formality` supports a variety of control types.
 
 The goals:
 
+- If the form is dynamic, and its structure is defined in the backend, there should be no additional effort needed to add a new control in the frontend. Frontend will only need to be modified (style sheets) if a distinctive styling for the new control is needed.
 - Keep website forms' layout and styling consistent with no additional effort.
 - Reuse the logic of rendering forms.
-- Keep website modular by having form structure and metadata as seperate object.
-- If the form is dynamic, and its structure is defined in the backend, there should be no additional effort needed to add a new control in the frontend. Frontend will only need to be modified if a distinctive styling for the new control is needed.
+- Keep website modular by having forms rendering and forms' data seperate.
 
 Additionaly, `FormalityUtils` class provides additional functions:
 
 - Generate styling template for your unique form structure
-- Object structure vality checking
+- Object structure validity checking
 
 > Note: `FormalityUtils` currently generates SCSS styling template only.
 
@@ -111,7 +111,7 @@ You can use that to make unified style for your forms by selecting `subform` and
 console.log(FormalityUtils.generateScssSnippet(form1));
 ```
 
-Copy and paste the code to styles.scss (or a file, that is included in styles.scss for tidyness). If you want to make sure styles for common selectors like `subform` and `controls` only impact this form - wrap it inside your `id`. In this case - it is `test1`.
+Copy and paste the code to `styles.scss` (or a file, included in `styles.scss` for better seperation). If you want to make sure styles for common selectors like `subform` and `controls` only impact this form - wrap it inside your `id`. In this case - it is `test1`.
 
 ```scss
 #test1 {
@@ -145,13 +145,20 @@ FormalityUtils.checkDataValidity(form1);
 ## Bootstrap integration improvement
 
 A inconsistency within bootstrap is that for some control types bootstrap has the following layout:
-<label>
-<control>
-but for other, such as a checkbox layout looks like this:
-<control>
-<label>
 
-In ng-formality we render all controls in the latter format, using a `flexbox` and, when needed, a `order` attribute. That allows for <b>`FormControlComponent`</b> code to simpler. However, styling of valid/invalid control is missing for some control labels.
+<pre>
+<label>
+<control>
+</pre>
+
+but for other, such as a checkbox layout looks like this:
+
+<pre>
+<control>
+<label>
+</pre>
+
+In ng-formality we render all controls in the latter format, using a `flexbox` and a `order` attribute when needed. That allows the code of `FormControlComponent` to be simpler. However, styling of valid/invalid control is missing for some control labels.
 Thus, you should add the following code in `_forms.scss` of `ng-bootstrap` `.scss` file if you want all invalid control labels to be highlighted.
 
 ```scss
@@ -176,5 +183,10 @@ Thus, you should add the following code in `_forms.scss` of `ng-bootstrap` `.scs
 8. Option for image to be displayed when uploaded.
 9. Support mobile number input by displaying country's flag, country's mobile code dropdown next to an input field.
 10. Solve dependancy on `ngx-translate`.
+11. Remove `Radio` type because this type is certain by being in a `RadioGroup` type parent.
+12. Extend `Select` types to be capable of holding a value different than its name.
+13. Support prefilling image field.
+14. Perhaps implement lazy loading for `CountrySelect` type, as it will be more rarely used and requires loading countries flags.
+15. Perhaps add ability to pass `FormalityComponent` when generating stylesheet, in order to include its ID.
 
 PRs are welcome!
