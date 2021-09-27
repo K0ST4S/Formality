@@ -33,7 +33,10 @@
     "dynamic forms",
     "reactive forms",
     "json forms",
-    "formality"
+    "angular",
+    "angularx",
+    "formality",
+    "ng-formality"
   ],
   "license": "MIT",
   "homepage": "https://github.com/K0ST4S/Formality",
