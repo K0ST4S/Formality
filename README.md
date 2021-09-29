@@ -1,6 +1,6 @@
 ## Introduction
 
-`Formality` is a form builder built with Angular. It uses Angular's `ReactiveFormsModule` and `ng-bootstrap` (Bootstrap 5). `Formality` supports a variety of control types.
+`Formality` is a form builder built with Angular. It uses Angular's `ReactiveFormsModule` and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) (Bootstrap 5). `Formality` supports a variety of control [Types](#types).
 
 The goals:
 
@@ -26,14 +26,14 @@ Additionaly, `FormalityUtils` class provides additional functions:
 - `Mobile` - `tel` input type.
 - `Url`
 - `Textarea`
-- `Article` - a rich `WYSIWYG` text editor that uses ngx-quill package.
+- `Article` - a rich [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) text editor that uses ngx-quill package.
 - `Checkbox` - can be intermediate.
-- `Switch` - same as `Checkbox` but display as switch. Cannot be intermediate.
+- `Switch` - same as `Checkbox` but displayed as switch. Cannot be intermediate.
 - `Radio`
 - `RadioGroup`
 - `Range`
 - `Date`
-- `Select` - a drop down with several values. Can be single, or multi. It uses `ng-select` package.
+- `Select` - a drop down with several values. Can be single, or multi. It uses [ng-select](https://github.com/ng-select/ng-select) package.
 - `Country`
 - `File`
 - `Image`
@@ -58,12 +58,12 @@ Formality creates a DOM tree with `css` selectors in a predictable manner:
 
 - Form: `control.name`-form and a form classes.
   - Controls: `control.name`-controls and a `controls` classes.
-    - Control: `control.name`-control class (also `control.name+parent.name` id).
+    - Control: `control.name`-control class (also `control.name + parent.name` id).
     - Label: `control.name`-label class.
 
 You can use that to make unified style for your forms by selecting `subform` and `controls`, and/or make distinctive styles by selecting controls by their name.
 
-`Formality` adds `ng-valid` and `ng-invalid` classes according to control's validity.
+`Formality` adds [is-valid](https://getbootstrap.com/docs/5.0/forms/validation/) and [is-invalid](https://getbootstrap.com/docs/5.0/forms/validation/) classes according to control's validity.
 
 ## Usage
 
@@ -155,8 +155,8 @@ but for other, such as a checkbox layout is reversed:
 <b>control</b>
 <b>label</b>
 
-In ng-formality we render all controls using the latter, with the help of a `flexbox` and a `order` attribute when needed. That allows the code of `FormControlComponent` to be simpler. However, styling of valid/invalid control is missing for some control labels.
-Thus, you should add the following code in `_forms.scss` of `ng-bootstrap` `.scss` file if you want all invalid control labels to be highlighted.
+In ng-formality we render all controls using the latter, with the help of a [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) and a [order](https://developer.mozilla.org/en-US/docs/Web/CSS/order) attribute when needed. That allows the code of `FormControlComponent` to be simpler. However, styling of valid/invalid control is missing for some control labels.
+Thus, you should add the following code in `_forms.scss` of [ng-bootstrap](https://ng-bootstrap.github.io/#/home) file if you want all invalid control labels to be highlighted.
 
 ```scss
 .form-control {
@@ -170,16 +170,16 @@ Thus, you should add the following code in `_forms.scss` of `ng-bootstrap` `.scs
 
 ## Future improvements
 
-1. `FormArray`s support.
+1. Support for [FormArray](https://angular.io/api/forms/FormArray).
 2. Perhaps bootstrap control classes by Cascading Style Sheet's `@extend` keyword, instead of Angular's `[class]` binding would give more flexibility.
-3. Use `moment` to format date.
+3. Use [moment](https://www.npmjs.com/package/moment) to format date.
 4. Add range and select validity check in `FormalityUtils`.
 5. Add ability to have a select with labels and values different from labels, just like with `RadioGroup` type.
 6. Extend `FormalityUtils` to generate SASS template.
 7. Seperate `date` and `datettime` types.
 8. Option for image to be displayed when uploaded.
 9. Support mobile number input by displaying country's flag, country's mobile code dropdown next to an input field.
-10. Solve dependancy on `ngx-translate`.
+10. Solve dependancy on [ngx-translate](https://www.npmjs.com/package/@ngx-translate/core).
 11. Remove `Radio` type because this type is certain by being in a `RadioGroup` type parent.
 12. Extend `Select` types to be capable of holding a value different than its name.
 13. Support prefilling image field.
