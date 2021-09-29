@@ -4,8 +4,8 @@
 
 ### Goals
 
-- Add scalability.
-- Ease front-end developer workload if the form is dynamic, and its structure is defined in the backend. Unless a distinctive styling for a control is needed. There should be no additional effort needed to [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) a control in the front-end.
+- Improve scalability.
+- Ease front-end developer workload if the form is dynamic, and its structure is defined in the backend. Unless a distinctive styling for a control is needed, there should be no additional effort needed to [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) a control in the front-end.
 - Keep website forms' layout and styling consistent.
 - Reuse the logic of rendering forms.
 - Keep website modular by having forms rendering and forms' data seperate.
@@ -174,7 +174,7 @@ Thus, you should add the following code in `_forms.scss` of [ng-bootstrap](https
 ## FAQ
 
 1. This library is tied to Bootstrap. Is it not going to make all my websites look the same?
-   > No. There are many bootstrap theme collection websites available online. Make sure it is Bootstrap <b>5</b> and replace the style sheets to have completely different look with minimum effort.
+   > No. There are many bootstrap theme collection websites available online. Make sure it is Bootstrap <b>5</b> and replace the style sheets to have completely different look with minimal effort.
 
 ## Future improvements
 
