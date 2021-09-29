@@ -2,10 +2,11 @@
 
 `Formality` is a form builder built with Angular. It uses Angular's `ReactiveFormsModule` and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) (Bootstrap 5). `Formality` supports a variety of control [Types](#types).
 
-The goals:
+### Goals
 
-- If the form is dynamic, and its structure is defined in the backend, there should be no additional effort needed to add a new control in the frontend. Frontend will only need to be modified (style sheets) if a distinctive styling for the new control is needed.
-- Keep website forms' layout and styling consistent with no additional effort.
+- Add scalability.
+- Ease front-end developer workload if the form is dynamic, and its structure is defined in the backend. Unless a distinctive styling for a control is needed, There should be no additional effort needed to [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) a control in the frontend.
+- Keep website forms' layout and styling consistent.
 - Reuse the logic of rendering forms.
 - Keep website modular by having forms rendering and forms' data seperate.
 
@@ -26,7 +27,7 @@ Additionaly, `FormalityUtils` class provides additional functions:
 - `Mobile` - `tel` input type.
 - `Url`
 - `Textarea`
-- `Article` - a rich [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) text editor that uses ngx-quill package.
+- `Article` - a rich [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) text editor that uses [ngx-quill](https://www.npmjs.com/package/ngx-quill) package.
 - `Checkbox` - can be intermediate.
 - `Switch` - same as `Checkbox` but displayed as switch. Cannot be intermediate.
 - `Radio`
@@ -34,7 +35,7 @@ Additionaly, `FormalityUtils` class provides additional functions:
 - `Range`
 - `Date`
 - `Select` - a drop down with several values. Can be single, or multi. It uses [ng-select](https://github.com/ng-select/ng-select) package.
-- `Country`
+- `Country` - a drop down with country name and their [flags](https://www.npmjs.com/package/flag-icon-css).
 - `File`
 - `Image`
 - `Form` - used in order for controls to be grouped in the DOM tree, <b>and</b> to be grouped in Angular's `FormGroup`.
@@ -63,7 +64,7 @@ Formality creates a DOM tree with `css` selectors in a predictable manner:
 
 You can use that to make unified style for your forms by selecting `subform` and `controls`, and/or make distinctive styles by selecting controls by their name.
 
-`Formality` adds [is-valid](https://getbootstrap.com/docs/5.0/forms/validation/) and [is-invalid](https://getbootstrap.com/docs/5.0/forms/validation/) classes according to control's validity.
+`Formality` adds [is-valid, is-invalid](https://getbootstrap.com/docs/5.0/forms/validation/) classes according to control's validity.
 
 ## Usage
 
@@ -171,19 +172,19 @@ Thus, you should add the following code in `_forms.scss` of [ng-bootstrap](https
 ## Future improvements
 
 1. Support for [FormArray](https://angular.io/api/forms/FormArray).
-2. Perhaps bootstrap control classes by Cascading Style Sheet's `@extend` keyword, instead of Angular's `[class]` binding would give more flexibility.
-3. Use [moment](https://www.npmjs.com/package/moment) to format date.
-4. Add range and select validity check in `FormalityUtils`.
-5. Add ability to have a select with labels and values different from labels, just like with `RadioGroup` type.
-6. Extend `FormalityUtils` to generate SASS template.
-7. Seperate `date` and `datettime` types.
-8. Option for image to be displayed when uploaded.
-9. Support mobile number input by displaying country's flag, country's mobile code dropdown next to an input field.
-10. Solve dependancy on [ngx-translate](https://www.npmjs.com/package/@ngx-translate/core).
-11. Remove `Radio` type because this type is certain by being in a `RadioGroup` type parent.
-12. Extend `Select` types to be capable of holding a value different than its name.
-13. Support prefilling image field.
-14. Perhaps implement lazy loading for `CountrySelect` type, as it will be more rarely used and requires loading countries flags.
+2. Support prefilling image field.
+3. Support mobile number input by displaying country's flag, country's mobile code dropdown next to an input field.
+4. Seperate `date`, `time` and `datettime` types (or add options to existing control).
+5. Extend `Select` types to be capable of holding a value different than its name.
+6. Use [moment](https://www.npmjs.com/package/moment) to format date. Add ability to pass format.
+7. Add range and select validity check in `FormalityUtils`.
+8. Add ability to have a select with labels and values different from labels, just like with `RadioGroup` type.
+9. Extend `FormalityUtils` to generate SASS template.
+10. Option for an image to be displayed when uploaded.
+11. Solve dependancy on [ngx-translate](https://www.npmjs.com/package/@ngx-translate/core).
+12. Perhaps remove `Radio` type because this type is certain by being in a `RadioGroup` type parent.
+13. Perhaps implement lazy loading for `CountrySelect` type, as it will be more rarely used and requires loading countries flags.
+14. Perhaps bootstrap control classes by Cascading Style Sheet's `@extend` keyword, instead of Angular's `[class]` binding would give more flexibility.
 15. Perhaps add ability to pass `FormalityComponent` when generating stylesheet, in order to include its ID.
 
 PRs are welcome!
