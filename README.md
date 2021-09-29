@@ -5,7 +5,7 @@
 ### Goals
 
 - Add scalability.
-- Ease front-end developer workload if the form is dynamic, and its structure is defined in the backend. Unless a distinctive styling for a control is needed, There should be no additional effort needed to [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) a control in the frontend.
+- Ease front-end developer workload if the form is dynamic, and its structure is defined in the backend. Unless a distinctive styling for a control is needed. There should be no additional effort needed to [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) a control in the front-end.
 - Keep website forms' layout and styling consistent.
 - Reuse the logic of rendering forms.
 - Keep website modular by having forms rendering and forms' data seperate.
@@ -101,7 +101,9 @@ You can use that to make unified style for your forms by selecting `subform` and
 }
 ```
 
-#### 2. Pass the object to `FormalityComponent`. Give form an `id` if you're going to want to style several forms.
+#### 2. Pass the object to `FormalityComponent`.
+
+> Give form an `id` if you're going to style multiple forms differently.
 
 ```html
 <formality class="col-lg-6 col-12" id="test1" [formData]="form1"> </formality>
@@ -156,7 +158,7 @@ but for other, such as a checkbox layout is reversed:
 <b>control</b>
 <b>label</b>
 
-In ng-formality we render all controls using the latter, with the help of a [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) and a [order](https://developer.mozilla.org/en-US/docs/Web/CSS/order) attribute when needed. That allows the code of `FormControlComponent` to be simpler. However, styling of valid/invalid control is missing for some control labels.
+In ng-formality we render all controls using the latter, with the help of a [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) and an [order](https://developer.mozilla.org/en-US/docs/Web/CSS/order) attribute when needed. That allows the code of `FormControlComponent` to be simpler. However, styling of valid/invalid control is missing for some control labels.
 Thus, you should add the following code in `_forms.scss` of [ng-bootstrap](https://ng-bootstrap.github.io/#/home) file if you want all invalid control labels to be highlighted.
 
 ```scss
@@ -168,6 +170,11 @@ Thus, you should add the following code in `_forms.scss` of [ng-bootstrap](https
   }
 }
 ```
+
+## FAQ
+
+1. This library is tied to Bootstrap. Is it not going to make all my websites look the same?
+   > No. There are many bootstrap theme collection websites available online. Make sure it is Bootstrap <b>5</b> and replace the style sheets to have completely different look with minimum effort.
 
 ## Future improvements
 
@@ -182,9 +189,10 @@ Thus, you should add the following code in `_forms.scss` of [ng-bootstrap](https
 9. Extend `FormalityUtils` to generate SASS template.
 10. Option for an image to be displayed when uploaded.
 11. Solve dependancy on [ngx-translate](https://www.npmjs.com/package/@ngx-translate/core).
-12. Perhaps remove `Radio` type because this type is certain by being in a `RadioGroup` type parent.
-13. Perhaps implement lazy loading for `CountrySelect` type, as it will be more rarely used and requires loading countries flags.
-14. Perhaps bootstrap control classes by Cascading Style Sheet's `@extend` keyword, instead of Angular's `[class]` binding would give more flexibility.
-15. Perhaps add ability to pass `FormalityComponent` when generating stylesheet, in order to include its ID.
+12. Create a online tool for generating style sheet templates.
+13. Perhaps remove `Radio` type because this type is certain by being in a `RadioGroup` type parent.
+14. Perhaps implement lazy loading for `CountrySelect` type, as it will be more rarely used and requires loading countries flags.
+15. Perhaps bootstrap control classes by Cascading Style Sheet's `@extend` keyword, instead of Angular's `[class]` binding would give more flexibility.
+16. Perhaps add ability to pass `FormalityComponent` when generating stylesheet, in order to include its ID.
 
 PRs are welcome!
