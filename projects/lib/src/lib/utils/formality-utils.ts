@@ -9,34 +9,56 @@ import {
   FormalityData,
   ValueType,
 } from '../formality/formality-data-structures';
+import {
+  CONTROL_CLASS_POSTFIX,
+  LABEL_CLASS_POSTFIX,
+} from './../formality/constants';
 import { FormalityComponent } from './../formality/formality.component';
 import { ControlUtils } from './control-utils';
+
+export enum SnippetType {
+  Specific,
+  Abstract,
+  Full,
+}
 
 export class FormalityUtils {
   public static Instances: Set<FormalityComponent> = new Set();
 
-  public static generateScssSnippet(value: FormalityData, result = ''): string {
+  public static generateScssSnippet(
+    value: FormalityData,
+    type: SnippetType,
+    result = ''
+  ): string {
     const controls = Array.isArray(value) ? value : [value];
     for (const node of controls) {
       if (node.type === ValueType.Group || node.type === ValueType.RadioGroup) {
-        result += getGroupNodeLine(node);
-        result = this.generateScssSnippet(node.controls, result);
+        result += getGroupNodeLine(node, type);
+        result = this.generateScssSnippet(node.controls, type, result);
       } else if (node.type === ValueType.Form) {
-        result += getGroupNodeLine(node);
+        result += getGroupNodeLine(node, type);
         result = this.generateScssSnippet(
           node.value as FormalityControls,
+          type,
           result
         );
       } else {
-        result += ` .${node.name} { }`;
+        result += ` .${node.name}${CONTROL_CLASS_POSTFIX} { } .${node.name}${LABEL_CLASS_POSTFIX} { }`;
         continue;
       }
       result += ' } }';
     }
     return result;
 
-    function getGroupNodeLine(node: FormalityControl) {
-      return `.${node.name}${SUBFORM_CLASS_POSTFIX} { .${node.name}${CONTROLS_CLASS_POSTFIX} { `;
+    function getGroupNodeLine(node: FormalityControl, type: SnippetType) {
+      switch (type) {
+        case SnippetType.Specific:
+          return `.${node.name}${SUBFORM_CLASS_POSTFIX} { .${node.name}${CONTROLS_CLASS_POSTFIX} { `;
+        case SnippetType.Abstract:
+          return `.${SUBFORM_CLASS_POSTFIX} { .${CONTROLS_CLASS_POSTFIX} { `;
+        case SnippetType.Full:
+          return `.${node.name}${SUBFORM_CLASS_POSTFIX}, .${SUBFORM_CLASS_POSTFIX} { .${node.name}${CONTROLS_CLASS_POSTFIX}, .${CONTROLS_CLASS_POSTFIX} { `;
+      }
     }
   }
 

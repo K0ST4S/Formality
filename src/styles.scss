@@ -9,132 +9,112 @@ formality-form {
   @extend .card;
 }
 
-#test1 {
-  .baseGroup-subform {
-    display: flex;
-    flex-direction: column;
-    .baseGroup-controls {
-      .firstGroup-subform {
-        .firstGroup-controls {
-          display: flex;
-          flex-basis: 100%;
-          flex-direction: row;
-
-          .subform {
-            flex-basis: 100%;
-          }
-
-          .radioGroup-subform {
-            background-color: yellowgreen;
-            .radioGroup-controls {
-              .radio1 {
-              }
-              .radio2 {
-              }
-              .radio3 {
-              }
+// generated with FormalityUtils. type = SnippetType.Abstract
+.subform {
+  .controls {
+    .subform {
+      background-color: honeydew;
+      .controls {
+        .subform {
+          .controls {
+            .radio1 {
+            }
+            .radio2 {
+            }
+            .radio3 {
             }
           }
-          .agreesdsTerms-subform {
-            background-color: yellow;
-            .agreesdsTerms-controls {
-              .yourAge {
-              }
-              .lightDark {
-              }
+        }
+        .subform {
+          .controls {
+            .yourAge {
+            }
+            .lightDark {
             }
           }
         }
       }
-      .secondGroup-subform {
-        border-radius: 1rem;
-        .secondGroup-controls {
-          .yourAge {
-          }
-          .switchesLike {
-          }
-          .fileUpload {
-          }
-          .date {
-            input {
-              border-radius: 1rem !important;
-            }
-
-            button {
-              border-radius: 1rem !important;
-            }
-          }
+    }
+    .subform {
+      .controls {
+        .yourAge {
+        }
+        .switchesLike {
+        }
+        .fileUpload {
+        }
+        .date {
         }
       }
-      .secondGroup-subform {
-        .secondGroup-controls {
-          .countryselect {
-          }
-          .multi {
-          }
-          .single {
-          }
+    }
+    .subform {
+      .controls {
+        .countryselect {
+        }
+        .multi {
+        }
+        .single {
         }
       }
-      .articleText {
-      }
+    }
+    .articleText {
     }
   }
 }
 
-#test2 {
-  .firstGroup-subform {
-    display: flex;
-    flex-direction: column;
-    .firstGroup-controls {
-      display: flex;
-      flex-basis: 100%;
-      flex-direction: row;
-      .subform {
-        flex-basis: 100%;
-      }
-      .radioGroup-subform {
-        .radioGroup-controls {
-          .radio1 {
+// generated with FormalityUtils. type = SnippetType.Specific
+.baseGroupsubform {
+  .baseGroupcontrols {
+    .firstGroupsubform {
+      .firstGroupcontrols {
+        .radioGroupsubform {
+          .radioGroupcontrols {
+            .radio1 {
+              label {
+                color: blue !important; // bootstrap
+              }
+            }
+            .radio2 {
+              color: green;
+            }
+            .radio3 {
+              color: greenyellow;
+            }
           }
-          .radio2 {
-          }
-          .radio3 {
+        }
+        .agreesdsTermssubform {
+          .agreesdsTermscontrols {
+            .yourAge {
+            }
+            .lightDark {
+            }
           }
         }
       }
-      .agreesdsTerms-subform {
-        .agreesdsTerms-controls {
-          .yourAge {
-          }
-          .lightDark {
-          }
+    }
+    .secondGroupsubform {
+      .secondGroupcontrols {
+        .yourAge {
+        }
+        .switchesLike {
+        }
+        .fileUpload {
+        }
+        .date {
         }
       }
     }
-  }
-  .secondGroup-subform {
-    .secondGroup-controls {
-      .yourAge {
-      }
-      .switchesLike {
-      }
-      .fileUpload {
-      }
-      .date {
+    .thirdGroupsubform {
+      .thirdGroupcontrols {
+        .countryselect {
+        }
+        .multi {
+        }
+        .single {
+        }
       }
     }
-  }
-  .secondGroup-subform {
-    .secondGroup-controls {
-      .countryselect {
-      }
-      .multi {
-      }
-      .single {
-      }
+    .articleText {
     }
-  }
-  .articleText {
   }
 }

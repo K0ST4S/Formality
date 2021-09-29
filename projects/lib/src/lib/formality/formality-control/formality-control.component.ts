@@ -10,6 +10,7 @@ import {
   FormGroupDirective,
 } from '@angular/forms';
 import { ValueType } from '../formality-data-structures';
+import { CONTROL_CLASS_POSTFIX, LABEL_CLASS_POSTFIX } from './../constants';
 import { FormalityControl } from './../formality-data-structures';
 import { ControlBase } from './control-base';
 
@@ -132,11 +133,15 @@ export class FormalityControlComponent extends ControlBase implements OnInit {
   }
 
   public getLabelClass(control: FormalityControl): string {
-    return `${this.LabelClass[control.type]}`;
+    return `${this.LabelClass[control.type]} ${
+      control.name
+    }${LABEL_CLASS_POSTFIX} ${LABEL_CLASS_POSTFIX}`;
   }
 
   public getGroupClass(control: FormalityControl): string {
-    return `${this.GroupClass[control.type]}`;
+    return `${this.GroupClass[control.type]} ${
+      control.name
+    }${CONTROL_CLASS_POSTFIX} ${CONTROL_CLASS_POSTFIX}`;
   }
 
   public get referenceControl(): FormalityControl {

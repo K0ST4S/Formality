@@ -7,7 +7,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Form } from 'src/my-form-object';
-import { FormalityUtils } from '../../projects/lib/src/lib/utils/formality-utils';
+import {
+  FormalityUtils,
+  SnippetType,
+} from '../../projects/lib/src/lib/utils/formality-utils';
 import { FormalityData } from './../../projects/lib/src/lib/formality/formality-data-structures';
 import { FormalityComponent } from './../../projects/lib/src/lib/formality/formality.component';
 
@@ -32,6 +35,9 @@ export class AppComponent implements OnInit {
     first.subscribe((formData: FormalityData) => {
       this.jsonObjectFormData = formData;
       FormalityUtils.checkDataValidity(formData);
+      console.log(
+        FormalityUtils.generateScssSnippet(formData, SnippetType.Specific)
+      );
       this.cdr.detectChanges();
     });
 

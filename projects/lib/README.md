@@ -56,9 +56,10 @@ Any `FormalityControl` value may be in form of a control or array of controls, i
 
 Formality creates a DOM tree with `css` selectors in a predictable manner:
 
-- Form: `[form name + -subform]` and a `subform` classes.
-  - Controls: `[form name + -controls]` and a `controls` classes.
-    - Control: `[control name + parent control name]` id and `[control name]` class
+- Form: `control.name`-form and a form classes.
+  - Controls: `control.name`-controls and a `controls` classes.
+    - Control: `control.name`-control class (also `control.name+parent.name` id).
+    - Label: `control.name`-label class.
 
 You can use that to make unified style for your forms by selecting `subform` and `controls`, and/or make distinctive styles by selecting controls by their name.
 
@@ -108,10 +109,10 @@ You can use that to make unified style for your forms by selecting `subform` and
 #### 3. Use `FormalityUtils` class to get `.scss` styling template.
 
 ```ts
-console.log(FormalityUtils.generateScssSnippet(form1));
+console.log(FormalityUtils.generateScssSnippet(form1, SnippetType.Specific));
 ```
 
-Copy and paste the code to `styles.scss` (or a file, included in `styles.scss` for better seperation). If you want to make sure styles for common selectors like `subform` and `controls` only impact this form - wrap it inside your `id`. In this case - it is `test1`.
+Copy and paste the code to `styles.scss` (or a file, included in `styles.scss` for better seperation). If you want to make sure styles for common selectors like `subform` and `controls` only impact this form - wrap it inside your `id`. In this case - it is `test1`. Format the snippet. Result:
 
 ```scss
 #test1 {
@@ -146,19 +147,15 @@ FormalityUtils.checkDataValidity(form1);
 
 A inconsistency within bootstrap is that for some control types bootstrap has the following layout:
 
-<pre>
-<label>
-<control>
-</pre>
+<b>label</b>
+<b>control</b>
 
-but for other, such as a checkbox layout looks like this:
+but for other, such as a checkbox layout is reversed:
 
-<pre>
-<control>
-<label>
-</pre>
+<b>control</b>
+<b>label</b>
 
-In ng-formality we render all controls in the latter format, using a `flexbox` and a `order` attribute when needed. That allows the code of `FormControlComponent` to be simpler. However, styling of valid/invalid control is missing for some control labels.
+In ng-formality we render all controls using the latter, with the help of a `flexbox` and a `order` attribute when needed. That allows the code of `FormControlComponent` to be simpler. However, styling of valid/invalid control is missing for some control labels.
 Thus, you should add the following code in `_forms.scss` of `ng-bootstrap` `.scss` file if you want all invalid control labels to be highlighted.
 
 ```scss
