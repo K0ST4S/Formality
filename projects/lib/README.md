@@ -57,10 +57,10 @@ Any `FormalityControl` value may be in form of a control or array of controls, i
 
 Formality creates a DOM tree with `css` selectors in a predictable manner:
 
-- Form: `control.name`-form and a form classes.
-  - Controls: `control.name`-controls and a `controls` classes.
-    - Control: `control.name`-control class (also `control.name + parent.name` id).
-    - Label: `control.name`-label class.
+- Form: `{control.name}-form form` class.
+  - Controls: `{control.name}-controls controls` class.
+    - Control: `{control.name}-control` class (also `{control.name}{parent.name}` id).
+    - Label: `{control.name}-label` class.
 
 You can use that to make unified style for your forms by selecting `subform` and `controls`, and/or make distinctive styles by selecting controls by their name.
 
