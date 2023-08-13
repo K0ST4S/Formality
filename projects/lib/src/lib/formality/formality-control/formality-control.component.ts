@@ -146,7 +146,8 @@ export class FormalityControlComponent extends ControlBase implements OnInit {
 
   public get referenceControl(): FormalityControl {
     if (!this.control && !this.parent) {
-      console.log('Both control and parent are null');
+      console.error('Both control and parent are null');
+      return null;
     }
 
     return this.parent?.type === ValueType.RadioGroup

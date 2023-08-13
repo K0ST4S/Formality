@@ -12,7 +12,12 @@
       [formData]="jsonArrayFormData"
     >
     </formality>
-    <formality class="col-12" id="test2" [formData]="exportedObjectFormData">
+    <formality
+      class="col-12"
+      id="test2"
+      [formData]="exportedObjectFormData"
+      (onSubmitted)="onSubmit($event)"
+    >
     </formality>
   </div>
 </div>

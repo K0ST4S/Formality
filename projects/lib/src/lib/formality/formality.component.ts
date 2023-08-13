@@ -42,10 +42,6 @@ export class FormalityComponent implements OnDestroy {
 
     this.controls = Array.isArray(value) ? value : [value];
     this.formGroup = this.parseDataControls(this.controls);
-
-    this.formGroup.valueChanges.subscribe((value) => {
-      console.log(value);
-    });
   }
 
   constructor() {
@@ -115,7 +111,9 @@ export class FormalityComponent implements OnDestroy {
     return formGroup;
   }
 
-  private parseControlValidators(control: FormalityControl): UntypedFormControl {
+  private parseControlValidators(
+    control: FormalityControl
+  ): UntypedFormControl {
     const validatorsToAdd: ValidatorFn[] = [];
     if (control.validators) {
       for (const [key, value] of Object.entries(control.validators)) {
@@ -156,7 +154,6 @@ export class FormalityComponent implements OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.formGroup.value);
     this.onSubmitted.emit(this.formGroup.value);
     this.formGroup.markAsPristine();
   }
