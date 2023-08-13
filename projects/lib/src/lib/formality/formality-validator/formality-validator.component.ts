@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import {
   ControlContainer,
-  FormControl,
+  UntypedFormControl,
   FormGroupDirective,
 } from '@angular/forms';
 import { FormalityControl } from '../formality-data-structures';
@@ -23,7 +23,7 @@ import { FormalityControl } from '../formality-data-structures';
 })
 export class FormalityValidatorComponent implements OnInit {
   @Input() control: FormalityControl;
-  public formControl: FormControl;
+  public formControl: UntypedFormControl;
 
   constructor(
     public formDirective: FormGroupDirective,
@@ -33,7 +33,7 @@ export class FormalityValidatorComponent implements OnInit {
   ngOnInit(): void {
     this.formControl = this.formDirective.form.get(
       this.control.name
-    ) as FormControl;
+    ) as UntypedFormControl;
 
     this.formControl.statusChanges.subscribe(() => {
       this.cdr.detectChanges();

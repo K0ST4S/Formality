@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import {
   AbstractControl,
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
@@ -32,7 +32,7 @@ import {
 export class FormalityComponent implements OnDestroy {
   @Output() onSubmitted: EventEmitter<any> = new EventEmitter();
   public ValueType = ValueType;
-  public formGroup: FormGroup = new FormGroup({});
+  public formGroup: UntypedFormGroup = new UntypedFormGroup({});
 
   public controls: FormalityControls;
   @Input() set formData(value: FormalityData) {
@@ -58,14 +58,14 @@ export class FormalityComponent implements OnDestroy {
 
   parseDataControls(
     jsonFormData: FormalityControls,
-    formGroup: FormGroup = null,
+    formGroup: UntypedFormGroup = null,
     depth: number = 1
-  ): FormGroup {
+  ): UntypedFormGroup {
     if (!jsonFormData) {
       return null;
     }
 
-    if (!formGroup) formGroup = new FormGroup({});
+    if (!formGroup) formGroup = new UntypedFormGroup({});
 
     for (const formElement of jsonFormData) {
       this.parseControl(formElement, depth, formGroup);
@@ -77,8 +77,8 @@ export class FormalityComponent implements OnDestroy {
   private parseControl(
     formElement: FormalityControl,
     depth: number = 1,
-    formGroup: FormGroup = null
-  ): FormGroup {
+    formGroup: UntypedFormGroup = null
+  ): UntypedFormGroup {
     if (!formElement) {
       return null;
     }
@@ -115,7 +115,7 @@ export class FormalityComponent implements OnDestroy {
     return formGroup;
   }
 
-  private parseControlValidators(control: FormalityControl): FormControl {
+  private parseControlValidators(control: FormalityControl): UntypedFormControl {
     const validatorsToAdd: ValidatorFn[] = [];
     if (control.validators) {
       for (const [key, value] of Object.entries(control.validators)) {
@@ -152,7 +152,7 @@ export class FormalityComponent implements OnDestroy {
         }
       }
     }
-    return new FormControl(control.value, validatorsToAdd);
+    return new UntypedFormControl(control.value, validatorsToAdd);
   }
 
   onSubmit() {

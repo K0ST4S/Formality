@@ -1,20 +1,20 @@
-import { FormArray, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 export class MyDebug {
   /*
    Returns an array of invalid control/group names, or a zero-length array if
    no invalid controls/groups where found
 */
   public static findInvalidControlsRecursive(
-    formToInvestigate: FormGroup | FormArray
+    formToInvestigate: UntypedFormGroup | UntypedFormArray
   ): string[] {
     var invalidControls: string[] = [];
-    let recursiveFunc = (form: FormGroup | FormArray) => {
+    let recursiveFunc = (form: UntypedFormGroup | UntypedFormArray) => {
       Object.keys(form.controls).forEach((field) => {
         const control = form.get(field);
         if (control.invalid) invalidControls.push(field);
-        if (control instanceof FormGroup) {
+        if (control instanceof UntypedFormGroup) {
           recursiveFunc(control);
-        } else if (control instanceof FormArray) {
+        } else if (control instanceof UntypedFormArray) {
           recursiveFunc(control);
         }
       });
