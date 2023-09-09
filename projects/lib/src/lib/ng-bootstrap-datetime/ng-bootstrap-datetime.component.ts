@@ -17,7 +17,6 @@ import {
   NgbDatepicker,
   NgbDateStruct,
   NgbPopover,
-  NgbPopoverConfig,
   NgbTimeStruct,
 } from '@ng-bootstrap/ng-bootstrap';
 import * as moment_ from 'moment';
@@ -41,7 +40,7 @@ export class NgBootstrapDatetimeComponent
   implements ControlValueAccessor, OnInit, AfterViewInit
 {
   @Input()
-  inputDatetimeFormat = 'd/M/yyyy H:mm:ss';
+  format = 'd/M/yyyy H:mm:ss';
   @Input()
   placeholder: string = '';
   @Input()
@@ -53,6 +52,8 @@ export class NgBootstrapDatetimeComponent
   @Input()
   seconds = true;
 
+  @Input()
+  meridian = true;
   @Input()
   disabled = false;
 
@@ -71,10 +72,7 @@ export class NgBootstrapDatetimeComponent
   timeStruct: NgbTimeStruct;
   date: Date;
 
-  constructor(private config: NgbPopoverConfig, private inj: Injector) {
-    config.autoClose = 'outside';
-    config.placement = 'auto';
-  }
+  constructor(private inj: Injector, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     // tslint:disable-next-line: deprecation
@@ -141,7 +139,7 @@ export class NgBootstrapDatetimeComponent
         this.timeStruct.second
       );
 
-      this.onChange(this.date);
+      this.onChange(this.datePipe.transform(this.date, this.format));
     }
   }
 

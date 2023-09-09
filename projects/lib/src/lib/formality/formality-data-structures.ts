@@ -15,12 +15,13 @@ type FormalityControlValue =
   | number[]
   | boolean
   | boolean[]
+  | File
   | FormalityControls;
 
 export interface FormalityControl {
   name: string;
   label: string;
-  value?: FormalityControlValue;
+  value?: any;
   type: string;
   settings?: FormalityControlSettings;
   options?: string[] | number[];
@@ -77,6 +78,7 @@ export enum ValueType {
   Select = 'select',
   Country = 'country',
   File = 'file',
+  FileList = 'fileList',
   Image = 'image',
   Form = 'form',
   Group = 'group',
@@ -90,6 +92,10 @@ export enum ValidatorType {
   Email = 'email',
   MinLength = 'minlength',
   MaxLength = 'maxlength',
+}
+
+export class ImageSnippet {
+  constructor(public name: string, public base64: string, public file: File) {}
 }
 
 export type FormalityControls = FormalityControl[];

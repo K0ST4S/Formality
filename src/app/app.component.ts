@@ -7,10 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Form } from 'src/my-form-object';
-import {
-  FormalityUtils,
-  SnippetType,
-} from '../../projects/lib/src/lib/utils/formality-utils';
+import { FormalityUtils } from '../../projects/lib/src/lib/utils/formality-utils';
 import { FormalityData } from './../../projects/lib/src/lib/formality/formality-data-structures';
 import { FormalityComponent } from './../../projects/lib/src/lib/formality/formality.component';
 
@@ -23,26 +20,23 @@ import { FormalityComponent } from './../../projects/lib/src/lib/formality/forma
 export class AppComponent implements OnInit {
   @ViewChild(FormalityComponent) form: FormalityComponent;
   public exportedObjectFormData = Form;
-  public jsonObjectFormData: FormalityData;
-  public jsonArrayFormData: FormalityData;
+  public firstData: FormalityData;
+  public secondData: FormalityData;
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    const first = this.http.get('/assets/my-form-object.json');
-    const second = this.http.get('/assets/my-form-array.json');
+    const first = this.http.get('/assets/test1.json');
+    const second = this.http.get('/assets/my-form-object.json');
 
     first.subscribe((formData: FormalityData) => {
-      this.jsonObjectFormData = formData;
+      this.secondData = formData;
       FormalityUtils.checkDataValidity(formData);
-      console.log(
-        FormalityUtils.generateScssSnippet(formData, SnippetType.Specific)
-      );
       this.cdr.detectChanges();
     });
 
     second.subscribe((formData: FormalityData) => {
-      this.jsonArrayFormData = formData;
+      this.firstData = formData;
       FormalityUtils.checkDataValidity(formData);
       this.cdr.detectChanges();
     });

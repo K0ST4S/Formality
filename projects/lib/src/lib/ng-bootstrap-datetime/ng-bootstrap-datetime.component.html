@@ -4,7 +4,7 @@
     [ngClass]="ngControl?.valid ? 'ng-valid' : 'ng-invalid'"
     class="form-control"
     (blur)="inputBlur($event)"
-    [ngModel]="date | date: inputDatetimeFormat"
+    [ngModel]="date | date: format"
     (change)="onInputChange($event)"
     [disabled]="disabled"
   />
@@ -31,8 +31,8 @@
         (ngModelChange)="onDateChange($event)"
       ></ngb-datepicker>
       <ngb-timepicker
-        meridian="true"
-        [seconds]="false"
+        [meridian]="meridian"
+        [seconds]="seconds"
         #tp
         name="timepicker"
         [(ngModel)]="timeStruct"

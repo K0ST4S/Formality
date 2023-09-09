@@ -104,11 +104,55 @@ export class FormalityComponent implements OnDestroy {
         newControl = this.parseControlValidators(
           formElement as FormalityControl
         );
+
+        newControl.valueChanges.subscribe(
+          (value) => (formElement.value = value)
+        );
         formGroup.addControl(formElement.name, newControl);
         break;
     }
 
     return formGroup;
+  }
+
+  getFormData(
+    jsonFormData: FormalityControls,
+    parentName: string = null,
+    formData: FormData = null
+  ): FormData {
+    formData = formData || new FormData();
+
+    for (const formElement of jsonFormData) {
+      parentName = parentName || formElement.name;
+      const propery = `${parentName}[${formElement.name}]`;
+      switch (formElement.type) {
+        case ValueType.Form:
+          const jsonFormGroup = formElement as FormalityControl;
+          formData = this.getFormData(
+            jsonFormGroup.value as FormalityControls,
+            propery,
+            null
+          );
+          break;
+        case ValueType.Group:
+          formData = this.getFormData(
+            formElement.controls as FormalityControls,
+            parentName,
+            formData
+          );
+          break;
+        case ValueType.FileList:
+          for (var i = 0; i < formElement.value.length; i++) {
+            formData.append(`${propery}[${i}]`, formElement.value[i]);
+          }
+          break;
+        default:
+          formData.append(propery, formElement.value);
+          break;
+      }
+    }
+
+    return formData;
   }
 
   private parseControlValidators(

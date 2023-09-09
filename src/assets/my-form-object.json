@@ -110,7 +110,8 @@
           "validators": {},
           "settings": {
             "seconds": true,
-            "format": "dd/MM/yyyy hh:mm"
+            "meridian": false,
+            "format": "yyyy-MM-dd hh:mm"
           }
         }
       ]

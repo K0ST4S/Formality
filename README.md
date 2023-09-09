@@ -122,8 +122,10 @@ Copy and paste the code to `styles.scss` (or a file, included in `styles.scss` f
   .baseGroupsubform {
     .baseGroupcontrols {
       .yourAge {
+        // your css
       }
       .simpleSwitch {
+        // your css
       }
     }
   }
@@ -180,7 +182,7 @@ Thus, you should add the following code in `_forms.scss` of [ng-bootstrap](https
 
 1. Support for [FormArray](https://angular.io/api/forms/FormArray).
 2. Support prefilling image field.
-3. Add option to keep image file name.
+3. Add option to preserve file or image original file name.
 4. Support mobile number input by displaying country's flag, country's mobile code dropdown next to an input field.
 5. Seperate `date`, `time` and `datettime` types (or add options to existing control).
 6. Extend `Select` types to be capable of holding a value different than its name.
@@ -191,11 +193,12 @@ Thus, you should add the following code in `_forms.scss` of [ng-bootstrap](https
 11. Option for an image to be displayed when uploaded.
 12. Solve dependancy on [ngx-translate](https://www.npmjs.com/package/@ngx-translate/core).
 13. Create a online tool for generating style sheet templates.
-14. Perhaps remove `Radio` type because this type is certain by being in a `RadioGroup` type parent.
-15. Perhaps implement lazy loading for `CountrySelect` type, as it will be more rarely used and requires loading countries flags.
-16. Perhaps bootstrap control classes by Cascading Style Sheet's `@extend` keyword, instead of Angular's `[class]` binding would give more flexibility.
-17. Perhaps add ability to pass `FormalityComponent` when generating stylesheet, in order to include its ID.
-18. Support partial editted form values for ability to send `PATCH` requests.
-19. For more optimised `POST` requests with binary files, implement value conversion to [FormData (multipart/form-data)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) type.
+14. Support partial editted form values for ability to send `PATCH` requests.
+15. For more optimised `POST` requests with binary files, implement value conversion to [FormData (multipart/form-data)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) type.
+16. Perhaps implement lazy loading for `CountrySelect` type, as it will be more rarely used and requires loading countries flags.
+17. Perhaps bootstrap control classes by Cascading Style Sheet's `@extend` keyword, instead of Angular's `[class]` binding would give more flexibility.
+18. Perhaps add ability to pass `FormalityComponent` when generating stylesheet, in order to include its ID.
+19. Perhaps remove `Radio` type because this type is certain by being in a `RadioGroup` type parent.
+20. Perhaps Combine `File` and `Image` types.
 
 PRs are welcome!
