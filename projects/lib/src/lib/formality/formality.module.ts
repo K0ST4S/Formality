@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,45 +21,39 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-@NgModule({
-  declarations: [
-    FormalityValidatorComponent,
-    FormalityControlComponent,
-    FormalityFormComponent,
-    FormalityComponent,
-    RemoveWrapperDirective,
-    CountrySelectComponent,
-    FlagIconComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserModule,
-    NgbModule,
-    NgBootstrapDatetimeModule,
-    QuillModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: 'en',
-      useDefaultLang: true,
-    }),
-    NgSelectModule,
-  ],
-  exports: [
-    FormalityComponent,
-    FormalityFormComponent,
-    FormalityValidatorComponent,
-    FormalityControlComponent,
-    CountrySelectComponent,
-    FlagIconComponent,
-    RemoveWrapperDirective,
-  ],
-  bootstrap: [],
-})
+@NgModule({ declarations: [
+        FormalityValidatorComponent,
+        FormalityControlComponent,
+        FormalityFormComponent,
+        FormalityComponent,
+        RemoveWrapperDirective,
+        CountrySelectComponent,
+        FlagIconComponent,
+    ],
+    exports: [
+        FormalityComponent,
+        FormalityFormComponent,
+        FormalityValidatorComponent,
+        FormalityControlComponent,
+        CountrySelectComponent,
+        FlagIconComponent,
+        RemoveWrapperDirective,
+    ],
+    bootstrap: [], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserModule,
+        NgbModule,
+        NgBootstrapDatetimeModule,
+        QuillModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+            defaultLanguage: 'en',
+            useDefaultLang: true,
+        }),
+        NgSelectModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class FormalityModule {}

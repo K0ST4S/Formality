@@ -65,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Formality:build"
+            "buildTarget": "Formality:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Formality:build:production"
+              "buildTarget": "Formality:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Formality:build"
+            "buildTarget": "Formality:build"
           }
         },
         "test": {
