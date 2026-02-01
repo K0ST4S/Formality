@@ -1,10 +1,11 @@
-<ng-container *ngIf="formControl.errors && control.validators">
-  <ng-container *ngFor="let validator of control.validators | keyvalue">
-    <div
-      *ngIf="formControl.errors[validator.key]"
-      class="invalid-feedback order-2"
-    >
-      {{ validator.key | translate: { value: validator.value } }}
-    </div>
-  </ng-container>
-</ng-container>
+@if (formControl.errors && control.validators) {
+  @for (validator of control.validators | keyvalue; track validator) {
+    @if (formControl.errors[validator.key]) {
+      <div
+        class="invalid-feedback order-2"
+        >
+        {{ validator.key | translate: { value: validator.value } }}
+      </div>
+    }
+  }
+}
