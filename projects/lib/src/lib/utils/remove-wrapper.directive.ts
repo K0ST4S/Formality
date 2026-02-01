@@ -1,7 +1,8 @@
 import { AfterViewInit, Directive, ElementRef, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[remove-wrapper]',
+    selector: '[remove-wrapper]',
+    standalone: false
 })
 export class RemoveWrapperDirective implements AfterViewInit {
   constructor(private element: ElementRef, private renderer: Renderer2) {}

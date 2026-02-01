@@ -1,6 +1,8 @@
-/* Importing Bootstrap SCSS file. */
-@import "./bootstrap/bootstrap.scss";
-@import "~@ng-select/ng-select/themes/default.theme.css";
+@use "bootstrap/bootstrap.scss";
+@use "flag-icons/sass/flag-icons.scss" with (
+  $flag-icons-use-square: false
+);
+@import "@ng-select/ng-select/themes/default.theme.css";
 
 formality-form {
   display: block;

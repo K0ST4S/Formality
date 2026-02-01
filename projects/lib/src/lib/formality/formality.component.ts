@@ -24,10 +24,11 @@ import {
 } from './formality-data-structures';
 
 @Component({
-  selector: 'formality',
-  templateUrl: './formality.component.html',
-  styleUrls: ['./formality.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'formality',
+    templateUrl: './formality.component.html',
+    styleUrls: ['./formality.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FormalityComponent implements OnDestroy {
   @Output() onSubmitted: EventEmitter<any> = new EventEmitter();

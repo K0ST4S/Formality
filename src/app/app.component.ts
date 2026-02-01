@@ -12,10 +12,11 @@ import { FormalityData } from './../../projects/lib/src/lib/formality/formality-
 import { FormalityComponent } from './../../projects/lib/src/lib/formality/formality.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AppComponent implements OnInit {
   @ViewChild(FormalityComponent) form: FormalityComponent;

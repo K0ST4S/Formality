@@ -1,40 +1,40 @@
 import { DatePipe } from '@angular/common';
 import {
-  AfterViewInit,
-  Component,
-  forwardRef,
-  Injector,
-  Input,
-  OnInit,
-  ViewChild,
+    AfterViewInit,
+    Component,
+    forwardRef,
+    Injector,
+    Input,
+    OnInit,
+    ViewChild,
 } from '@angular/core';
 import {
-  ControlValueAccessor,
-  NgControl,
-  NG_VALUE_ACCESSOR,
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR,
+    NgControl,
 } from '@angular/forms';
 import {
-  NgbDatepicker,
-  NgbDateStruct,
-  NgbPopover,
-  NgbTimeStruct,
+    NgbDatepicker,
+    NgbDateStruct,
+    NgbPopover,
+    NgbTimeStruct,
 } from '@ng-bootstrap/ng-bootstrap';
-import * as moment_ from 'moment';
+import moment from 'moment';
 import { noop } from 'rxjs';
 
-const moment = moment_;
 @Component({
-  selector: 'ng-bootstrap-datetime',
-  templateUrl: './ng-bootstrap-datetime.component.html',
-  styles: [],
-  providers: [
-    DatePipe,
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => NgBootstrapDatetimeComponent),
-      multi: true,
-    },
-  ],
+    selector: 'ng-bootstrap-datetime',
+    templateUrl: './ng-bootstrap-datetime.component.html',
+    styles: [],
+    providers: [
+        DatePipe,
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => NgBootstrapDatetimeComponent),
+            multi: true,
+        },
+    ],
+    standalone: false
 })
 export class NgBootstrapDatetimeComponent
   implements ControlValueAccessor, OnInit, AfterViewInit

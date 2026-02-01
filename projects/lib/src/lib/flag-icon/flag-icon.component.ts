@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-flag-icon',
-  templateUrl: './flag-icon.component.html',
-  styleUrls: ['./flag-icon.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-flag-icon',
+    templateUrl: './flag-icon.component.html',
+    styleUrls: ['./flag-icon.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FlagIconComponent {
   @Input() private country: string;
@@ -13,8 +14,8 @@ export class FlagIconComponent {
   constructor() {}
 
   get flagClass(): string {
-    return `flag-icon flag-icon-${this.country} ${
-      this.squared ? 'flag-icon-squared' : ''
+    return `fi fi-${this.country.toLowerCase()} ${
+      this.squared ? 'fis' : ''
     }`;
   }
 }

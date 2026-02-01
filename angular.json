@@ -15,22 +15,28 @@
       "prefix": "formality",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/Formality",
+            "outputPath": {
+              "base": "dist/Formality",
+              "browser": ""
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.snow.css",
-              "./node_modules/flag-icon-css/css/flag-icon.min.css",
               "src/styles.scss"
             ],
-            "scripts": ["./node_modules/quill/dist/quill.js"]
+            "scripts": [
+              "./node_modules/quill/dist/quill.js"
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -45,8 +51,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",

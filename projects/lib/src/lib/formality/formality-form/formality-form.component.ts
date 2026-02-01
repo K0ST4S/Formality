@@ -17,13 +17,14 @@ import {
 } from '../formality-data-structures';
 
 @Component({
-  selector: 'formality-form',
-  templateUrl: './formality-form.component.html',
-  styleUrls: ['./formality-form.component.scss'],
-  viewProviders: [
-    { provide: ControlContainer, useExisting: FormGroupDirective },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'formality-form',
+    templateUrl: './formality-form.component.html',
+    styleUrls: ['./formality-form.component.scss'],
+    viewProviders: [
+        { provide: ControlContainer, useExisting: FormGroupDirective },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FormalityFormComponent implements OnInit {
   ValueType = ValueType;
