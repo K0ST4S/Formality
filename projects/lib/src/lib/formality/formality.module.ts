@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,8 +17,8 @@ import { FormalityFormComponent } from './formality-form/formality-form.componen
 import { FormalityValidatorComponent } from './formality-validator/formality-validator.component';
 import { FormalityComponent } from './formality.component';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+export function HttpLoaderFactory() {
+  return new TranslateHttpLoader();
 }
 
 @NgModule({ declarations: [
@@ -50,7 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
             loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
-                deps: [HttpClient],
+                deps: [],
             },
             defaultLanguage: 'en',
             useDefaultLang: true,
