@@ -31,9 +31,9 @@
     <ng-bootstrap-datetime
       [id]="getId()"
       [formControlName]="control.name"
-      [seconds]="control.settings.seconds"
-      [meridian]="false"
-      [format]="control.settings.format"
+      [seconds]="control.settings?.seconds"
+      [meridian]="control.settings?.meridian"
+      [format]="control.settings?.format"
       [class]="getControlClass(control)"
     ></ng-bootstrap-datetime>
   }

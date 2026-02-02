@@ -67,12 +67,16 @@
   padding-bottom: variables.$navbar-brand-padding-y;
   margin-right: variables.$navbar-brand-margin-end;
   @include rfs.font-size(variables.$navbar-brand-font-size);
-  text-decoration: if(variables.$link-decoration == none, null, none);
+  @if variables.$link-decoration != none {
+    text-decoration: none;
+  }
   white-space: nowrap;
 
   &:hover,
   &:focus {
-    text-decoration: if(variables.$link-hover-decoration == underline, none, null);
+    @if variables.$link-hover-decoration == underline {
+      text-decoration: none;
+    }
   }
 }
 

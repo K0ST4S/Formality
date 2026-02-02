@@ -8,7 +8,11 @@
     @if variables.$link-shade-percentage != 0 {
       &:hover,
       &:focus {
-        color: if(functions.color-contrast($value) == variables.$color-contrast-light, functions.shade-color($value, variables.$link-shade-percentage), functions.tint-color($value, variables.$link-shade-percentage));
+        @if functions.color-contrast($value) == variables.$color-contrast-light {
+          color: functions.shade-color($value, variables.$link-shade-percentage);
+        } @else {
+          color: functions.tint-color($value, variables.$link-shade-percentage);
+        }
       }
     }
   }

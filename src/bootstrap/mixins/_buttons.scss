@@ -15,17 +15,64 @@
 @mixin button-variant(
   $background,
   $border,
-  $color: functions.color-contrast($background),
-  $hover-background: if($color == variables.$color-contrast-light, functions.shade-color($background, variables.$btn-hover-bg-shade-amount), functions.tint-color($background, variables.$btn-hover-bg-tint-amount)),
-  $hover-border: if($color == variables.$color-contrast-light, functions.shade-color($border, variables.$btn-hover-border-shade-amount), functions.tint-color($border, variables.$btn-hover-border-tint-amount)),
-  $hover-color: functions.color-contrast($hover-background),
-  $active-background: if($color == variables.$color-contrast-light, functions.shade-color($background, variables.$btn-active-bg-shade-amount), functions.tint-color($background, variables.$btn-active-bg-tint-amount)),
-  $active-border: if($color == variables.$color-contrast-light, functions.shade-color($border, variables.$btn-active-border-shade-amount), functions.tint-color($border, variables.$btn-active-border-tint-amount)),
-  $active-color: functions.color-contrast($active-background),
-  $disabled-background: $background,
-  $disabled-border: $border,
-  $disabled-color: functions.color-contrast($disabled-background)
+  $color: null,
+  $hover-background: null,
+  $hover-border: null,
+  $hover-color: null,
+  $active-background: null,
+  $active-border: null,
+  $active-color: null,
+  $disabled-background: null,
+  $disabled-border: null,
+  $disabled-color: null
 ) {
+  // Set defaults
+  @if $color == null {
+    $color: functions.color-contrast($background);
+  }
+  @if $hover-background == null {
+    @if $color == variables.$color-contrast-light {
+      $hover-background: functions.shade-color($background, variables.$btn-hover-bg-shade-amount);
+    } @else {
+      $hover-background: functions.tint-color($background, variables.$btn-hover-bg-tint-amount);
+    }
+  }
+  @if $hover-border == null {
+    @if $color == variables.$color-contrast-light {
+      $hover-border: functions.shade-color($border, variables.$btn-hover-border-shade-amount);
+    } @else {
+      $hover-border: functions.tint-color($border, variables.$btn-hover-border-tint-amount);
+    }
+  }
+  @if $hover-color == null {
+    $hover-color: functions.color-contrast($hover-background);
+  }
+  @if $active-background == null {
+    @if $color == variables.$color-contrast-light {
+      $active-background: functions.shade-color($background, variables.$btn-active-bg-shade-amount);
+    } @else {
+      $active-background: functions.tint-color($background, variables.$btn-active-bg-tint-amount);
+    }
+  }
+  @if $active-border == null {
+    @if $color == variables.$color-contrast-light {
+      $active-border: functions.shade-color($border, variables.$btn-active-border-shade-amount);
+    } @else {
+      $active-border: functions.tint-color($border, variables.$btn-active-border-tint-amount);
+    }
+  }
+  @if $active-color == null {
+    $active-color: functions.color-contrast($active-background);
+  }
+  @if $disabled-background == null {
+    $disabled-background: $background;
+  }
+  @if $disabled-border == null {
+    $disabled-border: $border;
+  }
+  @if $disabled-color == null {
+    $disabled-color: functions.color-contrast($disabled-background);
+  }
   color: $color;
   @include gradients.gradient-bg($background);
   border-color: $border;
@@ -58,7 +105,10 @@
     color: $active-color;
     background-color: $active-background;
     // Remove CSS gradients if they're enabled
-    background-image: if(variables.$enable-gradients, none, null);
+    // Remove CSS gradients if they're enabled
+    @if variables.$enable-gradients {
+      background-image: none;
+    }
     border-color: $active-border;
 
     &:focus {
@@ -76,7 +126,10 @@
     color: $disabled-color;
     background-color: $disabled-background;
     // Remove CSS gradients if they're enabled
-    background-image: if(variables.$enable-gradients, none, null);
+    // Remove CSS gradients if they're enabled
+    @if variables.$enable-gradients {
+      background-image: none;
+    }
     border-color: $disabled-border;
   }
 }

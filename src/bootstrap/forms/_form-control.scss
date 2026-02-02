@@ -57,11 +57,12 @@
   // TODO: we can remove this workaround once https://bugs.webkit.org/show_bug.cgi?id=198959 is resolved
   &::-webkit-date-and-time-value {
     // Multiply line-height by 1em if it has no unit
-    height: if(
-      math.unit(variables.$input-line-height) == "",
-      variables.$input-line-height * 1em,
-      variables.$input-line-height
-    );
+    // Multiply line-height by 1em if it has no unit
+    @if math.unit(variables.$input-line-height) == "" {
+      height: variables.$input-line-height * 1em;
+    } @else {
+      height: variables.$input-line-height;
+    }
   }
 
   // Placeholder
@@ -220,20 +221,20 @@ textarea {
   }
 
   &::-moz-color-swatch {
-    height: if(
-      math.unit(variables.$input-line-height) == "",
-      variables.$input-line-height * 1em,
-      variables.$input-line-height
-    );
+    @if math.unit(variables.$input-line-height) == "" {
+      height: variables.$input-line-height * 1em;
+    } @else {
+      height: variables.$input-line-height;
+    }
     @include border-radius.border-radius(variables.$input-border-radius);
   }
 
   &::-webkit-color-swatch {
-    height: if(
-      math.unit(variables.$input-line-height) == "",
-      variables.$input-line-height * 1em,
-      variables.$input-line-height
-    );
+    @if math.unit(variables.$input-line-height) == "" {
+      height: variables.$input-line-height * 1em;
+    } @else {
+      height: variables.$input-line-height;
+    }
     @include border-radius.border-radius(variables.$input-border-radius);
   }
 }

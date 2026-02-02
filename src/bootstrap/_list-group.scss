@@ -68,7 +68,9 @@
   display: block;
   padding: variables.$list-group-item-padding-y variables.$list-group-item-padding-x;
   color: variables.$list-group-color;
-  text-decoration: if(variables.$link-decoration == none, null, none);
+  @if variables.$link-decoration != none {
+    text-decoration: none;
+  }
   background-color: variables.$list-group-bg;
   border: variables.$list-group-border-width solid variables.$list-group-border-color;
 

@@ -261,7 +261,10 @@ $spacers: (
   5: $spacer * 3,
 ) !default;
 
-$negative-spacers: if($enable-negative-margins, functions.negativify-map($spacers), null) !default;
+$negative-spacers: null !default;
+@if $enable-negative-margins {
+  $negative-spacers: functions.negativify-map($spacers) !default;
+}
 // scss-docs-end spacer-variables-maps
 
 // Position

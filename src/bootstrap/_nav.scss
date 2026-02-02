@@ -23,13 +23,17 @@
   @include rfs.font-size(variables.$nav-link-font-size);
   font-weight: variables.$nav-link-font-weight;
   color: variables.$nav-link-color;
-  text-decoration: if(variables.$link-decoration == none, null, none);
+  @if variables.$link-decoration != none {
+    text-decoration: none;
+  }
   @include transition.transition(variables.$nav-link-transition);
 
   &:hover,
   &:focus {
     color: variables.$nav-link-hover-color;
-    text-decoration: if(variables.$link-hover-decoration == underline, none, null);
+    @if variables.$link-hover-decoration == underline {
+      text-decoration: none;
+    }
   }
 
   // Disabled state lightens text

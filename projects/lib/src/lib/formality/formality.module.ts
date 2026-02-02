@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -42,7 +41,6 @@ export function HttpLoaderFactory() {
     bootstrap: [], imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserModule,
         NgbModule,
         NgBootstrapDatetimeModule,
         QuillModule.forRoot(),

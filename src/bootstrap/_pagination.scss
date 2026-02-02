@@ -13,7 +13,9 @@
   position: relative;
   display: block;
   color: variables.$pagination-color;
-  text-decoration: if(variables.$link-decoration == none, null, none);
+  @if variables.$link-decoration != none {
+    text-decoration: none;
+  }
   background-color: variables.$pagination-bg;
   border: variables.$pagination-border-width solid variables.$pagination-border-color;
   @include transition.transition(variables.$pagination-transition);
@@ -21,7 +23,9 @@
   &:hover {
     z-index: 2;
     color: variables.$pagination-hover-color;
-    text-decoration: if(variables.$link-hover-decoration == underline, none, null);
+    @if variables.$link-hover-decoration == underline {
+      text-decoration: none;
+    }
     background-color: variables.$pagination-hover-bg;
     border-color: variables.$pagination-hover-border-color;
   }

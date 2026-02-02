@@ -1,68 +1,43 @@
 {
-  "label": "Formality - optimise productivity!",
+  "label": "Productivity form (nested demo)",
   "name": "baseGroup",
   "type": "group",
   "controls": [
     {
       "name": "firstGroup",
-      "label": "Prallel elements test",
+      "label": "Parallel elements test",
       "type": "group",
       "controls": [
         {
           "name": "radioGroup",
-          "label": "This is a radio",
+          "label": "Pick one option",
           "type": "radioGroup",
           "value": "1",
           "controls": [
-            {
-              "label": "One",
-              "value": "1",
-              "name": "radio1",
-              "type": "radio"
-            },
-            {
-              "label": "Two",
-              "value": "2",
-              "name": "radio2",
-              "type": "radio"
-            },
-            {
-              "label": "Three",
-              "value": "3",
-              "name": "radio3",
-              "type": "radio"
-            }
+            { "label": "One", "value": "1", "name": "radio1", "type": "radio" },
+            { "label": "Two", "value": "2", "name": "radio2", "type": "radio" },
+            { "label": "Three", "value": "3", "name": "radio3", "type": "radio" }
           ],
           "validators": {}
         },
         {
-          "name": "agreesdsTerms",
-          "label": "Another",
+          "name": "agreesToTerms",
+          "label": "Embedded form",
           "value": [
             {
               "name": "yourAge",
-              "label": "Whats your age",
-              "value": "10",
+              "label": "What's your age?",
+              "value": "20",
               "type": "text",
-              "settings": {
-                "min": 0,
-                "max": 100,
-                "step": 1,
-                "icon": "sunny"
-              },
-              "validators": {
-                "required": true,
-                "minlength": 2
-              }
+              "settings": { "min": 0, "max": 100, "step": 1, "icon": "sunny" },
+              "validators": { "required": true, "minlength": 2 }
             },
             {
               "name": "lightDark",
               "label": "Do you like switches?",
               "value": false,
               "type": "switch",
-              "validators": {
-                "requiredTrue": true
-              }
+              "validators": { "requiredTrue": true }
             }
           ],
           "type": "form",
@@ -72,20 +47,15 @@
     },
     {
       "name": "secondGroup",
-      "label": "ments test",
+      "label": "More controls",
       "type": "group",
       "controls": [
         {
           "name": "yourAge",
-          "label": "Whats your age",
+          "label": "Age (range)",
           "value": 20,
           "type": "range",
-          "settings": {
-            "min": 0,
-            "max": 100,
-            "step": 1,
-            "icon": "sunny"
-          },
+          "settings": { "min": 0, "max": 100, "step": 1, "icon": "sunny" },
           "validators": {}
         },
         {
@@ -108,17 +78,13 @@
           "value": null,
           "type": "date",
           "validators": {},
-          "settings": {
-            "seconds": true,
-            "meridian": false,
-            "format": "yyyy-MM-dd hh:mm"
-          }
+          "settings": { "seconds": true, "meridian": false, "format": "yyyy-MM-dd hh:mm" }
         }
       ]
     },
     {
       "name": "thirdGroup",
-      "label": "elements test",
+      "label": "Selects",
       "type": "group",
       "controls": [
         {
@@ -126,9 +92,7 @@
           "label": "Country select",
           "value": ["LT"],
           "type": "country",
-          "settings": {
-            "multiple": true
-          },
+          "settings": { "multiple": true },
           "validators": {}
         },
         {
@@ -136,9 +100,7 @@
           "label": "Multi select",
           "value": [],
           "type": "select",
-          "settings": {
-            "multiple": true
-          },
+          "settings": { "multiple": true },
           "options": ["Alpha", "Beta", "Gamma"],
           "validators": {}
         },
@@ -147,9 +109,7 @@
           "label": "Single select",
           "value": "Gamma",
           "type": "select",
-          "settings": {
-            "multiple": false
-          },
+          "settings": { "multiple": false },
           "options": ["Alpha", "Beta", "Gamma"],
           "validators": {}
         }
@@ -157,8 +117,8 @@
     },
     {
       "name": "articleText",
-      "label": "Write a parahraph",
-      "value": "php in tags",
+      "label": "Write a paragraph",
+      "value": "Type here…",
       "type": "article",
       "validators": {}
     }

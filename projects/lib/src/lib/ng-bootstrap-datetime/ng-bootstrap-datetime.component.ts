@@ -2,16 +2,15 @@ import { DatePipe } from '@angular/common';
 import {
     AfterViewInit,
     Component,
-    forwardRef,
-    Injector,
     Input,
     OnInit,
-    ViewChild,
+    Optional,
+    Self,
+    ViewChild
 } from '@angular/core';
 import {
     ControlValueAccessor,
-    NG_VALUE_ACCESSOR,
-    NgControl,
+    NgControl
 } from '@angular/forms';
 import {
     NgbDatepicker,
@@ -27,12 +26,7 @@ import { noop } from 'rxjs';
     templateUrl: './ng-bootstrap-datetime.component.html',
     styles: [],
     providers: [
-        DatePipe,
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => NgBootstrapDatetimeComponent),
-            multi: true,
-        },
+        DatePipe
     ],
     standalone: false
 })
@@ -61,43 +55,56 @@ export class NgBootstrapDatetimeComponent
   private dp: NgbDatepicker;
 
   @ViewChild(NgbPopover)
-  private popover: NgbPopover;
+  public popover: NgbPopover;
 
   private onTouched: () => void = noop;
   private onChange: (_: any) => void = noop;
 
-  public ngControl: NgControl;
-
   dateStruct: NgbDateStruct;
   timeStruct: NgbTimeStruct;
   date: Date;
+  private isWritingValue = false;
 
-  constructor(private inj: Injector, private datePipe: DatePipe) {}
-
-  ngOnInit(): void {
-    // tslint:disable-next-line: deprecation
-    this.ngControl = this.inj.get(NgControl);
+  constructor(
+    private datePipe: DatePipe,
+    @Optional() @Self() public ngControl: NgControl
+  ) {
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
   }
+
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {}
 
   writeValue(newModel: string) {
     if (newModel) {
-      const myDate = moment(newModel).toDate();
+      this.isWritingValue = true;
+      try {
+        const myDate = moment(newModel).toDate();
+        if (myDate && !isNaN(myDate.getTime())) {
+          this.date = myDate;
+          this.dateStruct = {
+            year: myDate.getFullYear(),
+            month: myDate.getMonth() + 1,
+            day: myDate.getDate(),
+          };
 
-      this.dateStruct = {
-        year: myDate.getFullYear(),
-        month: myDate.getMonth() + 1,
-        day: myDate.getDate(),
-      };
-
-      this.timeStruct = {
-        hour: myDate.getHours(),
-        minute: myDate.getMinutes(),
-        second: myDate.getSeconds(),
-      };
-
-      this.setDateStringModel();
+          this.timeStruct = {
+            hour: myDate.getHours(),
+            minute: myDate.getMinutes(),
+            second: myDate.getSeconds(),
+          };
+          // We don't call setDateStringModel here to avoid calling onChange during writeValue
+        }
+      } finally {
+        this.isWritingValue = false;
+      }
+    } else {
+      this.date = null;
+      this.dateStruct = null;
+      this.timeStruct = null;
     }
   }
 
@@ -109,7 +116,14 @@ export class NgBootstrapDatetimeComponent
     this.onTouched = fn;
   }
 
-  onInputChange($event: any) {}
+  onInputChange($event: any) {
+    const value = $event.target.value;
+    const d = moment(value); // Try to parse what user typed
+    if (d.isValid()) {
+      this.writeValue(d.toISOString());
+      this.setDateStringModel();
+    }
+  }
 
   onDateChange(event: NgbDateStruct) {
     this.setDateStringModel();
@@ -120,7 +134,9 @@ export class NgBootstrapDatetimeComponent
   }
 
   setDateStringModel() {
-    if (!this.timeStruct) {
+    if (this.isWritingValue) return;
+
+    if (!this.timeStruct && this.dateStruct) {
       const dateA = new Date();
       this.timeStruct = {
         hour: dateA.getHours(),
@@ -129,7 +145,7 @@ export class NgBootstrapDatetimeComponent
       };
     }
 
-    if (this.dateStruct) {
+    if (this.dateStruct && this.timeStruct) {
       this.date = new Date(
         this.dateStruct.year,
         this.dateStruct.month - 1,
@@ -139,7 +155,8 @@ export class NgBootstrapDatetimeComponent
         this.timeStruct.second
       );
 
-      this.onChange(this.datePipe.transform(this.date, this.format));
+      const formattedDate = this.datePipe.transform(this.date, this.format);
+      this.onChange(formattedDate);
     }
   }
 

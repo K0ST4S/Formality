@@ -145,7 +145,9 @@
   font-weight: variables.$font-weight-normal;
   color: variables.$dropdown-link-color;
   text-align: inherit; // For `<button>`s
-  text-decoration: if(variables.$link-decoration == none, null, none);
+  @if variables.$link-decoration != none {
+    text-decoration: none;
+  }
   white-space: nowrap; // prevent links from randomly breaking onto new lines
   background-color: transparent; // For `<button>`s
   border: 0; // For `<button>`s
@@ -165,7 +167,9 @@
   &:hover,
   &:focus {
     color: variables.$dropdown-link-hover-color;
-    text-decoration: if(variables.$link-hover-decoration == underline, none, null);
+    @if variables.$link-hover-decoration == underline {
+      text-decoration: none;
+    }
     @include gradients.gradient-bg(variables.$dropdown-link-hover-bg);
   }
 
@@ -182,7 +186,10 @@
     pointer-events: none;
     background-color: transparent;
     // Remove CSS gradients if they're enabled
-    background-image: if(variables.$enable-gradients, none, null);
+    // Remove CSS gradients if they're enabled
+    @if variables.$enable-gradients {
+      background-image: none;
+    }
   }
 }
 

@@ -14,10 +14,14 @@
   line-height: variables.$btn-line-height;
   color: variables.$body-color;
   text-align: center;
-  text-decoration: if(variables.$link-decoration == none, null, none);
+  @if variables.$link-decoration != none {
+    text-decoration: none;
+  }
   white-space: variables.$btn-white-space;
   vertical-align: middle;
-  cursor: if(variables.$enable-button-pointers, pointer, null);
+  @if variables.$enable-button-pointers {
+    cursor: pointer;
+  }
   user-select: none;
   background-color: transparent;
   border: variables.$btn-border-width solid transparent;
@@ -26,7 +30,9 @@
 
   &:hover {
     color: variables.$body-color;
-    text-decoration: if(variables.$link-hover-decoration == underline, none, null);
+    @if variables.$link-hover-decoration == underline {
+      text-decoration: none;
+    }
   }
 
   .btn-check:focus + &,
