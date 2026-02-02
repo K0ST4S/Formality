@@ -1,42 +1,46 @@
+@use "mixins/lists";
+@use "variables";
+@use "vendor/rfs";
+
 //
 // Headings
 //
 .h1 {
-  @extend h1;
+  @extend h1 !optional;
 }
 
 .h2 {
-  @extend h2;
+  @extend h2 !optional;
 }
 
 .h3 {
-  @extend h3;
+  @extend h3 !optional;
 }
 
 .h4 {
-  @extend h4;
+  @extend h4 !optional;
 }
 
 .h5 {
-  @extend h5;
+  @extend h5 !optional;
 }
 
 .h6 {
-  @extend h6;
+  @extend h6 !optional;
 }
 
 
 .lead {
-  @include font-size($lead-font-size);
-  font-weight: $lead-font-weight;
+  font-weight: variables.$lead-font-weight;
+  @include rfs.font-size(variables.$lead-font-size);
 }
 
 // Type display classes
-@each $display, $font-size in $display-font-sizes {
+@each $display, $font-size in variables.$display-font-sizes {
   .display-#{$display} {
-    @include font-size($font-size);
-    font-weight: $display-font-weight;
-    line-height: $display-line-height;
+    font-weight: variables.$display-font-weight;
+    line-height: variables.$display-line-height;
+    @include rfs.font-size($font-size);
   }
 }
 
@@ -44,11 +48,11 @@
 // Emphasis
 //
 .small {
-  @extend small;
+  @extend small !optional;
 }
 
 .mark {
-  @extend mark;
+  @extend mark !optional;
 }
 
 //
@@ -56,18 +60,18 @@
 //
 
 .list-unstyled {
-  @include list-unstyled();
+  @include lists.list-unstyled();
 }
 
 // Inline turns list items into inline-block
 .list-inline {
-  @include list-unstyled();
+  @include lists.list-unstyled();
 }
 .list-inline-item {
   display: inline-block;
 
   &:not(:last-child) {
-    margin-right: $list-inline-padding;
+    margin-right: variables.$list-inline-padding;
   }
 }
 
@@ -78,14 +82,14 @@
 
 // Builds on `abbr`
 .initialism {
-  @include font-size($initialism-font-size);
   text-transform: uppercase;
+  @include rfs.font-size(variables.$initialism-font-size);
 }
 
 // Blockquotes
 .blockquote {
-  margin-bottom: $blockquote-margin-y;
-  @include font-size($blockquote-font-size);
+  margin-bottom: variables.$blockquote-margin-y;
+  @include rfs.font-size(variables.$blockquote-font-size);
 
   > :last-child {
     margin-bottom: 0;
@@ -93,10 +97,10 @@
 }
 
 .blockquote-footer {
-  margin-top: -$blockquote-margin-y;
-  margin-bottom: $blockquote-margin-y;
-  @include font-size($blockquote-footer-font-size);
-  color: $blockquote-footer-color;
+  margin-top: -(variables.$blockquote-margin-y);
+  margin-bottom: variables.$blockquote-margin-y;
+  color: variables.$blockquote-footer-color;
+  @include rfs.font-size(variables.$blockquote-footer-font-size);
 
   &::before {
     content: "\2014\00A0"; // em dash, nbsp

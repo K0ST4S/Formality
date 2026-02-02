@@ -1,38 +1,37 @@
-<div [class]="getHeaderClass()" *ngIf="parent">{{ parent.label }}</div>
+@if (parent) {
+  <div [class]="getHeaderClass()">{{ parent.label }}</div>
+}
 <div [class]="getGroupClass()">
-  <ng-container *ngFor="let control of controls">
-    <ng-container
-      *ngIf="
-        ![ValueType.Form, ValueType.Group, ValueType.RadioGroup].includes(
-          control.type
-        )
-      "
-    >
+  @for (control of controls; track control) {
+    @if (
+      ![ValueType.Form, ValueType.Group, ValueType.RadioGroup].includes(
+      control.type
+      )
+      ) {
       <formality-control [control]="control" [parent]="parent">
       </formality-control>
-    </ng-container>
-    <ng-container
-      *ngIf="control.type === ValueType.Form"
-      [formGroup]="parentForm.form.get(control.name)"
-    >
-      <formality-form
-        [controls]="control.value"
-        [parent]="control"
-        [class]="getSubFormClass(control)"
-      ></formality-form>
-    </ng-container>
-    <ng-container
-      *ngIf="
-        control.type === ValueType.RadioGroup ||
-        control.type === ValueType.Group
-      "
-    >
+    }
+    @if (control.type === ValueType.Form) {
+      <ng-container
+        [formGroup]="parentForm.form.get(control.name)"
+        >
+        <formality-form
+          [controls]="control.value"
+          [parent]="control"
+          [class]="getSubFormClass(control)"
+        ></formality-form>
+      </ng-container>
+    }
+    @if (
+      control.type === ValueType.RadioGroup ||
+      control.type === ValueType.Group
+      ) {
       <formality-form
         [controls]="control.controls"
         [parent]="control"
         [class]="getSubFormClass(control)"
       ></formality-form>
-    </ng-container>
-  </ng-container>
+    }
+  }
   <ng-content></ng-content>
 </div>

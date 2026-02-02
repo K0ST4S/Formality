@@ -6,8 +6,9 @@ import {
 } from './../formality-data-structures';
 
 @Component({
-  selector: 'control-base',
-  template: '-',
+    selector: 'control-base',
+    template: '-',
+    standalone: false
 })
 export class ControlBase {
   @Input() control: FormalityControl;

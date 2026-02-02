@@ -5,16 +5,17 @@ import { Country } from './../country-data/country';
 import { ControlBase } from './../formality/formality-control/control-base';
 
 @Component({
-  selector: 'country-select',
-  templateUrl: './country-select.component.html',
-  styleUrls: ['./country-select.component.scss'],
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      useExisting: FormGroupDirective,
-    },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'country-select',
+    templateUrl: './country-select.component.html',
+    styleUrls: ['./country-select.component.scss'],
+    viewProviders: [
+        {
+            provide: ControlContainer,
+            useExisting: FormGroupDirective,
+        },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CountrySelectComponent extends ControlBase {
   public countries: Country[] = COUNTRIES;

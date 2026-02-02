@@ -1,111 +1,117 @@
 <div [class]="getGroupClass(control)">
-  <input
-    *ngIf="
-      [
-        ValueType.Text,
-        ValueType.Password,
-        ValueType.Email,
-        ValueType.Number,
-        ValueType.Search,
-        ValueType.Mobile,
-        ValueType.Url
-      ].includes(control.type)
-    "
-    [type]="control.type"
-    [formControlName]="control.name"
-    [id]="getId()"
-    [class]="getControlClass(control)"
-  />
-  <ng-container *ngIf="control.type === ValueType.Article">
+  @if (
+    [
+    ValueType.Text,
+    ValueType.Password,
+    ValueType.Email,
+    ValueType.Number,
+    ValueType.Search,
+    ValueType.Mobile,
+    ValueType.Url
+    ].includes(control.type)
+    ) {
+    <input
+      [type]="control.type"
+      [formControlName]="control.name"
+      [id]="getId()"
+      [class]="getControlClass(control)"
+      />
+  }
+  @if (control.type === ValueType.Article) {
     <quill-editor
       [value]="control.value"
       [name]="control.name"
       [formControlName]="control.name"
       [placeholder]="control.label"
       [class]="getControlClass(control)"
-    >
+      >
     </quill-editor>
-  </ng-container>
-  <ng-bootstrap-datetime
-    *ngIf="control.type === ValueType.Date"
-    [id]="getId()"
-    [formControlName]="control.name"
-    [seconds]="control.settings.seconds"
-    [meridian]="false"
-    [format]="control.settings.format"
-    [class]="getControlClass(control)"
-  ></ng-bootstrap-datetime>
-  <textarea
-    *ngIf="control.type === ValueType.Textarea"
-    [id]="getId()"
-    [formControlName]="control.name"
-    [class]="getControlClass(control)"
-  ></textarea>
-  <input
-    *ngIf="control.type === ValueType.Range"
-    [min]="control.settings.min"
-    [max]="control.settings.max"
-    [type]="ValueType.Range"
-    [id]="getId()"
-    [formControlName]="control.name"
-    [class]="getControlClass(control)"
-  />
+  }
+  @if (control.type === ValueType.Date) {
+    <ng-bootstrap-datetime
+      [id]="getId()"
+      [formControlName]="control.name"
+      [seconds]="control.settings?.seconds"
+      [meridian]="control.settings?.meridian"
+      [format]="control.settings?.format"
+      [class]="getControlClass(control)"
+    ></ng-bootstrap-datetime>
+  }
+  @if (control.type === ValueType.Textarea) {
+    <textarea
+      [id]="getId()"
+      [formControlName]="control.name"
+      [class]="getControlClass(control)"
+    ></textarea>
+  }
+  @if (control.type === ValueType.Range) {
+    <input
+      [min]="control.settings.min"
+      [max]="control.settings.max"
+      [type]="ValueType.Range"
+      [id]="getId()"
+      [formControlName]="control.name"
+      [class]="getControlClass(control)"
+      />
+  }
 
-  <input
-    *ngIf="[ValueType.Checkbox, ValueType.Switch].includes(control.type)"
-    type="checkbox"
-    [id]="getId()"
-    [formControlName]="control.name"
-    [class]="getControlClass(control)"
-  />
-  <input
-    *ngIf="control.type === ValueType.Radio"
-    type="radio"
-    [value]="control.value"
-    [name]="parent.name"
-    [id]="getId()"
-    [formControlName]="parent.name"
-    [class]="getControlClass(control)"
-  />
-  <ng-container
-    *ngIf="[ValueType.File, ValueType.Image].includes(control.type)"
-  >
+  @if ([ValueType.Checkbox, ValueType.Switch].includes(control.type)) {
+    <input
+      type="checkbox"
+      [id]="getId()"
+      [formControlName]="control.name"
+      [class]="getControlClass(control)"
+      />
+  }
+  @if (control.type === ValueType.Radio) {
+    <input
+      type="radio"
+      [value]="control.value"
+      [name]="parent.name"
+      [id]="getId()"
+      [formControlName]="parent.name"
+      [class]="getControlClass(control)"
+      />
+  }
+  @if ([ValueType.File, ValueType.Image].includes(control.type)) {
     <input
       [type]="ValueType.File"
       [class]="getControlClass(control)"
       (change)="onFileChange($event)"
       [id]="getId()"
       [accept]="control.accept"
-    />
-    <input
-      [type]="ValueType.Text"
-      [formControlName]="control.name"
-      style="display: none"
-    />
-  </ng-container>
-  <ng-container *ngIf="control.type === ValueType.Select">
-    <ng-select
-      [multiple]="control.settings.multiple"
-      [items]="control.options"
-      [name]="control.name"
-      [labelForId]="getId()"
-      [formControlName]="control.name"
-      [class]="getControlClass(control)"
-    >
-    </ng-select>
-  </ng-container>
-  <country-select
-    *ngIf="control.type === ValueType.Country"
-    [control]="control"
-    [parent]="parent"
-    [class]="getControlClass(control)"
-  ></country-select>
-  <label [class]="getLabelClass(control)" [for]="getId()">{{
-    control.label
-  }}</label>
-  <formality-validator
-    *ngIf="parentForm.form.get(control.name)"
-    remove-wrapper
-    [control]="referenceControl"
-  ></formality-validator>
-</div>
+      />
+      <input
+        [type]="ValueType.Text"
+        [formControlName]="control.name"
+        style="display: none"
+        />
+      }
+      @if (control.type === ValueType.Select) {
+        <ng-select
+          [multiple]="control.settings.multiple"
+          [items]="control.options"
+          [name]="control.name"
+          [labelForId]="getId()"
+          [formControlName]="control.name"
+          [class]="getControlClass(control)"
+          >
+        </ng-select>
+      }
+      @if (control.type === ValueType.Country) {
+        <country-select
+          [control]="control"
+          [parent]="parent"
+          [class]="getControlClass(control)"
+        ></country-select>
+      }
+      <label [class]="getLabelClass(control)" [for]="getId()">{{
+        control.label
+      }}</label>
+      @if (parentForm.form.get(control.name)) {
+        <formality-validator
+          remove-wrapper
+          [control]="referenceControl"
+        ></formality-validator>
+      }
+    </div>

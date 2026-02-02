@@ -1,35 +1,32 @@
-<div class="input-group mr-2">
+<div>
   <input
+    #p="ngbPopover"
+    [ngbPopover]="calendarContent"
     [placeholder]="placeholder"
     [ngClass]="ngControl?.valid ? 'ng-valid' : 'ng-invalid'"
     class="form-control"
     (blur)="inputBlur($event)"
     [ngModel]="date | date: format"
+    (click)="p.toggle()"
     (change)="onInputChange($event)"
     [disabled]="disabled"
+    autoClose="outside"
+    container="body"
+    triggers="manual"
+    placement="bottom-start"
   />
-
-  <div class="input-group-append">
-    <button
-      class="btn btn-outline-secondary"
-      [ngbPopover]="calendarContent"
-      [disabled]="disabled"
-      type="button"
-    >
-      <i>✓</i>
-    </button>
-  </div>
 </div>
 
 <ng-template #calendarContent>
-  <div>
-    <div>
+  <div class="p-2 bg-white border rounded shadow-sm" style="min-width: 250px;">
+    <div class="d-flex flex-column align-items-center">
       <ngb-datepicker
         #dp
         name="datepicker"
         [(ngModel)]="dateStruct"
         (ngModelChange)="onDateChange($event)"
       ></ngb-datepicker>
+      <hr class="w-100 my-2" />
       <ngb-timepicker
         [meridian]="meridian"
         [seconds]="seconds"
@@ -37,7 +34,6 @@
         name="timepicker"
         [(ngModel)]="timeStruct"
         (ngModelChange)="onTimeChange($event)"
-        [seconds]="seconds"
         [hourStep]="hourStep"
         [minuteStep]="minuteStep"
       ></ngb-timepicker>

@@ -15,13 +15,14 @@ import { FormalityControl } from './../formality-data-structures';
 import { ControlBase } from './control-base';
 
 @Component({
-  selector: 'formality-control',
-  templateUrl: './formality-control.component.html',
-  styleUrls: ['./formality-control.component.scss'],
-  viewProviders: [
-    { provide: ControlContainer, useExisting: FormGroupDirective },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'formality-control',
+    templateUrl: './formality-control.component.html',
+    styleUrls: ['./formality-control.component.scss'],
+    viewProviders: [
+        { provide: ControlContainer, useExisting: FormGroupDirective },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FormalityControlComponent extends ControlBase implements OnInit {
   ValueType = ValueType;

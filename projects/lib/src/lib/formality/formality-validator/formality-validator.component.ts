@@ -13,13 +13,14 @@ import {
 import { FormalityControl } from '../formality-data-structures';
 
 @Component({
-  selector: 'formality-validator',
-  templateUrl: './formality-validator.component.html',
-  styleUrls: ['./formality-validator.component.scss'],
-  viewProviders: [
-    { provide: ControlContainer, useExisting: FormGroupDirective },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'formality-validator',
+    templateUrl: './formality-validator.component.html',
+    styleUrls: ['./formality-validator.component.scss'],
+    viewProviders: [
+        { provide: ControlContainer, useExisting: FormGroupDirective },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FormalityValidatorComponent implements OnInit {
   @Input() control: FormalityControl;

@@ -1,0 +1,29 @@
+{
+  "label": "Quick profile (basic demo)",
+  "name": "basicGroup",
+  "type": "group",
+  "controls": [
+    {
+      "name": "yourAge",
+      "label": "What's your age?",
+      "value": "20",
+      "type": "text",
+      "validators": { "required": true, "minlength": 2 }
+    },
+    {
+      "name": "likesSwitches",
+      "label": "Do you like switches?",
+      "value": false,
+      "type": "switch",
+      "validators": { "requiredTrue": true }
+    },
+    {
+      "name": "meetingDate",
+      "label": "Meeting date",
+      "value": null,
+      "type": "date",
+      "validators": {},
+      "settings": { "seconds": true, "meridian": false, "format": "yyyy-MM-dd hh:mm" }
+    }
+  ]
+}

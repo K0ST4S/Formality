@@ -1,0 +1,43 @@
+[
+  {
+    "name": "firstGroup",
+    "label": "Array root: group 1",
+    "type": "group",
+    "controls": [
+      {
+        "name": "radioGroup",
+        "label": "This is a radio group",
+        "type": "radioGroup",
+        "value": "1",
+        "controls": [
+          { "label": "One", "value": "1", "name": "radio1", "type": "radio" },
+          { "label": "Two", "value": "2", "name": "radio2", "type": "radio" },
+          { "label": "Three", "value": "3", "name": "radio3", "type": "radio" }
+        ],
+        "validators": {}
+      }
+    ]
+  },
+  {
+    "name": "secondGroup",
+    "label": "Array root: group 2",
+    "type": "group",
+    "controls": [
+      {
+        "name": "yourAge",
+        "label": "Age (range)",
+        "value": 20,
+        "type": "range",
+        "settings": { "min": 0, "max": 100, "step": 1, "icon": "sunny" },
+        "validators": {}
+      },
+      {
+        "name": "switchExample",
+        "label": "Do you like switches?",
+        "value": false,
+        "type": "switch",
+        "validators": {}
+      }
+    ]
+  }
+]

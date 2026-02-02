@@ -1,15 +1,109 @@
-<div class="container-fluid">
-  <div class="row">
-    <formality class="col-lg-6 col-12" id="test1" [formData]="firstData">
-    </formality>
-    <formality class="col-lg-6 col-12" id="test2" [formData]="secondData">
-    </formality>
-    <formality
-      class="col-12"
-      id="test2"
-      [formData]="exportedObjectFormData"
-      (onSubmitted)="onSubmit($event)"
+<div class="page">
+  <header class="hero">
+    <div>
+      <h1 class="title">ng-formality demo</h1>
+      <p class="subtitle">
+        Dynamic JSON-driven forms, with predictable CSS selectors and optional
+        SCSS snippet generation.
+      </p>
+
+      <div class="chips">
+        <span class="chip">Bootstrap 5</span>
+        <span class="chip">Reactive Forms</span>
+        <span class="chip">JSON schema</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button
+      *ngFor="let d of demos"
+      class="tab"
+      [class.active]="active === d.key"
+      (click)="setActive(d.key)"
+      type="button"
     >
-    </formality>
-  </div>
+      <div class="tab-title">{{ d.title }}</div>
+      <div class="tab-sub">{{ d.description }}</div>
+    </button>
+  </nav>
+
+  <ng-container *ngIf="demoData$ | async as all">
+    <section class="content">
+      <div class="grid">
+        <!-- LEFT: the form -->
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">{{ pickDemoMeta().title }}</div>
+              <div class="card-desc">{{ pickDemoMeta().description }}</div>
+            </div>
+
+            <div class="meta">
+              <div class="meta-row">
+                <span class="meta-label">Asset</span>
+                <code class="meta-value">{{ pickDemoMeta().assetPath }}</code>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Scope ID</span>
+                <code class="meta-value">{{ pickDemoMeta().elementId }}</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body" [id]="pickDemoMeta().elementId">
+            <formality
+              class="form-host"
+              [formData]="pickActive(all)"
+              (onSubmitted)="onSubmitted(active, $event)"
+            >
+            </formality>
+          </div>
+        </div>
+
+        <!-- RIGHT: schema + output + scss -->
+        <div class="stack">
+          <div class="card">
+            <div class="card-head tight">
+              <div class="card-title">Schema (JSON)</div>
+              <div class="card-desc">
+                What you pass into <code>[formData]</code>.
+              </div>
+            </div>
+            <div class="card-body">
+              <pre class="pre">{{ pickActive(all) | json }}</pre>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head tight">
+              <div class="card-title">Last submit</div>
+              <div class="card-desc">
+                Output of <code>(onSubmitted)</code>.
+              </div>
+            </div>
+            <div class="card-body">
+              <pre class="pre">{{ lastSubmit[active] | json }}</pre>
+              <div class="hint" *ngIf="!lastSubmit[active]">
+                Submit the form to see the payload here.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head tight">
+              <div class="card-title">Generated SCSS snippet</div>
+              <div class="card-desc">
+                Produced by <code>FormalityUtils.generateScssSnippet</code> for
+                predictable selectors.
+              </div>
+            </div>
+            <div class="card-body">
+              <pre class="pre">{{ scssSnippet[active] }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
 </div>

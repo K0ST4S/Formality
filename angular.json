@@ -15,22 +15,32 @@
       "prefix": "formality",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/Formality",
+            "outputPath": {
+              "base": "dist/Formality",
+              "browser": ""
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.snow.css",
-              "./node_modules/flag-icon-css/css/flag-icon.min.css",
               "src/styles.scss"
             ],
-            "scripts": ["./node_modules/quill/dist/quill.js"]
+            "scripts": [
+              "./node_modules/quill/dist/quill.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "quill-delta",
+              "moment"
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -45,8 +55,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -65,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Formality:build"
+            "buildTarget": "Formality:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Formality:build:production"
+              "buildTarget": "Formality:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Formality:build"
+            "buildTarget": "Formality:build"
           }
         },
         "test": {
@@ -135,6 +143,32 @@
           }
         }
       }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   }
 }
